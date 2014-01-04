@@ -5,7 +5,7 @@ Convention : When this document uses syntax like
                 single-quote text single-quote
                 + 'some-text-here'
                 + 'a second example'
-             Such indicates that the reader is to use the value _without_
+             it indicates that the reader is to use the value _without_
              the single-quotes.
 	     
 #########################################
