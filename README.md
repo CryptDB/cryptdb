@@ -1,4 +1,5 @@
-CryptDB: http://css.csail.mit.edu/cryptdb
+CryptDB's website (including latest source code): http://css.csail.mit.edu/cryptdb
+
 Wiki: https://github.com/burrows-labs/cryptdb-wiki/wiki/_pages
 
 Convention : When this document uses syntax like
@@ -14,7 +15,7 @@ Convention : When this document uses syntax like
 #########################################
 #########################################
     * Requirements:
-      > Ubuntu 12.04, 13.04
+      > Ubuntu 12.04, 13.04; Not tested on a different OS.
       > ruby
     * Build CryptDB using the installation script.
       > note, this script will stop and start your mysql instance.
