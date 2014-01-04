@@ -1,0 +1,151 @@
+CREATE TABLE `table0` (
+  `cdb_salt_t_table0` bigint(20) unsigned DEFAULT NULL,
+  `field0DET` bigint(20) unsigned DEFAULT NULL,
+  `field1DET` bigint(20) unsigned DEFAULT NULL,
+  `field1AGG` varbinary(256) DEFAULT NULL,
+  `field2DET` bigint(20) unsigned DEFAULT NULL,
+  `field3DET` varbinary(16),
+  `field4DET` varbinary(32),
+  `field5DET` varbinary(32),
+  `field6DET` varbinary(32),
+  `field7DET` varbinary(16),
+  `field8DET` varbinary(16)
+);
+
+CREATE TABLE `table1` (
+  `cdb_salt_t_table1` bigint(20) unsigned DEFAULT NULL,
+  `field0DET` bigint(20) unsigned DEFAULT NULL,
+  `field1DET` bigint(20) unsigned DEFAULT NULL,
+  `field2DET` bigint(20) unsigned DEFAULT NULL,
+  `field2AGG` varbinary(256) DEFAULT NULL,
+  `field3DET` bigint(20) unsigned DEFAULT NULL,
+  `field4DET` bigint(20) unsigned DEFAULT NULL,
+  `field4AGG` varbinary(256) DEFAULT NULL,
+  `field5DET` varbinary(16),
+  `field6DET` varbinary(32),
+  `field7DET` varbinary(32),
+  `field8DET` varbinary(32),
+  `field9DET` varbinary(16),
+  `field10DET` varbinary(16)
+); 
+
+CREATE TABLE `table2` (
+  `cdb_salt_t_table2` bigint(20) unsigned DEFAULT NULL,
+  `field0DET` bigint(20) unsigned DEFAULT NULL,
+  `field1DET` bigint(20) unsigned DEFAULT NULL,
+  `field2DET` bigint(20) unsigned DEFAULT NULL,
+  `field3DET` bigint(20) unsigned DEFAULT NULL,
+  `field4DET` varbinary(16),
+  `field5DET` varbinary(32),
+  `field6DET` varbinary(32),
+  `field6OPE` bigint(20) unsigned DEFAULT NULL,
+  `field7DET` bigint(20) unsigned DEFAULT NULL,
+  `field8DET` bigint(20) unsigned DEFAULT NULL,
+  `field8AGG` varbinary(256) DEFAULT NULL,
+  `cdb_salt_f_8_table2` bigint(20) unsigned DEFAULT NULL,
+  `field9DET` bigint(20) unsigned DEFAULT NULL,
+  `cdb_salt_f_9_table2` bigint(20) unsigned DEFAULT NULL,
+  `field10DET` bigint(20) unsigned DEFAULT NULL,
+  `cdb_salt_f_10_table2` bigint(20) unsigned DEFAULT NULL,
+  `field11DET` bigint(20) unsigned DEFAULT NULL,
+  `field11AGG` varbinary(256) DEFAULT NULL,
+  `field12DET` varbinary(32),
+  `field13DET` varbinary(32),
+  `field14DET` varbinary(32),
+  `field15DET` varbinary(16),
+  `field16DET` varbinary(16),
+  `field17DET` varbinary(32),
+  `field18DET` varbinary(32),
+  `field19DET` varbinary(16),
+  `field20DET` varbinary(512),
+  `cdb_salt_f_20_table2` bigint(20) unsigned DEFAULT NULL
+); 
+
+
+CREATE TABLE `table3` (
+  `cdb_salt_t_table3` bigint(20) unsigned DEFAULT NULL,
+  `field0DET` bigint(20) unsigned DEFAULT NULL,
+  `field1DET` bigint(20) unsigned DEFAULT NULL,
+  `field2DET` bigint(20) unsigned DEFAULT NULL,
+  `field3DET` bigint(20) unsigned DEFAULT NULL,
+  `field4DET` bigint(20) unsigned DEFAULT NULL,
+  `field5DET` varbinary(32),
+  `field6DET` bigint(20) unsigned DEFAULT NULL,
+  `field7DET` varbinary(32)
+); 
+
+
+CREATE TABLE `table4` (
+  `cdb_salt_t_table4` bigint(20) unsigned DEFAULT NULL,
+  `field0DET` bigint(20) unsigned DEFAULT NULL,
+  `field1DET` bigint(20) unsigned DEFAULT NULL,
+  `field2DET` bigint(20) unsigned DEFAULT NULL,
+  `field2OPE` bigint(20) unsigned DEFAULT NULL,
+  `field3DET` bigint(20) unsigned DEFAULT NULL,
+  `field4DET` bigint(20) unsigned DEFAULT NULL,
+  `cdb_salt_f_4_table4` bigint(20) unsigned DEFAULT NULL,
+  `field5DET` bigint(20) unsigned DEFAULT NULL,
+  `field6DET` bigint(20) unsigned DEFAULT NULL,
+  `field7DET` varbinary(32)
+);
+
+CREATE TABLE `table5` (
+  `cdb_salt_t_table5` bigint(20) unsigned DEFAULT NULL,
+  `field0DET` bigint(20) unsigned DEFAULT NULL,
+  `field1DET` bigint(20) unsigned DEFAULT NULL,
+  `field2DET` bigint(20) unsigned DEFAULT NULL,
+  `field2OPE` bigint(20) unsigned DEFAULT NULL
+);
+
+CREATE TABLE `table6` (
+  `cdb_salt_t_table6` bigint(20) unsigned DEFAULT NULL,
+  `field0DET` bigint(20) unsigned DEFAULT NULL,
+  `field1DET` bigint(20) unsigned DEFAULT NULL,
+  `field2DET` bigint(20) unsigned DEFAULT NULL,
+  `field2OPE` bigint(20) unsigned DEFAULT NULL,
+  `field3DET` bigint(20) unsigned DEFAULT NULL,
+  `field4DET` bigint(20) unsigned DEFAULT NULL,
+  `field5DET` varbinary(32),
+  `cdb_salt_f_5_table6` bigint(20) unsigned DEFAULT NULL,
+  `field6DET` bigint(20) unsigned DEFAULT NULL,
+  `field6AGG` varbinary(256) DEFAULT NULL,
+  `field7DET` bigint(20) unsigned DEFAULT NULL,
+  `field8DET` bigint(20) unsigned DEFAULT NULL,
+  `field9DET` varbinary(32)
+);
+
+CREATE TABLE `table7` (
+  `cdb_salt_t_table7` bigint(20) unsigned DEFAULT NULL,
+  `field0DET` bigint(20) unsigned DEFAULT NULL,
+  `field1DET` bigint(20) unsigned DEFAULT NULL,
+  `field2DET` bigint(20) unsigned DEFAULT NULL,
+  `field2OPE` bigint(20) unsigned DEFAULT NULL,
+  `cdb_salt_f_2_table7` bigint(20) unsigned DEFAULT NULL,
+  `field3DET` bigint(20) unsigned DEFAULT NULL,
+  `field3AGG` varbinary(256) DEFAULT NULL,
+  `field4DET` bigint(20) unsigned DEFAULT NULL,
+  `field5DET` bigint(20) unsigned DEFAULT NULL,
+  `field5AGG` varbinary(256) DEFAULT NULL,
+  `field6DET` varbinary(64),
+  `field7DET` varbinary(32),
+  `field8DET` varbinary(32),
+  `field9DET` varbinary(32),
+  `field10DET` varbinary(32),
+  `field11DET` varbinary(32),
+  `field12DET` varbinary(32),
+  `field13DET` varbinary(32),
+  `field14DET` varbinary(32),
+  `field15DET` varbinary(32),
+  `field16DET` varbinary(32)
+);
+
+
+
+CREATE TABLE `table8` (
+  `cdb_salt_t_table8` bigint(20) unsigned DEFAULT NULL,
+  `field0DET` bigint(20) unsigned DEFAULT NULL,
+  `field1DET` varbinary(32),
+  `field2DET` bigint(20) unsigned DEFAULT NULL,
+  `field3DET` varbinary(64),
+  `field4DET` bigint(20) unsigned DEFAULT NULL
+);

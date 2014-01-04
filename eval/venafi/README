@@ -1,0 +1,4 @@
+% mysqladmin create Director
+% mysql Director < CreateDB.sql 
+% ./sql-replay.py director61.log 
+

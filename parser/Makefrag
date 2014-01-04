@@ -1,0 +1,25 @@
+OBJDIRS	+= parser
+
+PARSERSRC	:= sql_utils.cc Annotation.cc lex_util.cc embedmysql.cc \
+                   mysqld-filler.cc
+ 
+PARSERPROGS	:= analyze load-schema print-back
+
+PARSERPROGOBJS	:= $(pathsubst %, $(OBJDIR)/parser/%,$(PARSERPROGS))
+
+all:	$(OBJDIR)/libedbparser.so
+
+$(PARSERPROGOBJS): %: %.o $(OBJDIR)/libedbparser.so  $(OBJDIR)/libedbutil.so
+	$(CXX) $< -o $@ -ledbparser $(LDFLAGS) $(LDRPATH) -ledbutil -lcryptdb
+
+EDBPARSER_OBJS	:= $(patsubst %.cc,$(OBJDIR)/parser/%.o,$(PARSERSRC))
+
+$(OBJDIR)/libedbparser.so: $(EDBPARSER_OBJS) \
+			   $(OBJDIR)/libedbutil.so \
+			   $(OBJDIR)/libedbcrypto.so
+	$(CXX) -shared -o $@ $(EDBPARSER_OBJS) $(LDFLAGS) $(LDRPATH) \
+               -ledbutil -ledbcrypto \
+	       -Wl,--whole-archive -L$(MYBUILD)/libmysqld -lmysqld \
+	       -Wl,--no-whole-archive -laio -lz -ldl -lrt -lcrypt
+
+# vim: set noexpandtab:

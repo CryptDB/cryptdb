@@ -1,0 +1,101 @@
+customer.c_balance         DET:field8DET            SEMANTIC_DET   SEMANTIC_AGG  
+customer.c_city            DET:field14DET           SEMANTIC_DET  
+customer.c_credit          DET:field4DET            SEMANTIC_DET  
+customer.c_credit_lim      DET:field7DET            SEMANTIC_DET  
+customer.c_d_id            DET:field1DET            DET           
+customer.c_data            DET:field20DET           SEMANTIC_DET  
+customer.c_delivery_cnt    DET:field11DET           SEMANTIC_DET   SEMANTIC_AGG  
+customer.c_discount        DET:field3DET            SEMANTIC_DET  
+customer.c_first           DET:field6DET            SEMANTIC_DET   OPE           
+customer.c_id              DET:field2DET            DET           
+customer.c_last            DET:field5DET            DET           
+customer.c_middle          DET:field19DET           SEMANTIC_DET  
+customer.c_payment_cnt     DET:field10DET           SEMANTIC_DET  
+customer.c_phone           DET:field17DET           SEMANTIC_DET  
+customer.c_since           DET:field18DET           SEMANTIC_DET  
+customer.c_state           DET:field15DET           SEMANTIC_DET  
+customer.c_street_1        DET:field12DET           SEMANTIC_DET  
+customer.c_street_2        DET:field13DET           SEMANTIC_DET  
+customer.c_w_id            DET:field0DET            DET           
+customer.c_ytd_payment     DET:field9DET            SEMANTIC_DET  
+customer.c_zip             DET:field16DET           SEMANTIC_DET  
+table: district table1
+district.d_city            DET:field8DET            SEMANTIC_DET  
+district.d_id              DET:field1DET            DET           
+district.d_name            DET:field5DET            SEMANTIC_DET  
+district.d_next_o_id       DET:field4DET            SEMANTIC_DET   SEMANTIC_AGG  
+district.d_state           DET:field9DET            SEMANTIC_DET  
+district.d_street_1        DET:field6DET            SEMANTIC_DET  
+district.d_street_2        DET:field7DET            SEMANTIC_DET  
+district.d_tax             DET:field3DET            SEMANTIC_DET  
+district.d_w_id            DET:field0DET            DET           
+district.d_ytd             DET:field2DET            SEMANTIC_DET   SEMANTIC_AGG  
+district.d_zip             DET:field10DET           SEMANTIC_DET  
+table: history table3
+history.h_amount           DET:field6DET            SEMANTIC_DET  
+history.h_c_d_id           DET:field1DET            SEMANTIC_DET  
+history.h_c_id             DET:field0DET            SEMANTIC_DET  
+history.h_c_w_id           DET:field2DET            SEMANTIC_DET  
+history.h_d_id             DET:field3DET            SEMANTIC_DET  
+history.h_data             DET:field7DET            SEMANTIC_DET  
+history.h_date             DET:field5DET            SEMANTIC_DET  
+history.h_w_id             DET:field4DET            SEMANTIC_DET  
+table: item table8
+item.i_data                DET:field3DET            SEMANTIC_DET  
+item.i_id                  DET:field0DET            DET           
+item.i_im_id               DET:field4DET            SEMANTIC_DET  
+item.i_name                DET:field1DET            SEMANTIC_DET  
+item.i_price               DET:field2DET            SEMANTIC_DET  
+table: new_order table5
+new_order.no_d_id          DET:field1DET            DET           
+new_order.no_o_id          DET:field2DET            DET            OPE           
+new_order.no_w_id          DET:field0DET            DET           
+table: oorder table4
+oorder.o_all_local         DET:field6DET            SEMANTIC_DET  
+oorder.o_c_id              DET:field3DET            DET           
+oorder.o_carrier_id        DET:field4DET            SEMANTIC_DET  
+oorder.o_d_id              DET:field1DET            DET           
+oorder.o_entry_d           DET:field7DET            SEMANTIC_DET  
+oorder.o_id                DET:field2DET            DET            OPE           
+oorder.o_ol_cnt            DET:field5DET            SEMANTIC_DET  
+oorder.o_w_id              DET:field0DET            DET           
+table: order_line table6
+order_line.ol_amount       DET:field6DET            SEMANTIC_DET   SEMANTIC_AGG  
+order_line.ol_d_id         DET:field1DET            DET           
+order_line.ol_delivery_d   DET:field5DET            SEMANTIC_DET  
+order_line.ol_dist_info    DET:field9DET            SEMANTIC_DET  
+order_line.ol_i_id         DET:field4DET            DETJOIN       
+order_line.ol_number       DET:field3DET            SEMANTIC_DET  
+order_line.ol_o_id         DET:field2DET            DET            OPE           
+order_line.ol_quantity     DET:field8DET            SEMANTIC_DET  
+order_line.ol_supply_w_id  DET:field7DET            SEMANTIC_DET  
+order_line.ol_w_id         DET:field0DET            DET           
+table: stock table7
+stock.s_data               DET:field6DET            SEMANTIC_DET  
+stock.s_dist_01            DET:field7DET            SEMANTIC_DET  
+stock.s_dist_02            DET:field8DET            SEMANTIC_DET  
+stock.s_dist_03            DET:field9DET            SEMANTIC_DET  
+stock.s_dist_04            DET:field10DET           SEMANTIC_DET  
+stock.s_dist_05            DET:field11DET           SEMANTIC_DET  
+stock.s_dist_06            DET:field12DET           SEMANTIC_DET  
+stock.s_dist_07            DET:field13DET           SEMANTIC_DET  
+stock.s_dist_08            DET:field14DET           SEMANTIC_DET  
+stock.s_dist_09            DET:field15DET           SEMANTIC_DET  
+stock.s_dist_10            DET:field16DET           SEMANTIC_DET  
+stock.s_i_id               DET:field1DET            DETJOIN       
+stock.s_order_cnt          DET:field4DET            SEMANTIC_DET  
+stock.s_quantity           DET:field2DET            SEMANTIC_DET   OPE           
+stock.s_remote_cnt         DET:field5DET            SEMANTIC_DET   SEMANTIC_AGG  
+stock.s_w_id               DET:field0DET            DET           
+stock.s_ytd                DET:field3DET            SEMANTIC_DET   SEMANTIC_AGG  
+table: warehouse table0
+warehouse.w_city           DET:field6DET            SEMANTIC_DET  
+warehouse.w_id             DET:field0DET            DET           
+warehouse.w_name           DET:field3DET            SEMANTIC_DET  
+warehouse.w_state          DET:field7DET            SEMANTIC_DET  
+warehouse.w_street_1       DET:field4DET            SEMANTIC_DET  
+warehouse.w_street_2       DET:field5DET            SEMANTIC_DET  
+warehouse.w_tax            DET:field2DET            SEMANTIC_DET  
+warehouse.w_ytd            DET:field1DET            SEMANTIC_DET   SEMANTIC_AGG  
+warehouse.w_zip            DET:field8DET            SEMANTIC_DET  
+

@@ -1,0 +1,87 @@
+*****************************************************************************************
+Change Log:
+
+version 2.3.3  11/19/2010 sjm  - Added DB2 LUW V9.7 support, and supercedes patch 2983892
+                               - no other changes from 2.3.2
+*****************************************************************************************
+
+
+
+Instructions for building
+-------------------------
+
+Use of JDK 1.5 is recommended, build with "ant jar" from the command line of 
+the base directory or use your favorite IDE such as Netbeans or Eclipse.  
+
+
+Instructions for running
+------------------------
+The below scripts all use relative paths, but, they depend on JAVA_HOME
+environment variable being set so that the correct runtime can be found.
+
+JDBC drivers and sample "?.properties" files are included to make it extremely easy for
+you to test out the performance of EnterpriseDB, PostgreSQL, MySQL, Oracle, DB2, & SQL Svr
+in your environment.
+
+
+Any special instructions by DBMS are prefaced  by <dbms_name>, else just substitute the appropriate properties file in the command lines below
+.sh or .bat script suffixes are NOT indicated below; specify as appropriate
+
+1. Go to the 'run' directory, edit the appropriate "??????.properties" file to 
+   point to the database instance you'd like to test.   
+
+2. Run the "sqlTableCreates" to create the base tables.
+
+        $ runSQL EnterpriseDB.properties sqlTableCreates
+
+
+3. Run the "loadData" command file to load all of the default data for a benchmark:
+
+
+  A.) Approximately half a million rows in total will be loaded across 9 tables
+      per Warehouse.  (The default is numWarehouses=1)  A decent test size of data
+      totaling about 1 GB is 10 warehouses as follows:
+        $ loadData EnterpriseDB.properties numWarehouses 10
+      Note: "loadData" will truncate all tables prior to inserting data through the JDBC program
+      
+      There is also a "sqlTableDrops" script  if you need it. If needed, run
+         $ runSQL EnterpriseDB.properties sqlTableDrops
+
+  B.) Alternatively, you may choose to generate the load data out to CSV files that can be 
+      bulk loaded as follows:
+        $ loadData EnterpriseDB.properties numWarehouses 10 fileLocation ./csv/      (directory BenchmarkSQL-2.3.2/run/csv used in this example)
+        
+      These CSV files can be bulk loaded into EDB-Postgres via the following:
+        $  runSQL EnterpriseDB.properties sqlTableCopies
+      <DB2 LUW> runSQL db2.properties sqlTableCopies_DB2    //first check comments at top of sqlTableCopies_DB2
+
+      You may clean out the data in the tables without dropping them via:
+        $  runSQL EnterpriseDB.properties sqlTableTruncates
+      <DB2 LUW> runSQL db2.properties sqlTableTruncates_DB2 //first check comments on top of sqlTableTruncates_DB2 
+
+4. Run the "runSQL" command file to execute the SQL script "sqlIndexCreates" to 
+   create the primary keys & other indexes on the tables.
+
+        $  runSQL EnterpriseDB.properties sqlIndexCreates
+      <DB2 LUW> runSQL db2.properties sqlIndexCreates_DB2   //first check comments at top of sqlIndexCreates_DB2 
+
+
+5. Run the "runBenchmark" command file to execute the swing GUI application to 
+   test the database.  Don't forget to set the number of warehouses equal to the
+   number you created in step 3. For each run, a report will be placed in run/reports.
+   A sample report is included.
+
+       $  runBenchmark EnterpriseDB.properties
+
+6. Operational Notes to minimize problems:  
+   (a) executing runBenchmark will start the GUI. 
+       Click the Database button to view properties file settings. No changes are needed if the properties settings are correct.
+       Click the Terminals button and specify desired settings. 
+             Specify the same number of warehouses as you created.
+             Select either "Minutes" or "Transactions per terminal" and blank out the other setting.
+       Click the Weights button and specify desired settings
+       Click the Controls button, then click Create Terminals. One DB connection per Terminal is created. Click Start Transactions to start the benchmark.
+   (b) If changing the number of terminals between runs, it is best to close the GUI window and re-execute runBenchmark 
+   (c) If the benchmark runs properly, all database connections are terminated at completion. You may need to manually
+       terminate connections if this is not the case
+   (d) When done, close the GUI window 

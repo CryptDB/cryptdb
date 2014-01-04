@@ -1,0 +1,495 @@
+# PHP-CALENDAR SPANISH TRANSLATION FILE
+# Copyright (C) 2006 SEAN PROCTOR
+# This file is distributed under the same license as the PHP-CALENDAR package.
+# JAIME GÓMEZ OBREGÓN <jaime@iteisa.com>, 2006.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 0.10.5\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-04-14 16:20-0400\n"
+"PO-Revision-Date: 2006-09-05 14:17+1\n"
+"Last-Translator: JAIME GÓMEZ OBREGÓN <JAIME@ITEISA.COM>\n"
+"Language-Team: Spanish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: index.php:50
+msgid "Invalid action"
+msgstr "Acción incorrecta"
+
+#: install.php:180
+msgid "error creating db"
+msgstr "error creando la Base de Datos"
+
+#: install.php:190 install.php:193
+msgid "Could not grant:"
+msgstr "No se pudo dar el permiso 'GRANT':"
+
+#: install.php:237
+msgid "Error initializing default db stuff"
+msgstr "Error inicializando la base de datos"
+
+#: includes/calendar.php:46
+msgid "January"
+msgstr "Enero"
+
+#: includes/calendar.php:47
+msgid "February"
+msgstr "Febrero"
+
+#: includes/calendar.php:48
+msgid "March"
+msgstr "Marzo"
+
+#: includes/calendar.php:49
+msgid "April"
+msgstr "Abril"
+
+#: includes/calendar.php:50 includes/calendar.php:90
+msgid "May"
+msgstr "Mayo"
+
+#: includes/calendar.php:51
+msgid "June"
+msgstr "Junio"
+
+#: includes/calendar.php:52
+msgid "July"
+msgstr "Julio"
+
+#: includes/calendar.php:53
+msgid "August"
+msgstr "Agosto"
+
+#: includes/calendar.php:54
+msgid "September"
+msgstr "Septiembre"
+
+#: includes/calendar.php:55
+msgid "October"
+msgstr "Octubre"
+
+#: includes/calendar.php:56
+msgid "November"
+msgstr "Noviembre"
+
+#: includes/calendar.php:57
+msgid "December"
+msgstr "Diciembre"
+
+#: includes/calendar.php:72
+msgid "Sunday"
+msgstr "Domingo"
+
+#: includes/calendar.php:73
+msgid "Monday"
+msgstr "Lunes"
+
+#: includes/calendar.php:74
+msgid "Tuesday"
+msgstr "Martes"
+
+#: includes/calendar.php:75
+msgid "Wednesday"
+msgstr "Miércoles"
+
+#: includes/calendar.php:76
+msgid "Thursday"
+msgstr "Jueves"
+
+#: includes/calendar.php:77
+msgid "Friday"
+msgstr "Viernes"
+
+#: includes/calendar.php:78
+msgid "Saturday"
+msgstr "Sábado"
+
+#: includes/calendar.php:86
+msgid "Jan"
+msgstr "Ene"
+
+#: includes/calendar.php:87
+msgid "Feb"
+msgstr "Feb"
+
+#: includes/calendar.php:88
+msgid "Mar"
+msgstr "Mar"
+
+#: includes/calendar.php:89
+msgid "Apr"
+msgstr "Abr"
+
+#: includes/calendar.php:91
+msgid "Jun"
+msgstr "Jun"
+
+#: includes/calendar.php:92
+msgid "Jul"
+msgstr "Jul"
+
+#: includes/calendar.php:93
+msgid "Aug"
+msgstr "Ago"
+
+#: includes/calendar.php:94
+msgid "Sep"
+msgstr "Sep"
+
+#: includes/calendar.php:95
+msgid "Oct"
+msgstr "Oct"
+
+#: includes/calendar.php:96
+msgid "Nov"
+msgstr "Nov"
+
+#: includes/calendar.php:97
+msgid "Dec"
+msgstr "Dic"
+
+#: includes/calendar.php:155 includes/display.php:151
+msgid "FULL DAY"
+msgstr "TODO EL DÍA"
+
+#: includes/calendar.php:165
+msgid "Normal"
+msgstr "Normal"
+
+#: includes/calendar.php:167
+msgid "Full Day"
+msgstr "Todo el Día"
+
+#: includes/calendar.php:169
+msgid "Unknown Time"
+msgstr "Hora desconocida"
+
+#: includes/calendar.php:174
+msgid "Weekly"
+msgstr "Semanalmente"
+
+#: includes/calendar.php:176
+msgid "Monthly"
+msgstr "Mensualmente"
+
+#: includes/calendar.php:277
+msgid "Error in get_events_by_date"
+msgstr "Error en get_events_by_date"
+
+#: includes/calendar.php:304
+msgid "Error in get_event_by_id"
+msgstr "Error en get_event_by_id"
+
+#: includes/calendar.php:433
+msgid "Add Event"
+msgstr "Añadir Evento"
+
+#: includes/calendar.php:438 includes/search.php:98
+msgid "Search"
+msgstr "Buscar"
+
+#: includes/calendar.php:443
+msgid "Back to Calendar"
+msgstr "Volver al Calendario"
+
+#: includes/calendar.php:448
+msgid "View date"
+msgstr "Ver fecha"
+
+#: includes/calendar.php:453
+msgid "Log out"
+msgstr "Desconectar"
+
+#: includes/calendar.php:456 includes/login.php:66
+msgid "Log in"
+msgstr "Login"
+
+#: includes/calendar.php:461 includes/options.php:72
+msgid "Options"
+msgstr "Opciones"
+
+#: includes/calendar.php:545
+msgid "Event"
+msgstr "Evento"
+
+#: includes/calendar.php:553
+msgid "Cannot add events"
+msgstr "No se puede añadir eventos"
+
+#: includes/calendar.php:554
+msgid "Can add but not modify events"
+msgstr "Se puede añadir, pero no modificar eventos"
+
+#: includes/calendar.php:555
+msgid "Can add and modify events"
+msgstr "Se puede añadir y modificar eventos"
+
+#: includes/db.php:32
+msgid "Could not connect to the database"
+msgstr "No se puede conectar con la base de datos"
+
+#: includes/display.php:36
+msgid "last year"
+msgstr "año anterior"
+
+#: includes/display.php:37
+msgid "last month"
+msgstr "mes anterior"
+
+#: includes/display.php:43
+msgid "next month"
+msgstr "mes siguiente"
+
+#: includes/display.php:44
+msgid "next year"
+msgstr "año siguiente"
+
+#: includes/display.php:156 includes/event_form.php:163
+msgid "hours"
+msgstr "horas"
+
+#: includes/display.php:160 includes/event_form.php:165
+msgid "minutes"
+msgstr "minutos"
+
+#: includes/display.php:164
+msgid "No duration"
+msgstr "Sin duración"
+
+#: includes/display.php:189
+msgid "Title"
+msgstr "Título"
+
+#: includes/display.php:190 includes/event_form.php:157
+msgid "Time"
+msgstr "Hora"
+
+#: includes/display.php:191 includes/event_form.php:160
+msgid "Duration"
+msgstr "Duración"
+
+#: includes/display.php:192 includes/event_form.php:172 includes/search.php:63
+msgid "Description"
+msgstr "Descripción"
+
+#: includes/display.php:203
+msgid "Delete Selected"
+msgstr "Borrar seleccionado"
+
+#: includes/display.php:232 includes/display.php:284
+msgid "Modify"
+msgstr "Modificar"
+
+#: includes/display.php:254
+msgid "No events on this day."
+msgstr "No hay eventos este día"
+
+#: includes/display.php:285
+msgid "Delete"
+msgstr "Borrar"
+
+#: includes/event_delete.php:56
+msgid "Removed item"
+msgstr "Elemento borrado"
+
+#: includes/event_delete.php:58
+msgid "Could not remove item"
+msgstr "No se pudo borrar el elemento"
+
+#: includes/event_delete.php:63
+msgid "No items selected."
+msgstr "No hay elementos seleccionados"
+
+#: includes/event_form.php:30
+#, php-format
+msgid "Modifying id #%d"
+msgstr "Modificando id #%d"
+
+#: includes/event_form.php:73
+msgid "Adding event to calendar"
+msgstr "Añadiendo evento al calendario"
+
+#: includes/event_form.php:136
+msgid "Submit Event"
+msgstr "Añadir evento"
+
+#: includes/event_form.php:140
+msgid "Date of event"
+msgstr "Fecha del evento"
+
+#: includes/event_form.php:146
+msgid "Date multiple day event ends"
+msgstr "Final del evento de múltiples días"
+
+#: includes/event_form.php:152
+msgid "Event type"
+msgstr "Tipo de evento"
+
+#: includes/event_form.php:167 includes/search.php:61 includes/search.php:130
+msgid "Subject"
+msgstr "Asunto"
+
+#: includes/event_form.php:167
+msgid "(255 chars max)"
+msgstr "(máx. 255 caracteres)"
+
+#: includes/event_submit.php:54
+msgid "No day was given."
+msgstr "No se dió un día"
+
+#: includes/event_submit.php:56
+msgid "No month was given."
+msgstr "No se dió un mes"
+
+#: includes/event_submit.php:58
+msgid "No year was given"
+msgstr "No se dió un año"
+
+#: includes/event_submit.php:63
+msgid "No hour was given."
+msgstr "No se dió una hora"
+
+#: includes/event_submit.php:78
+msgid "No minute was given."
+msgstr "No se dió un minuto"
+
+#: includes/event_submit.php:83
+msgid "No duration minute was given."
+msgstr "No se dió el minuto de la duración"
+
+#: includes/event_submit.php:87
+msgid "No duration hour was given."
+msgstr "No se dió la hora de la duración"
+
+#: includes/event_submit.php:91
+msgid "No type of event was given."
+msgstr "No se dió un tipo de evento"
+
+#: includes/event_submit.php:95
+msgid "No end day was given"
+msgstr "No se dió un día de fin"
+
+#: includes/event_submit.php:99
+msgid "No end month was given"
+msgstr "No se dió un mes de fin"
+
+#: includes/event_submit.php:103
+msgid "No end year was given"
+msgstr "No se dió un año de fin"
+
+#: includes/event_submit.php:106
+msgid "Your subject was too long"
+msgstr "El asunto es demasiado largo"
+
+#: includes/event_submit.php:151
+msgid "Error processing event"
+msgstr "Error procesando el evento"
+
+#: includes/event_submit.php:155
+msgid "No changes made"
+msgstr "No se hicieron cambios"
+
+#: includes/event_submit.php:158
+msgid "Date updated"
+msgstr "Fecha actualizada"
+
+#: includes/login.php:49
+msgid "Loggin in..."
+msgstr "Logueando..."
+
+#: includes/login.php:52
+msgid "Sorry, Invalid Login"
+msgstr "Login inválido"
+
+#: includes/login.php:72 includes/options.php:77 includes/search.php:102
+msgid "Submit"
+msgstr "Enviar"
+
+#: includes/login.php:75
+msgid "Username"
+msgstr "Nombre de usuario"
+
+#: includes/login.php:78
+msgid "Password"
+msgstr "Contraseña"
+
+#: includes/options.php:57
+msgid "Updated options"
+msgstr "Opciones actualizadas"
+
+#: includes/options.php:59
+msgid "Permission denied"
+msgstr "Acceso denegado"
+
+#: includes/options.php:80
+msgid "Start Monday"
+msgstr "Comenzar en lunes"
+
+#: includes/options.php:84
+msgid "24 hour"
+msgstr "24 horas"
+
+#: includes/options.php:88
+msgid "Translate"
+msgstr "Traducir"
+
+#: includes/options.php:92
+msgid "Calendar Title"
+msgstr "Título del calendario"
+
+#: includes/options.php:96
+msgid "Anonymous Permission"
+msgstr "Permiso anónimo"
+
+#: includes/search.php:58
+msgid "Search Results"
+msgstr "Resultados de la búsqueda"
+
+#: includes/search.php:62
+msgid "Date Time"
+msgstr "Fecha y hora"
+
+#: includes/search.php:87
+msgid "No events."
+msgstr "Sin eventos."
+
+#: includes/search.php:104
+msgid "Phrase"
+msgstr "Frase"
+
+#: includes/search.php:110
+msgid "From"
+msgstr "De"
+
+#: includes/search.php:116
+msgid "To"
+msgstr "Para"
+
+#: includes/search.php:122
+msgid "Sort By"
+msgstr "Ordenar por"
+
+#: includes/search.php:127
+msgid "Start Date"
+msgstr "Fecha de inicio"
+
+#: includes/search.php:132
+msgid "Order"
+msgstr "Orden"
+
+#: includes/search.php:137
+msgid "Ascending"
+msgstr "Ascendente"
+
+#: includes/search.php:139
+msgid "Decending"
+msgstr "Descendente"
+
+#: includes/setup.php:116
+msgid "Could not read configuration"
+msgstr "No se pudo leer el fichero de configuración"
+

@@ -1,0 +1,127 @@
+
+CREATE TABLE warehouse (
+  w_id        integer not null   ,
+  w_ytd       integer not null  ,
+  w_tax       integer not null  ,
+  w_name      text  not null ,
+  w_street_1  text  not null ,
+  w_street_2  text  not null ,
+  w_city      text  not null ,
+  w_state     text  not null ,
+  w_zip       text not null  
+);
+
+
+CREATE TABLE district (
+  d_w_id       integer not null        ,
+  d_id         integer  not null       ,
+  d_ytd        integer not null  ,
+  d_tax        integer  not null ,
+  d_next_o_id  integer  not null ,
+  d_name       text  not null ,
+  d_street_1   text  not null ,
+  d_street_2   text  not null ,
+  d_city       text  not null ,
+  d_state      text  not null ,
+  d_zip        text  not null 
+);
+
+
+CREATE TABLE customer (
+  c_w_id         integer not null         ,
+  c_d_id         integer not null         ,
+  c_id           integer not null         ,
+  c_discount     integer not null  ,
+  c_credit       text not null  ,
+  c_last         text not null  ,
+  c_first        text  not null ,
+  c_credit_lim   integer not null  ,
+  c_balance      integer not null  ,
+  c_ytd_payment  integer not null  ,
+  c_payment_cnt  integer not null  ,
+  c_delivery_cnt integer not null  ,
+  c_street_1     text not null  ,
+  c_street_2     text not null  ,
+  c_city         text not null  ,
+  c_state        text not null  ,
+  c_zip          text not null  ,
+  c_phone        text not null  ,
+  c_since        timestamp not null,
+  c_middle       text  not null ,
+  c_data         text not null  
+);
+
+
+CREATE TABLE history (
+  h_c_id   integer  not null ,
+  h_c_d_id integer  not null ,
+  h_c_w_id integer  not null ,
+  h_d_id   integer  not null ,
+  h_w_id   integer  not null ,
+  h_date   timestamp not null ,
+  h_amount integer  not null ,
+  h_data   text not null  
+);
+
+
+CREATE TABLE oorder (
+  o_w_id       integer  not null      ,
+  o_d_id       integer  not null      ,
+  o_id         integer  not null      ,
+  o_c_id       integer  not null ,
+  o_carrier_id integer  null ,
+  o_ol_cnt     integer  not null ,
+  o_all_local  integer  not null ,
+  o_entry_d    timestamp not null 
+);
+
+
+CREATE TABLE new_order (
+  no_w_id  integer  not null   ,
+  no_d_id  integer  not null   ,
+  no_o_id  integer not null    
+);
+
+
+CREATE TABLE order_line (
+  ol_w_id         integer not null    ,
+  ol_d_id         integer not null    ,
+  ol_o_id         integer not null    ,
+  ol_number       integer not null    ,
+  ol_i_id         integer not null    ,
+  ol_delivery_d   timestamp null ,
+  ol_amount       integer not null  ,
+  ol_supply_w_id  integer not null  ,
+  ol_quantity     integer not null  ,
+  ol_dist_info    text not null  
+);
+
+
+CREATE TABLE stock (
+  s_w_id       integer not null        ,
+  s_i_id       integer not null        ,
+  s_quantity   integer not null  ,
+  s_ytd        integer not null  ,
+  s_order_cnt  integer not null  ,
+  s_remote_cnt integer not null  ,
+  s_data       text not null  ,
+  s_dist_01    text not null  ,
+  s_dist_02    text not null  ,
+  s_dist_03    text not null  ,
+  s_dist_04    text not null  ,
+  s_dist_05    text not null  ,
+  s_dist_06    text not null  ,
+  s_dist_07    text not null  ,
+  s_dist_08    text not null  ,
+  s_dist_09    text not null  ,
+  s_dist_10    text not null  
+);
+
+
+CREATE TABLE item (
+  i_id     integer not null       ,
+  i_name   text not null  ,
+  i_price  integer not null  ,
+  i_data   text  not null ,
+  i_im_id  integer not null  
+);

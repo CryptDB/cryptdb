@@ -1,0 +1,23 @@
+Notes on tput tests:
+
+startphpBB.py is configured for castle, and has cat's home director as EDBDIR
+make sure one core on castle is running (or enable threads in phpBB, but that has it's own set of difficulties)
+
+For running through CRYPTDB:
+
+----on castle----
+python startphpBB.py
+
+check that L1198 of phpBB3/install/install_install.php is uncommented (this should maybe be added to the schema?)
+
+
+----on tom----
+check the L152 of createstate is pointing to the proxy you just set up
+
+python runtput.py start-uid no-users no-instances no-posts
+
+start-uid should be at 100 (since there are >50 bots that phpBB inserts as part of the its start-up script)
+
+no-posts is the number of posts createstate puts in the forum; I've usually been setting it to 50, but it can be any int
+
+

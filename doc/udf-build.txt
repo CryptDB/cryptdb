@@ -1,0 +1,23 @@
+CryptDB UDF build instructions.
+
+Get a version of gcc >= 4.6
+
+You will need these Ubuntu packages or their <other flavor> equivalent.
+    libntl-dev libmysqlclient-dev libssl-dev libbsd-dev
+    libevent-dev libglib2.0-dev libgmp-dev mysql-server libaio-dev
+    automake gtk-doc-tools flex libncurses5-dev bison g++ make
+
+Make CryptDB.
+> cd /path/to/cryptdb/
+> touch conf/config.mk
+> make udf
+
+Ideally you will stop mysql here, install the UDFs then restart mysql.
+
+Add the UDFs to the mysql plugin directory.  Something like the following
+will work.  MYSQL_PLUGIN_DIR might be /usr/lib/mysql/plugin.
+
+> install -m 644 -g mysql -o mysql ./obj/udf/edb.so $(MYSQL_PLUGIN_DIR)
+  + Change mysql account/plugin directory as necessary.
+> mysql < udf/create.sql
+

@@ -1,0 +1,69 @@
+mkdir ./schema-db
+zcat ./data/sql.mit.edu-schemata-201108111643.sql.gz \
+    | ../parser/load-schema ./schema-db
+
+mkdir ./schema-clone
+for D in `seq 0 25`; do
+    mkdir ./schema-clone/schema-db.$D
+    cp ./schema-db/ibdata* ./schema-db/ib_logfile* ./schema-clone/schema-db.$D &
+done
+wait
+
+for D in `seq 0 25`; do
+    for DB in $(cd schema-db && find . -type d | grep -v ^.$); do
+        ln -s $(pwd)/schema-db/$DB ./schema-clone/schema-db.$D/$DB
+    done &
+done
+wait
+
+mkdir ./tagged
+for D in ./data/out.*.log.gz; do
+    N=$(echo $D | cut -d/ -f3 | cut -d. -f2,3)
+    ./extract-query.sh ./data/out.$N.log.gz \
+        | ./tag-db.py \
+        | gzip \
+        > tagged/tagq.$N.gz &
+done
+wait
+
+mkdir ./tagged-split
+zcat ./tagged/tagq.*.gz \
+    | ./zsplit -l 500000 - ./tagged-split/tsplit.
+
+rm -r ./parsed ; mkdir ./parsed
+DBCOUNT=0
+for D in a b c d e f g h i j k l m n o p q r s t u v w x y z; do
+    zcat ./tagged-split/tsplit.?$D.gz \
+        | ../parser/analyze ./schema-clone/schema-db.$DBCOUNT /dev/fd/0 \
+        | gzip \
+        > parsed/pq.$D.gz &
+    DBCOUNT=$(($DBCOUNT+1))
+    ## On a smaller machine, only a few schema-clone DBs fit in memory at once
+    if [ "$DBCOUNT" = "9" ]; then
+        DBCOUNT=0
+        wait
+    fi
+done
+wait
+
+rm -r ./analyze-buf ; mkdir ./analyze-buf
+for D in ./parsed/pq.*.gz; do
+    N=$(echo $D | cut -d/ -f3 | cut -d. -f2)
+    zcat ./parsed/pq.$N.gz \
+        | ./buffer-levels.py \
+        | gzip \
+        > ./analyze-buf/buf.$N.gz &
+done
+wait
+
+zcat analyze-buf/buf.*.gz | ./analyze-levels.py
+
+./analyze-why.py plain parsed/*.gz
+
+### non-parallel plan below ###
+
+./extract-query.sh ./data/out.1313204583.15205.log \
+  | ./tag-db.py \
+  | ../parser/analyze ./data/sqldb /dev/fd/0 \
+  | ./analyze-levels.py
+

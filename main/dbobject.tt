@@ -1,0 +1,107 @@
+#pragma once
+
+#include <algorithm>
+
+template <typename KeyType>
+bool MetaKey<KeyType>::operator <(const MetaKey<KeyType> &rhs) const
+{
+    return key_data < rhs.key_data;
+}
+
+template <typename KeyType>
+bool MetaKey<KeyType>::operator ==(const MetaKey<KeyType> &rhs) const
+{
+    return key_data == rhs.key_data;
+}
+
+template <typename ChildType, typename KeyType>
+bool
+MappedDBMeta<ChildType, KeyType>::addChild(KeyType key,
+                                           std::unique_ptr<ChildType> meta)
+{
+    if (childExists(key)) {
+        return false;
+    }
+
+    children[key] = std::move(meta);
+    return true;
+}
+
+template <typename ChildType, typename KeyType>
+bool
+MappedDBMeta<ChildType, KeyType>::childExists(const KeyType &key) const
+{
+    return children.end() != children.find(key);
+}
+
+// Slow.
+// FIXME: Use findChild.
+template <typename ChildType, typename KeyType>
+ChildType *
+MappedDBMeta<ChildType, KeyType>::getChild(const KeyType &key) const
+{
+    for (auto it = children.begin(); it != children.end(); it++) {
+        if (it->first == key) {
+            return it->second.get();
+        }
+    }
+
+    return NULL;
+}
+
+// NOTE: Slow.
+template <typename ChildType, typename KeyType>
+KeyType const &
+MappedDBMeta<ChildType, KeyType>::getKey(const DBMeta &child) const
+{
+    for (auto it = children.begin(); it != children.end(); ++it) {
+        if (it->second.get() == &child) {
+            return (*it).first;
+        }
+    }
+
+    assert(false);
+}
+
+template <typename ChildType, typename KeyType>
+std::vector<DBMeta *>
+MappedDBMeta<ChildType, KeyType>::fetchChildren(const std::unique_ptr<Connect> &e_conn)
+{
+    // Perhaps it's conceptually cleaner to have this lambda return
+    // pairs of keys and children and then add the children from local
+    // scope.
+    std::function<DBMeta *(const std::string &,
+                           const std::string &,
+                           const std::string &)>
+        deserialize =
+        [this] (const std::string &key, const std::string &serial,
+                const std::string &id)
+        {
+            const std::unique_ptr<KeyType>
+                meta_key(AbstractMetaKey::factory<KeyType>(key));
+            auto dChild = ChildType::deserialize;
+            std::unique_ptr<ChildType>
+                new_old_meta(dChild(atoi(id.c_str()), serial));
+
+            // Gobble the child.
+            this->addChild(*meta_key, std::move(new_old_meta));
+            return this->getChild(*meta_key);
+        };
+
+    return DBMeta::doFetchChildren(e_conn, deserialize);
+}
+
+template <typename ChildType, typename KeyType>
+bool
+MappedDBMeta<ChildType, KeyType>::applyToChildren(
+                            std::function<bool(const DBMeta &)> fn) const
+{
+    for (auto it = children.begin(); it != children.end(); it++) {
+        if (false == fn(*(*it).second.get())) {
+            return false;
+        }
+    }
+
+    return true;
+}
+

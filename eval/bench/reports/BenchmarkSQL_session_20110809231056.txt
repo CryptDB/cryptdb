@@ -1,0 +1,5 @@
+Number of Terminals	2
+
+Terminal	Home Warehouse
+
+This session ended with errors!

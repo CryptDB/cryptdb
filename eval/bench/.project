@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>BenchmarkSQL</name>
+	<comment></comment>
+	<projects>
+		<project>relationalcloud</project>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>edu.mit.csail.relo.jdt.builder.ReloJDTBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+		<nature>edu.mit.csail.relo.jdt.builder.ReloJDTBuilderProjectNature</nature>
+	</natures>
+</projectDescription>

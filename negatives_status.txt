@@ -1,0 +1,8 @@
+Negatives
++ INSERT
+    : Integer   [ Functional ]
+    : Decimal   [ Broken ]
+
++ SELECT
+    : Constant  [ Functional ]
+    : Field     [ Broken ]

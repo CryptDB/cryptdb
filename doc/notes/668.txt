@@ -1,0 +1,448 @@
+C      ALGORITHM 668, COLLECTED ALGORITHMS FROM ACM.
+C      THIS WORK PUBLISHED IN TRANSACTIONS ON MATHEMATICAL SOFTWARE,
+C      VOL. 14, NO. 4, PP. 397-398.
+C
+C     EXAMPLE DRIVER PROGRAM FOR ALGORITHM H2PEC
+C
+C     IIN       :  LOGICAL INPUT UNIT
+C     IOUT      :  LOGICAL OUTPUT UNIT
+C     NS        :  NUMBER OF RANDOM VARIATES TO BE GENERATED
+C     K, N1, N2 :  PARAMETERS OF THE HYPERGEOMETRIC DISTRIBUTION
+C     FK,FN1,FN2:  FLOATING POINT PARAMETER VALUES
+C     ISEED     :  RANDOM NUMBER SEED
+C     JX        :  HYPERGEOMETRIC RANDOM VARIATE GENERATED
+C     XMEAN     :  SAMPLE MEAN
+C     SVAR      :  SAMPLE VARIANCE
+C     TMEAN     :  TRUE MEAN
+C     TVAR      :  TRUE VARIANCE
+C     SUM       :  SUM OF HYPERGEOMETRIC RANDOM VARIATES JX
+C     SUM2      :  SUM OF SQUARE OF JX
+C
+C
+      DATA IIN/5/, IOUT/6/
+   10 WRITE(IOUT,105)
+  105 FORMAT(' -- ENTER MONTE CARLO SAMPLE SIZE -- EOF TO QUIT')
+      READ(IIN,*,END = 999) NS
+      WRITE(IOUT,*) NS
+      WRITE(IOUT,106)
+  106 FORMAT(' -- ENTER RANDOM NUMBER SEED')
+      READ(IIN,*,END = 999) ISEED
+      WRITE(IOUT,*) ISEED
+      WRITE(IOUT,107)
+  107 FORMAT(' -- ENTER PARAMETERS K, N1, AND N2 --')
+      READ(IIN,*) K, N1, N2
+      WRITE(IOUT,*) K, N1, N2
+      FK = K
+      FN1 = N1
+      FN2 = N2
+      TMEAN = FK * FN1 / (FN1 + FN2)
+      TVAR  = TMEAN * (FN1 + FN2 - FK) * FN2
+     $                  / (FN1 + FN2) / (FN1 + FN2 - 1.)
+      SUM   = 0.0
+      SUM2  = 0.0
+      DO 20  I = 1, NS
+      CALL H2PEC(K,N1,N2,ISEED,JX)
+      IF (JX .LT. 0)  THEN
+         WRITE (IOUT, 109)
+  109    FORMAT (' INVALID PARAMETER VALUE')
+         GO TO 10
+      ENDIF
+      X     = JX - TMEAN
+      SUM   = SUM + X
+      SUM2  = SUM2 + X * X
+   20 CONTINUE
+      XMEAN = SUM / NS + TMEAN
+      SVAR  = SUM2 / NS
+      WRITE(IOUT,110) NS, TMEAN, XMEAN, TVAR, SVAR
+  110 FORMAT(/5X,'SAMPLE SIZE           = ',I10  /
+     $        5X,'TRUE MEAN             = ',F15.5/
+     $        5X,'SAMPLE MEAN           = ',F15.5/
+     $        5X,'TRUE VARIANCE         = ',F15.5/
+     $        5X,'SAMPLE VARIANCE       = ',F15.5/)
+      GOTO 10
+  999 STOP
+      END
+ 
+ 
+ 
+      SUBROUTINE H2PEC(KK,NN1,NN2,ISEED,JX)
+C
+C     HYPERGEOMETRIC RANDOM VARIATE GENERATOR
+C
+C     METHOD
+C        IF (MODE - MAX(0,KK-NN2) .LT. 10), USE THE INVERSE CDF.
+C           OTHERWISE, USE ALGORITHM H2PE: ACCEPTANCE-REJECTION VIA
+C           THREE REGION COMPOSITION.  THE THREE REGIONS ARE A
+C           RECTANGLE, AND EXPONENTIAL LEFT AND RIGHT TAILS.
+C        H2PE  REFERS TO HYPERGEOMETRIC-2 POINTS-EXPONENTIAL TAILS.
+C        H2PEC REFERS TO H2PE AND "COMBINED."  THUS H2PE IS THE
+C           RESEARCH RESULT AND H2PEC IS THE IMPLEMENTATION OF A
+C           COMPLETE USABLE ALGORITHM.
+C
+C     REFERENCE
+C        VORATAS KACHITVICHYANUKUL AND BRUCE SCHMEISER,
+ 
+C        "COMPUTER GENERATION OF HYPERGEOMETRIC RANDOM VARIATES,"
+C        JOURNAL OF STATISTICAL COMPUTATION AND SIMULATION,
+C        22(1985), 2, 1985, 127-145.
+C
+C     REQUIRED SUBPROGRAMS
+C        AFC() : A DOUBLE-PRECISION FUNCTION TO EVALUATE
+C                   THE LOGARITHM OF THE FACTORIAL.
+C        RAND(): A UNIFORM (0,1) RANDOM NUMBER GENERATOR.
+C
+C     ARGUMENTS
+C        NN1   : NUMBER OF WHITE BALLS          (INPUT)
+C        NN2   : NUMBER OF BLACK BALLS          (INPUT)
+C        KK    : NUMBER OF BALLS TO BE DRAWN    (INPUT)
+C        ISEED : RANDOM NUMBER SEED  (INPUT AND OUTPUT)
+C        JX    : NUMBER OF WHITE BALLS DRAWN   (OUTPUT)
+C
+C     STRUCTURAL VARIABLES
+C        REJECT: LOGICAL FLAG TO REJECT THE VARIATE GENERATE BY H2PE.
+C        SETUP1: LOGICAL FLAG TO SETUP FOR NEW VALUES OF NN1 OR NN2.
+C        SETUP2: LOGICAL FLAG TO SETUP FOR NEW VALUES OF KK.
+C        IX    : INTEGER CANDIDATE VALUE.
+C        M     : DISTRIBUTION MODE.
+C        MINJX : DISTRIBUTION LOWER BOUND.
+C        MAXJX : DISTRIBUTION UPPER BOUND.
+C        KS    : SAVED VALUE OF KK FROM THE LAST CALL TO H2PEC.
+C        N1S   : SAVED VALUE OF NN1 FROM THE LAST CALL TO H2PEC.
+C        N2S   : SAVED VALUE OF NN2 FROM THE LAST CALL TO H2PEC.
+C        K,N1,N2: ALTERNATE VARIABLES FOR KK, NN1, AND NN2
+C                   (ALWAYS (N1 .LE. N2) AND (K .LE. (N1+N2)/2)).
+C        TN    : TOTAL NUMBER OF WHITE AND BLACK BALLS
+C
+C     INVERSE-TRANSFORMATION VARIABLES
+C        CON   : NATURAL LOGARITHM  OF SCALE.
+C        P     : CURRENT SCALED PROBABILITY FOR THE INVERSE CDF.
+C        SCALE : A BIG CONSTANT (1.E25) USED TO SCALE THE
+C                   PROBABILITY TO AVOID NUMERICAL UNDERFLOW
+C        U     : THE UNIFORM VARIATE BETWEEN (0, 1.E25).
+C        W     : SCALED HYPERGEOMETRIC PROBABILITY OF MINJX.
+C
+C     H2PE VARIABLES
+C        S     : DISTRIBUTION STANDARD DEVIATION.
+C        D     : HALF THE AREA OF THE RECTANGLE.
+C        XL    : LEFT END OF THE RECTANGLE.
+C        XR    : RIGHT END OF THE RECTANGLE.
+C        A     : A SCALING CONSTANT.
+C        KL    : HIGHEST POINT OF THE LEFT-TAIL REGION.
+C        KR    : HIGHEST POINT OF THE RIGHT-TAIL REGION.
+C        LAMDL : RATE FOR THE LEFT EXPONENTIAL TAIL.
+C        LAMDR : RATE FOR THE RIGHT EXPONENTIAL TAIL.
+C        P1    : AREA OF THE RECTANGLE.
+C        P2    : AREA OF THE LEFT EXPONENTIAL TAIL PLUS P1.
+C        P3    : AREA OF THE RIGHT EXPONENTIAL TAIL PLUS P2.
+C        U     : A UNIFORM (0,P3) RANDOM VARIATE USED FIRST TO SELECT
+C                   ONE OF THE THREE REGIONS AND THEN CONDITIONALLY TO
+C                   GENERATE A VALUE FROM THE REGION.
+C        V     : U(0,1) RANDOM NUMBER USED TO GENERATE THE RANDOM
+C                   VALUE OR TO ACCEPT OR REJECT THE CANDIDATE VALUE.
+C        F     : THE HEIGHT OF THE SCALED DENSITY FUNCTION USED IN THE
+C                   ACCEPT/REJECT DECISION WHEN BOTH M AND IX ARE SMALL.
+C        I     : INDEX FOR EXPLICIT CALCULATION OF F FOR H2PE.
+C
+C   THE FOLLOWING VARIABLES ARE TEMPORARY VARIABLES USED IN
+C   COMPUTING THE UPPER AND LOWER BOUNDS OF THE NATURAL LOGARITHM
+C   OF THE SCALED DENSITY.  THE DETAILED DESCRIPTION IS GIVEN IN
+C   PROPOSITIONS 2 AND 3 OF THE APPENDIX IN THE REFERENCE.
+C              Y, Y1, YM, YN, YK, NK, R, S, T, E, G, DG, GU, GL, XM,
+C              XN, XK, NM
+C
+C        Y     : PRELIMINARY CONTINUOUS CANDIDATE VALUE, FLOAT(IX)
+C        UB    : UPPER BOUND FOR THE NATURAL LOGARITHM OF THE SCALED
+C                   DENSITY.
+C        ALV   : NATURAL LOGARITHM OF THE ACCEPT/REJECT VARIATE V.
+C        DR, DS, DT, DE: ONE OF MANY TERMS SUBTRACTED FROM THE UPPER
+C                   BOUND TO OBTAIN THE LOWER BOUND ON THE NATURAL
+C                   LOGARITHM OF THE SCALED DENSITY.
+C        DELTAU: A CONSTANT, THE VALUE 0.0034 IS OBTAINED BY SETTING
+C                   N1 = N2 = 200, K = 199, M = 100, AND Y = 50 IN
+C                   THE FUNCTION DELTA_U IN LEMMA 1 AND ROUNDING THE
+C                   VALUE TO FOUR DECIMAL PLACES.
+C        DELTAL: A CONSTANT, THE VALUE 0.0078 IS OBTAINED BY SETTING
+C                   N1 = N2 = 200, K = 199, M = 100, AND Y = 50 IN
+C                   THE FUNCTION DELTA_L IN LEMMA 1 AND ROUNDING THE
+C                   VALUE TO FOUR DECIMAL PLACES.
+C
+      SAVE
+      DOUBLE PRECISION AFC,CON,P,SCALE,U,W,A,XL,XR
+      REAL KL,KR,LAMDL,LAMDR,NK,NM
+      LOGICAL REJECT,SETUP1,SETUP2
+      DATA KS,N1S,N2S/-1,-1,-1/
+      DATA CON,DELTAL,DELTAU,SCALE/57.56462733D0,0.0078,0.0034,1.D25/
+C
+C*****CHECK PARAMETER VALIDITY
+C
+      IF (  (NN1 .LT. 0)  .OR.
+     $      (NN2 .LT. 0)  .OR.
+     $      (KK  .LT. 0)  .OR.
+     $      (KK  .GT. NN1 + NN2 )  ) THEN
+         JX     = -1
+         RETURN
+      ENDIF
+C
+C*****IF NEW PARAMETER VALUES, INITIALIZE
+C
+      REJECT = .TRUE.
+      SETUP1 = .FALSE.
+      SETUP2 = .FALSE.
+      IF ((NN1 .NE. N1S) .OR. (NN2 .NE. N2S))  THEN
+            SETUP1 = .TRUE.
+            SETUP2 = .TRUE.
+      ELSEIF (KK .NE. KS)  THEN
+            SETUP2 = .TRUE.
+      ENDIF
+C
+      IF (SETUP1)  THEN
+         N1S   = NN1
+         N2S   = NN2
+         TN    = NN1 + NN2
+         IF (NN1 .LE. NN2)  THEN
+            N1 = NN1
+            N2 = NN2
+         ELSE
+            N1 = NN2
+            N2 = NN1
+         ENDIF
+      ENDIF
+C
+      IF (SETUP2)  THEN
+         KS    = KK
+         IF (KK+KK .GE. TN)  THEN
+            K  = TN - KK
+         ELSE
+            K  = KK
+         ENDIF
+      ENDIF
+C
+      IF (SETUP1 .OR. SETUP2)  THEN
+         M     = INT ((K+1.) * (N1+1.) / (TN+2.))
+         MINJX = MAX (0, K-N2)
+         MAXJX = MIN (N1, K)
+      ENDIF
+C
+C*****GENERATE RANDOM VARIATE
+C
+      IF (MINJX .EQ. MAXJX)  THEN
+C
+C        ...DEGENERATE DISTRIBUTION...
+C
+         IX      = MAXJX
+         RETURN
+      ELSEIF (M-MINJX .LT. 10)  THEN
+C
+C        ...INVERSE TRANSFORMATION...
+C
+         IF (SETUP1 .OR. SETUP2)  THEN
+            IF (K .LT. N2) THEN
+               W = EXP (CON + AFC(N2) + AFC(N1+N2-K)
+     $                       - AFC(N2-K) - AFC(N1+N2))
+            ELSE
+               W = EXP (CON + AFC(N1) + AFC(K)
+     $                       - AFC(K-N2) - AFC(N1+N2))
+            ENDIF
+         ENDIF
+C
+   10    P  = W
+         IX = MINJX
+         U  = RAND (ISEED) * SCALE
+   20    IF (U .GT. P)  THEN
+            U  = U - P
+            P  = P * (N1-IX)*(K-IX)
+            IX = IX + 1
+            P  = P / IX / (N2-K+IX)
+            IF (IX .GT. MAXJX)  GO TO 10
+            GO TO 20
+         ENDIF
+      ELSE
+C
+C        ...H2PE...
+C
+         IF (SETUP1 .OR. SETUP2)  THEN
+            S     = SQRT ((TN-K) * K * N1 * N2 / (TN-1) / TN /TN)
+C
+C           ...REMARK:  D IS DEFINED IN REFERENCE WITHOUT INT.
+C           THE TRUNCATION CENTERS THE CELL BOUNDARIES AT 0.5
+C
+            D     = INT (1.5*S) + .5
+            XL    = M - D + .5
+            XR    = M + D + .5
+            A     = AFC(M) + AFC(N1-M) + AFC(K-M) + AFC(N2-K+M)
+            KL    = EXP (A - AFC(INT(XL)) - AFC(INT(N1-XL))
+     $                  - AFC(INT(K-XL)) - AFC(INT(N2-K+XL)))
+            KR    = EXP (A - AFC(INT(XR-1)) - AFC(INT(N1-XR+1))
+     $                  - AFC(INT(K-XR+1)) - AFC(INT(N2-K+XR-1)))
+            LAMDL = -LOG (XL * (N2-K+XL) / (N1-XL+1) / (K-XL+1))
+            LAMDR = -LOG ((N1-XR+1) * (K-XR+1) / XR / (N2-K+XR))
+            P1    = D + D
+            P2    = P1 + KL / LAMDL
+            P3    = P2 + KR / LAMDR
+         ENDIF
+C
+   30    U     = RAND (ISEED) * P3
+         V     = RAND (ISEED)
+         IF (U .LT. P1)  THEN
+C
+C           ...RECTANGULAR REGION...
+C
+            IX    = XL + U
+         ELSEIF (U .LE. P2)  THEN
+C
+C           ...LEFT TAIL...
+C
+            IX    = XL + LOG(V)/LAMDL
+            IF (IX .LT. MINJX)  GO TO 30
+            V     = V * (U-P1) * LAMDL
+         ELSE
+C
+C           ...RIGHT TAIL...
+C
+            IX    = XR - LOG(V)/LAMDR
+            IF (IX .GT. MAXJX)  GO TO 30
+            V     = V * (U-P2) * LAMDR
+         ENDIF
+C
+C        ...ACCEPTANCE/REJECTION TEST...
+C
+         IF (M .LT. 100 .OR. IX .LE. 50)  THEN
+C
+C           ...EXPLICIT EVALUATION...
+C
+            F     = 1.0
+            IF (M .LT. IX)  THEN
+               DO 40 I = M+1,IX
+   40          F      = F * (N1-I+1) * (K-I+1) / (N2-K+I) / I
+            ELSEIF (M .GT. IX)  THEN
+               DO 50 I = IX+1,M
+   50          F      = F * I * (N2-K+I) / (N1-I) / (K-I)
+            ENDIF
+            IF (V .LE. F)  THEN
+               REJECT = .FALSE.
+            ENDIF
+         ELSE
+C
+C        ...SQUEEZE USING UPPER AND LOWER BOUNDS...
+C
+            Y   = IX
+            Y1  = Y + 1.
+            YM  = Y - M
+            YN  = N1 - Y + 1.
+            YK  = K - Y + 1.
+            NK  = N2 - K + Y1
+            R   = -YM / Y1
+            S   = YM / YN
+            T   = YM / YK
+            E   = -YM / NK
+            G   = YN * YK / (Y1*NK) - 1.
+            DG  = 1.
+            IF (G .LT. 0.)  DG = 1.+G
+            GU  = G * (1.+G*(-.5+G/3.))
+            GL  = GU - .25 * (G*G)**2 / DG
+            XM  = M + .5
+            XN  = N1 - M + .5
+            XK  = K - M + .5
+            NM  = N2 - K + XM
+            UB  = Y * GU - M * GL + DELTAU
+     $              + XM * R * (1.+R*(-.5+R/3.))
+     $              + XN * S * (1.+S*(-.5+S/3.))
+     $              + XK * T * (1.+T*(-.5+T/3.))
+     $              + NM * E * (1.+E*(-.5+E/3.))
+C
+C           ...TEST AGAINST UPPER BOUND...
+C
+            ALV = LOG(V)
+            IF (ALV .GT. UB)  THEN
+               REJECT = .TRUE.
+            ELSE
+C
+C              ...TEST AGAINST LOWER BOUND...
+C
+               DR = XM * (R*R)**2
+               IF (R .LT. 0.)  DR = DR / (1.+R)
+               DS = XN * (S*S)**2
+               IF (S .LT. 0.)  DS = DS / (1.+S)
+               DT = XK * (T*T)**2
+               IF (T .LT. 0.)  DT = DT / (1.+T)
+               DE = NM * (E*E)**2
+               IF (E .LT. 0.)  DE = DE / (1.+E)
+               IF (ALV .LT. UB-.25*(DR+DS+DT+DE)
+     $                         +(Y+M)*(GL-GU)-DELTAL)  THEN
+                  REJECT = .FALSE.
+               ELSE
+C
+C                 ...STIRLING'S FORMULA TO MACHINE ACCURACY...
+C
+                  IF (ALV .LE. (A - AFC(IX) - AFC(N1-IX)
+     $                       - AFC(K-IX) - AFC(N2-K+IX)) )  THEN
+                     REJECT = .FALSE.
+                  ELSE
+                     REJECT = .TRUE.
+                  ENDIF
+               ENDIF
+            ENDIF
+         ENDIF
+         IF (REJECT)  GO TO 30
+      ENDIF
+ 
+C
+C*****RETURN APPROPRIATE VARIATE
+C
+      IF (KK + KK .GE. TN)  THEN
+         IF (NN1 .GT. NN2)  THEN
+            IX = KK - NN2 + IX
+         ELSE
+            IX =  NN1 - IX
+         ENDIF
+      ELSE
+         IF (NN1 .GT. NN2)  IX = KK - IX
+      ENDIF
+      JX = IX
+      RETURN
+      END
+ 
+ 
+ 
+      DOUBLE PRECISION FUNCTION AFC(I)
+C
+C     FUNCTION TO EVALUATE LOGARITHM OF THE FACTORIAL I
+C        IF (I .GT. 7), USE STIRLING'S APPROXIMATION
+C           OTHERWISE,  USE TABLE LOOKUP
+C
+      DOUBLE PRECISION AL(8), DI
+      DATA AL/0.D0,0.D0,0.6931471806D0,1.791759469D0,3.178053830D0,
+     $        4.787491743D0,6.579251212D0,8.525161361D0/
+      IF (I .LE. 7)  THEN
+         AFC = AL(I+1)
+      ELSE
+         DI  = I
+    1    AFC = (DI+0.5D0) * LOG(DI) - DI + 0.08333333333333D0/DI
+     $         -0.00277777777777D0/DI/DI/DI  + 0.9189385332D0
+      ENDIF
+      RETURN
+      END
+ 
+ 
+ 
+      FUNCTION RAND(IX)
+C
+C     UNIFORM RANDOM NUMBER GENERATOR
+C     REFERENCE:  L. SCHRAGE,
+C        "A MORE PORTABLE FORTRAN RANDOM NUMBER GENERATOR,"
+C        ACM TRANSACTIONS ON MATHEMATICAL SOFTWARE,
+C        5(1979), 132-138.
+C
+      INTEGER A,P,IX,B15,B16,XHI,XALO,LEFTLO,FHI,K
+      DATA A/16807/,B15/32768/,B16/65536/,P/2147483647/
+      XHI    = IX/B16
+      XALO   = (IX-XHI * B16) * A
+      LEFTLO = XALO/B16
+      FHI    = XHI * A + LEFTLO
+      K      = FHI / B15
+      IX     = (((XALO - LEFTLO * B16) - P)
+     $        + (FHI - K * B15) * B16) + K
+      IF (IX .LT. 0)  IX = IX + P
+      RAND   = FLOAT(IX) * 4.656612875E-10
+      RETURN
+      END

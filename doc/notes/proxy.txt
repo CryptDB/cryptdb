@@ -1,0 +1,2 @@
+An alternative to mysql-proxy might be http://code.google.com/p/tungsten-replicator/
+

@@ -1,0 +1,18 @@
+-- valid for DB2 V9.7 or later
+truncate table warehouse immediate;
+
+truncate table item immediate;
+
+truncate table stock immediate;
+
+truncate table district immediate;
+
+truncate table customer immediate;
+
+truncate table history immediate;
+
+truncate table oorder immediate;
+
+truncate table order_line immediate;
+
+truncate table new_order immediate;

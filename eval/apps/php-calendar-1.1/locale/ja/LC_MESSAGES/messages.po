@@ -1,0 +1,493 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: php-calendar\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-04-14 16:20-0400\n"
+"PO-Revision-Date: 2005-02-08 15:13+0900\n"
+"Last-Translator: Tadashi Jokagi <elf2000@users.sourceforge.net>\n"
+"Language-Team: ja <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: index.php:50
+msgid "Invalid action"
+msgstr "無効な操作"
+
+#: install.php:180
+msgid "error creating db"
+msgstr "データベースの作成中にエラー"
+
+#: install.php:190 install.php:193
+msgid "Could not grant:"
+msgstr "委譲できません:"
+
+#: install.php:237
+msgid "Error initializing default db stuff"
+msgstr "デフォルトデータベースの初期化エラー"
+
+#: includes/calendar.php:46
+msgid "January"
+msgstr "1 月"
+
+#: includes/calendar.php:47
+msgid "February"
+msgstr "2 月"
+
+#: includes/calendar.php:48
+msgid "March"
+msgstr "3 月"
+
+#: includes/calendar.php:49
+msgid "April"
+msgstr "4 月"
+
+#: includes/calendar.php:50 includes/calendar.php:90
+msgid "May"
+msgstr "5 月"
+
+#: includes/calendar.php:51
+msgid "June"
+msgstr "6 月"
+
+#: includes/calendar.php:52
+msgid "July"
+msgstr "7 月"
+
+#: includes/calendar.php:53
+msgid "August"
+msgstr "8 月"
+
+#: includes/calendar.php:54
+msgid "September"
+msgstr "9 月"
+
+#: includes/calendar.php:55
+msgid "October"
+msgstr "10 月"
+
+#: includes/calendar.php:56
+msgid "November"
+msgstr "11 月"
+
+#: includes/calendar.php:57
+msgid "December"
+msgstr "12 月"
+
+#: includes/calendar.php:72
+msgid "Sunday"
+msgstr "日曜日"
+
+#: includes/calendar.php:73
+msgid "Monday"
+msgstr "月曜日"
+
+#: includes/calendar.php:74
+msgid "Tuesday"
+msgstr "火曜日"
+
+#: includes/calendar.php:75
+msgid "Wednesday"
+msgstr "水曜日"
+
+#: includes/calendar.php:76
+msgid "Thursday"
+msgstr "木曜日"
+
+#: includes/calendar.php:77
+msgid "Friday"
+msgstr "金曜日"
+
+#: includes/calendar.php:78
+msgid "Saturday"
+msgstr "土曜日"
+
+#: includes/calendar.php:86
+msgid "Jan"
+msgstr "1 月"
+
+#: includes/calendar.php:87
+msgid "Feb"
+msgstr "2 月"
+
+#: includes/calendar.php:88
+msgid "Mar"
+msgstr "3 月"
+
+#: includes/calendar.php:89
+msgid "Apr"
+msgstr "4 月"
+
+#: includes/calendar.php:91
+msgid "Jun"
+msgstr "5 月"
+
+#: includes/calendar.php:92
+msgid "Jul"
+msgstr "6 月"
+
+#: includes/calendar.php:93
+msgid "Aug"
+msgstr "7 月"
+
+#: includes/calendar.php:94
+msgid "Sep"
+msgstr "8 月"
+
+#: includes/calendar.php:95
+msgid "Oct"
+msgstr "9 月"
+
+#: includes/calendar.php:96
+msgid "Nov"
+msgstr "10 月"
+
+#: includes/calendar.php:97
+msgid "Dec"
+msgstr "11 月"
+
+#: includes/calendar.php:155 includes/display.php:151
+msgid "FULL DAY"
+msgstr "全日"
+
+#: includes/calendar.php:165
+msgid "Normal"
+msgstr "通常"
+
+#: includes/calendar.php:167
+msgid "Full Day"
+msgstr "全日"
+
+#: includes/calendar.php:169
+msgid "Unknown Time"
+msgstr "時間未定"
+
+#: includes/calendar.php:174
+msgid "Weekly"
+msgstr "毎週"
+
+#: includes/calendar.php:176
+msgid "Monthly"
+msgstr "毎月"
+
+#: includes/calendar.php:277
+msgid "Error in get_events_by_date"
+msgstr "get_events_by_date にエラー"
+
+#: includes/calendar.php:304
+msgid "Error in get_event_by_id"
+msgstr "get_event_by_id にエラー"
+
+#: includes/calendar.php:433
+msgid "Add Event"
+msgstr "イベント追加"
+
+#: includes/calendar.php:438 includes/search.php:98
+msgid "Search"
+msgstr "検索"
+
+#: includes/calendar.php:443
+msgid "Back to Calendar"
+msgstr "カレンダーに戻る"
+
+#: includes/calendar.php:448
+msgid "View date"
+msgstr "1 日表示"
+
+#: includes/calendar.php:453
+msgid "Log out"
+msgstr "ログアウト"
+
+#: includes/calendar.php:456 includes/login.php:66
+msgid "Log in"
+msgstr "ログイン"
+
+#: includes/calendar.php:461 includes/options.php:72
+msgid "Options"
+msgstr "オプション"
+
+#: includes/calendar.php:545
+msgid "Event"
+msgstr "イベント"
+
+#: includes/calendar.php:553
+msgid "Cannot add events"
+msgstr "イベントの追加ができない"
+
+#: includes/calendar.php:554
+msgid "Can add but not modify events"
+msgstr "イベントの追加はできるが修正できない"
+
+#: includes/calendar.php:555
+msgid "Can add and modify events"
+msgstr "イベントの追加と修正ができる"
+
+#: includes/db.php:32
+msgid "Could not connect to the database"
+msgstr "データベースに接続できませんでした"
+
+#: includes/display.php:36
+msgid "last year"
+msgstr "先月"
+
+#: includes/display.php:37
+msgid "last month"
+msgstr "去年"
+
+#: includes/display.php:43
+msgid "next month"
+msgstr "次月"
+
+#: includes/display.php:44
+msgid "next year"
+msgstr "次年"
+
+#: includes/display.php:156 includes/event_form.php:163
+msgid "hours"
+msgstr "時間"
+
+#: includes/display.php:160 includes/event_form.php:165
+msgid "minutes"
+msgstr "分"
+
+#: includes/display.php:164
+msgid "No duration"
+msgstr "期間がありません"
+
+#: includes/display.php:189
+msgid "Title"
+msgstr "題名"
+
+#: includes/display.php:190 includes/event_form.php:157
+msgid "Time"
+msgstr "時間"
+
+#: includes/display.php:191 includes/event_form.php:160
+msgid "Duration"
+msgstr "期間"
+
+#: includes/display.php:192 includes/event_form.php:172 includes/search.php:63
+msgid "Description"
+msgstr "説明"
+
+#: includes/display.php:203
+msgid "Delete Selected"
+msgstr "選択を削除"
+
+#: includes/display.php:232 includes/display.php:284
+msgid "Modify"
+msgstr "修正"
+
+#: includes/display.php:254
+msgid "No events on this day."
+msgstr "この日はイベントがありません。"
+
+#: includes/display.php:285
+msgid "Delete"
+msgstr "削除"
+
+#: includes/event_delete.php:56
+msgid "Removed item"
+msgstr "項目を削除しました"
+
+#: includes/event_delete.php:58
+msgid "Could not remove item"
+msgstr "項目を削除できません。"
+
+#: includes/event_delete.php:63
+msgid "No items selected."
+msgstr "項目が選択されていません。"
+
+#: includes/event_form.php:30
+#, php-format
+msgid "Modifying id #%d"
+msgstr "ID #%d の修正"
+
+#: includes/event_form.php:73
+msgid "Adding event to calendar"
+msgstr "イベントをカレンダーに追加"
+
+#: includes/event_form.php:136
+msgid "Submit Event"
+msgstr "イベント送信"
+
+#: includes/event_form.php:140
+msgid "Date of event"
+msgstr "イベントの開始日"
+
+#: includes/event_form.php:146
+msgid "Date multiple day event ends"
+msgstr "イベントの終了日"
+
+#: includes/event_form.php:152
+msgid "Event type"
+msgstr "イベントタイプ"
+
+#: includes/event_form.php:167 includes/search.php:61 includes/search.php:130
+msgid "Subject"
+msgstr "件名"
+
+#: includes/event_form.php:167
+msgid "(255 chars max)"
+msgstr "(最大 255 バイト)"
+
+#: includes/event_submit.php:54
+msgid "No day was given."
+msgstr "「日」が与えられませんでした。"
+
+#: includes/event_submit.php:56
+msgid "No month was given."
+msgstr "「月」が与えられませんでした。"
+
+#: includes/event_submit.php:58
+msgid "No year was given"
+msgstr "「年」が与えられませんでした。"
+
+#: includes/event_submit.php:63
+msgid "No hour was given."
+msgstr "「時」が与えられませんでした。"
+
+#: includes/event_submit.php:78
+msgid "No minute was given."
+msgstr "「分」が与えられませんでした。"
+
+#: includes/event_submit.php:83
+msgid "No duration minute was given."
+msgstr "期間の「分」が与えられませんでした。"
+
+#: includes/event_submit.php:87
+msgid "No duration hour was given."
+msgstr "期間の「時」が与えられませんでした。"
+
+#: includes/event_submit.php:91
+msgid "No type of event was given."
+msgstr "イベントの種類が与えられませんでした。"
+
+#: includes/event_submit.php:95
+msgid "No end day was given"
+msgstr "「終了日」が与えられませんでした。"
+
+#: includes/event_submit.php:99
+msgid "No end month was given"
+msgstr "「終了月」が与えられませんでした。"
+
+#: includes/event_submit.php:103
+msgid "No end year was given"
+msgstr "「終了年」が与えられませんでした。"
+
+#: includes/event_submit.php:106
+msgid "Your subject was too long"
+msgstr "件名が長すぎます"
+
+#: includes/event_submit.php:151
+msgid "Error processing event"
+msgstr "イベントの処理中のエラー"
+
+#: includes/event_submit.php:155
+msgid "No changes made"
+msgstr "変更がありません"
+
+#: includes/event_submit.php:158
+msgid "Date updated"
+msgstr "日付を更新しました"
+
+#: includes/login.php:49
+msgid "Loggin in..."
+msgstr "ログイン..."
+
+#: includes/login.php:52
+msgid "Sorry, Invalid Login"
+msgstr "すみませんが無効なログインです"
+
+#: includes/login.php:72 includes/options.php:77 includes/search.php:102
+msgid "Submit"
+msgstr "送信"
+
+#: includes/login.php:75
+msgid "Username"
+msgstr "ユーザー名"
+
+#: includes/login.php:78
+msgid "Password"
+msgstr "パスワード"
+
+#: includes/options.php:57
+msgid "Updated options"
+msgstr "オプションをアップデートしました"
+
+#: includes/options.php:59
+msgid "Permission denied"
+msgstr "権限で拒否されました"
+
+#: includes/options.php:80
+msgid "Start Monday"
+msgstr "月曜日から開始"
+
+#: includes/options.php:84
+msgid "24 hour"
+msgstr "24 時間"
+
+#: includes/options.php:88
+msgid "Translate"
+msgstr "翻訳"
+
+#: includes/options.php:92
+msgid "Calendar Title"
+msgstr "カレンダーの題名"
+
+#: includes/options.php:96
+msgid "Anonymous Permission"
+msgstr "匿名の権限"
+
+#: includes/search.php:58
+msgid "Search Results"
+msgstr "検索結果"
+
+#: includes/search.php:62
+msgid "Date Time"
+msgstr "日時"
+
+#: includes/search.php:87
+msgid "No events."
+msgstr "イベントがありません。"
+
+#: includes/search.php:104
+msgid "Phrase"
+msgstr "フレーズ"
+
+#: includes/search.php:110
+msgid "From"
+msgstr "差出人"
+
+#: includes/search.php:116
+msgid "To"
+msgstr "宛先"
+
+#: includes/search.php:122
+msgid "Sort By"
+msgstr "ソート基準"
+
+#: includes/search.php:127
+msgid "Start Date"
+msgstr "開始日"
+
+#: includes/search.php:132
+msgid "Order"
+msgstr "ソート方向"
+
+#: includes/search.php:137
+msgid "Ascending"
+msgstr "昇順"
+
+#: includes/search.php:139
+msgid "Decending"
+msgstr "降順"
+
+#: includes/setup.php:116
+msgid "Could not read configuration"
+msgstr "設定を読み込むことができません。"

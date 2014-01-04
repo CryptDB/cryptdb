@@ -1,0 +1,69 @@
+Cases we should consider in designing our query rewriting framework:
+  - Sub-selects.
+  - Expressions like a+b>c
+    - Maybe pass them to a special UDF that sends expressions for evaluation to the
+      proxy via some back-channel.
+    - Send a superset of the rows to the proxy for filtering (when possible).
+    - Pre-compute expressions like a+b (e.g., Craig's example of date ranges)
+      for evaluating such predicates later.
+  - INSERT INTO .. SELECT ..
+    - Need to pass along multiple ciphertexts of the same data (e.g., all 3 onions).
+  - UPDATE .. SET x=x+1
+    - Invalidates non-HOM onions for certain rows.
+    - Perhaps we should set these non-HOM onions in matching rows to some special
+      value, so that we can still use the non-HOM onions for other rows?
+  - Determining which principal (in a multi-principal setup) owns what data.
+  - Queries touching data belonging to different principals.
+  - NULL values.
+
+Some ideas:
+  - Run a small in-memory MySQL server inside of the proxy, with only the schema
+    loaded (no data), to help process queries (e.g., determine what names mean,
+    what aliases refer to, etc).
+
+---
+
+Test case:
+
+SELECT x.a, y.b + 2, y.c, y.cc AS ycc FROM x, y as yy1, y as yy2 
+WHERE x.bb = yy1.b AND yy1.k1 = yy2.k2 AND (yy2.d > 7 OR yy2.e = (3+4)) AND (yy1.f='hello') AND yy2.cc = 9
+
+Ideal output:
+
+select `anon_x`.`some_onion_for_a` AS `a`,
+       hom_add_udf(`anon_y`.`hom_onion_b`, hom_encryption_of_2, public_key_for_b) AS `y.b + 2`,
+       `anon_y`.`some_onion_for_c` AS `c`,
+       `anon_y`.`some_onion_for_cc` AS `ycc`
+from `dbtest`.`anon_x` join `dbtest`.`anon_y` `anon_yy1` join `dbtest`.`anon_y` `anon_yy2`
+where ((`anon_x`.`join_onion_for_bb` = `anon_yy1`.`join_onion_for_b`) and
+       (`anon_yy1`.`join_onion_for_k1` = `anon_yy2`.`join_onion_for_k2`) and
+       ((`anon_yy2`.`ope_onion_for_d` > ope_encryption_of_7_using_key_d) or
+        (`anon_yy2`.`eq_onion_for_e` = eq_encryption_of_(3+4)_using_key_e)) and
+       (`anon_yy1`.`eq_onion_for_f` = eq_encryption_of_'hello'_using_key_f) and
+       (`anon_yy2`.`eq_onion_for_cc` = eq_encryption_of_9_using_key_cc))
+
+XXX: cannot send the "AS" to the server, because that breaks anonymization.
+     apply the aliases to result sets after decryption.
+
+---
+
+Possible rewriting plan:
+
+  For each item, implement a do_rewrites() method.
+  do_rewrites() returns a set of candidate encryptions of that item.
+  Each candidate in that set has:
+    - a method to get the encryption type + key (e.g., plaintext;
+      EQ with key b; OPE with key c; ...)
+    - a method to get the Item representation of that candidate
+      (e.g., encryption of a constant with the appropriate key;
+      column name holding that enctype; ...)
+    - a method to materialize that candidate (meaning, it's about
+      to be used in a query, so adjust the onion levels if needed)
+  Not yet resolved in this plan:
+    - the second method (getting an Item representation) may need
+      to take an argument specifying the desired key, because
+      constant expressions can be encrypted with arbitrary keys,
+      and the constant expression itself has no idea what that key
+      is (only its expression parent knows the key, corresponding
+      to how it's being used in that expression).
+

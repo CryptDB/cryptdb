@@ -1,0 +1,4 @@
+Implicit shared state to worry about:
+  Possible PRNG state in OpenSSL
+  Global state in NTL (see end of http://www.shoup.net/ntl/doc/tour-impl.html)
+

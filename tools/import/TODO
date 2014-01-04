@@ -1,0 +1,36 @@
+-= CryptDB import tool
+
+TODO:
+
+- Tool is simple, it reads from .sql dumped files and write into CryptDB through proxy however
+some queries are not yet handled by CryptDB, some examples:
+
+CRETE DATABASE doesn't work:
+
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `sepultura` /*!40100 DEFAULT CHARACTER SET latin1 */;
+There are 0 DeltaOutputz!
+Unexpected Error: unhandled sql command 36 in query CREATE DATABASE /*!32312 IF NOT EXISTS*/ `sepultura` /*!40100 DEFAULT CHARACTER SET latin1 */;
+
+ALTER TABLE issues:
+
+/*!40000 ALTER TABLE `time_zone_transition_type` DISABLE KEYS */;
+There are 0 DeltaOutputz!
+Internal Error: Unsupported ALTER in stringify in query /*!40000 ALTER TABLE `time_zone_transition_type` DISABLE KEYS */;
+
+LOCK TABLES:
+
+LOCK TABLES `time_zone_transition_type` WRITE;
+There are 0 DeltaOutputz!
+Unexpected Error: unhandled sql command 32 in query LOCK TABLES `time_zone_transition_type` WRITE;
+
+CREATE TABLE issues:
+
+CREATE TABLE `time_zone_transition_type` (  `Time_zone_id` int(10) unsigned NOT NULL,  `Transition_type_id` int(10) unsigned NOT NULL,  `Offset` int(11) NOT NULL DEFAULT '0',  `Is_DST` tinyint(3) unsigned NOT NULL DEFAULT '0',  `Abbreviation` char(8) NOT NULL DEFAULT '',  PRIMARY KEY (`Time_zone_id`,`Transition_type_id`)) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='Time zone transition types';
+There are 0 DeltaOutputz!
+util/util.cc:33 (assert_s): ERROR: unexpected sql_type
+Internal Error: unexpected sql_type in query CREATE TABLE `time_zone_transition_type` (  `Time_zone_id` int(10) unsigned NOT NULL,  `Transition_type_id` int(10) unsigned NOT NULL,  `Offset` int(11) NOT NULL DEFAULT '0',  `Is_DST` tinyint(3) unsigned NOT NULL DEFAULT '0',  `Abbreviation` char(8) NOT NULL DEFAULT '',  PRIMARY KEY (`Time_zone_id`,`Transition_type_id`)) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='Time zone transition types';
+
+- Optimize tool. For large databases it may take a long time to finish, optimization may use parallel and multi-processing mechanisms but
+it also depends on CryptDB/proxy internal performance.
+- Update tool to match recent changes in CryptDB interfaces, if necessary. 
+

@@ -1,0 +1,8 @@
+[BackEnd Database Issues]
+
+- If backend MySQL server breaks, i.e., invalid structure tables and invalid state, like: 
+
+ 	'[ERROR] Native table 'performance_schema'.'events_waits_summary_by_thread_by_event_name' has the wrong structure'
+
+	Running './mysql_update -u user -ppassword' command fixes structures.
+	Executable is found at 'mysql-5.5.14/build/client/mysql_upgrade'

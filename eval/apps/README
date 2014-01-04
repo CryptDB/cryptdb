@@ -1,0 +1,16 @@
+This folder contains source code and queries for various applications for our security analysis.
+
+In all apps, we analyze the schema and knowledge of the app to determine sensitive fields.
+
+For each application, we have files:
+CRYPTDB_schema -> schema, sensitive fields with onion level, and rationale of why they are sensitive
+CRYPTDB_queries -> all query types, or log of queries generated in a long period of time
+		PHP-Calendar, 6.02:
+		-- we extracted all possible query types from the source code
+		-- examined what operations are performed on each field
+
+CRYPTDB_info  -> our procedure for getting the queries in CRYPTDB_queries
+
+We consider that all sensitive fields are encrypted using single principal type encryption, and determine resulting onion level, by analyzing the operations performed on these fields in the queries.
+
+

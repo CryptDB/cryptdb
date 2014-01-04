@@ -1,0 +1,14 @@
+#
+# proc installation makefrag
+#
+OBJDIRS	+= scripts
+
+all: $(OBJDIR)/scripts/procs $(OBJDIR)/scripts/locklib.so
+
+$(OBJDIR)/scripts/procs: $(OBJDIR)/scripts/procs.o $(OBJDIR)/libcryptdb.so
+	$(CXX) $< -o $@ -ledbparser $(LDFLAGS) $(LDRPATH) \
+               -ledbcrypto -ledbutil -lcryptdb
+
+$(OBJDIR)/scripts/locklib.so: $(OBJDIR)/scripts/locklib.o
+	$(CXX) -shared -fpic -o $@ $^ -llua5.1
+

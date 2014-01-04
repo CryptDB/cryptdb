@@ -1,0 +1,29 @@
+Uses php mySQL functions, so to find connections, I used
+
+grep 'mysql_'
+
+It also uses adodb, so I also used:
+
+grep '->[ECSPIOGRA][xaernue][eclPtrp][chepaPoMARC][uecaramnsolE]'
+
+Which searches for the first five letters of the all the possible query methods for ADO.  There are also many helper functions which use the mySQL or adodb to access the database:
+
+sqlQuery
+sqlStatement
+sqlFetchArray
+sqlInsert
+sqlInsertClean_audit
+getSqlLastID
+sqlQ
+idSqlStatement
+sqlInsertClean
+SLQuery
+SLRowCount
+SLAffectedCount
+SLQueryValue
+
+
+pg_exec
+
+
+

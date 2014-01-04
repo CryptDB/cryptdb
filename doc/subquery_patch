@@ -1,0 +1,12 @@
+--- sql/item_subselect.cc	2013-09-20 03:34:34.428786969 -0400
++++ sql/item_subselect.cc	2013-09-20 03:38:01.984793809 -0400
+@@ -1542,6 +1542,9 @@
+ Item_subselect::trans_res
+ Item_in_subselect::select_in_like_transformer(JOIN *join, Comp_creator *func)
+ {
++    // CRYPTDB HACK
++    return RES_OK;
++
+   Query_arena *arena, backup;
+   SELECT_LEX *current= thd->lex->current_select, *up;
+   const char *save_where= thd->where;

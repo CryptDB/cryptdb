@@ -1,0 +1,11 @@
+make ; sudo make install; rm -r /var/lib/shadow-mysql/*; mysql -u root -pletmein -e "drop database cryptdbtest"; mysql -u root -pletmein -e "create database cryptdbtest"; mysql -u root -pletmein -e  "drop database cryptdbtest_control"; mysql -u root -pletmein -e "create database cryptdbtest_control"; obj/main/cdb_test /var/lib/shadow-mysql
+
+
+create table t (name text, age integer);
+insert into t values ('alice', 19), ('bob', 20), ('chris', 21);
+select * from t;
+select * from t where name = 19;
+select sum(greatest(age,20)) from t;
+
+have setup: prepare to run cryptdb start
+mysql started and for cryptdbtest

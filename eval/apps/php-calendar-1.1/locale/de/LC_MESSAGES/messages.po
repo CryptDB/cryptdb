@@ -1,0 +1,524 @@
+# PHP-Calendar German Translation
+# Copyright (C) 2006 Sean Proctor
+# This file is distributed under the same license as the PHP-Calendar package.
+# Marc Bless <marc.bless@gmx.de>
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 0.10.5\n"
+"Report-Msgid-Bugs-To: Sean Proctor <sproctor@gmail.com>\n"
+"POT-Creation-Date: 2004-04-14 16:20-0400\n"
+"PO-Revision-Date: 2006-01-05 00:00+0000\n"
+"Last-Translator: Marc Bless <marc.bless@gmx.de>\n"
+"Language-Team: German\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: index.php:50
+msgid "Invalid action"
+msgstr "Ung&uuml;ltige Aktion"
+
+#: install.php:180
+msgid "error creating db"
+msgstr "Fehler beim Erzeugen der Datenbank"
+
+#: install.php:190 install.php:193
+#, fuzzy
+msgid "Could not grant:"
+msgstr ""
+
+#: install.php:237
+msgid "Error initializing default db stuff"
+msgstr "Fehler beim Initialisieren der Datenbank"
+
+#: includes/calendar.php:46
+msgid "January"
+msgstr "Januar"
+
+#: includes/calendar.php:47
+msgid "February"
+msgstr "Februar"
+
+#: includes/calendar.php:48
+msgid "March"
+msgstr "M&auml;rz"
+
+#: includes/calendar.php:49
+msgid "April"
+msgstr "April"
+
+#: includes/calendar.php:50 includes/calendar.php:90
+msgid "May"
+msgstr "Mai"
+
+#: includes/calendar.php:51
+msgid "June"
+msgstr "Juni"
+
+#: includes/calendar.php:52
+msgid "July"
+msgstr "Juli"
+
+#: includes/calendar.php:53
+msgid "August"
+msgstr "August"
+
+#: includes/calendar.php:54
+msgid "September"
+msgstr "September"
+
+#: includes/calendar.php:55
+msgid "October"
+msgstr "Oktober"
+
+#: includes/calendar.php:56
+msgid "November"
+msgstr "November"
+
+#: includes/calendar.php:57
+msgid "December"
+msgstr "Dezember"
+
+#: includes/calendar.php:72
+msgid "Sunday"
+msgstr "Sonntag"
+
+#: includes/calendar.php:73
+msgid "Monday"
+msgstr "Montag"
+
+#: includes/calendar.php:74
+msgid "Tuesday"
+msgstr "Dienstag"
+
+#: includes/calendar.php:75
+msgid "Wednesday"
+msgstr "Mittwoch"
+
+#: includes/calendar.php:76
+msgid "Thursday"
+msgstr "Donnerstag"
+
+#: includes/calendar.php:77
+msgid "Friday"
+msgstr "Freitag"
+
+#: includes/calendar.php:78
+msgid "Saturday"
+msgstr "Samstag"
+
+#: includes/calendar.php:86
+msgid "Jan"
+msgstr "Jan"
+
+#: includes/calendar.php:87
+msgid "Feb"
+msgstr "Feb"
+
+#: includes/calendar.php:88
+msgid "Mar"
+msgstr "M&auml;r"
+
+#: includes/calendar.php:89
+msgid "Apr"
+msgstr "Apr"
+
+#: includes/calendar.php:91
+msgid "Jun"
+msgstr "Jun"
+
+#: includes/calendar.php:92
+msgid "Jul"
+msgstr "Jul"
+
+#: includes/calendar.php:93
+msgid "Aug"
+msgstr "Aug"
+
+#: includes/calendar.php:94
+msgid "Sep"
+msgstr "Sep"
+
+#: includes/calendar.php:95
+msgid "Oct"
+msgstr "Okt"
+
+#: includes/calendar.php:96
+msgid "Nov"
+msgstr "Nov"
+
+#: includes/calendar.php:97
+msgid "Dec"
+msgstr "Dez"
+
+#: includes/calendar.php:155 includes/display.php:151
+msgid "FULL DAY"
+msgstr "GANZT&Auml;GIG"
+
+#: includes/calendar.php:165
+msgid "Normal"
+msgstr "Normaler Termin"
+
+#: includes/calendar.php:167
+msgid "Full Day"
+msgstr "ganzt&auml;giger Termin"
+
+#: includes/calendar.php:169
+msgid "Unknown Time"
+msgstr "unbekannter Zeitraum"
+
+#: includes/calendar.php:174
+msgid "Weekly"
+msgstr "W&ouml;chentlich"
+
+#: includes/calendar.php:176
+msgid "Monthly"
+msgstr "Monatlich"
+
+#: includes/calendar.php:277
+msgid "Error in get_events_by_date"
+msgstr ""
+
+#: includes/calendar.php:304
+msgid "Error in get_event_by_id"
+msgstr ""
+
+#: includes/calendar.php:433
+msgid "Add Event"
+msgstr "Termin hinzuf&uuml;gen"
+
+#: includes/calendar.php:438 includes/search.php:98
+msgid "Search"
+msgstr "Suchen"
+
+#: includes/calendar.php:443
+msgid "Back to Calendar"
+msgstr "Zur&uuml;ck zum Kalender"
+
+#: includes/calendar.php:448
+msgid "View date"
+msgstr "Datum anzeigen"
+
+#: includes/calendar.php:453
+msgid "Log out"
+msgstr "Logout"
+
+#: includes/calendar.php:456 includes/login.php:66
+msgid "Log in"
+msgstr "Login"
+
+#: includes/calendar.php:461 includes/options.php:72
+msgid "Options"
+msgstr "Einstellungen"
+
+#: includes/calendar.php:545
+msgid "Event"
+msgstr "Termin"
+
+#: includes/calendar.php:553
+msgid "Cannot add events"
+msgstr "Kann keine Termin hinzuf&uuml;gen"
+
+#: includes/calendar.php:554
+msgid "Can add but not modify events"
+msgstr "Kann Termne hinzuf&uuml;gen aber nicht &auml;ndern"
+
+#: includes/calendar.php:555
+msgid "Can add and modify events"
+msgstr "Kann Termne hinzuf&uuml;gen und &auml;ndern"
+
+#: includes/db.php:32
+msgid "Could not connect to the database"
+msgstr "Keine Verbindung zur Datenbank"
+
+#: includes/display.php:36
+msgid "last year"
+msgstr "voheriges Jahr"
+
+#: includes/display.php:37
+msgid "last month"
+msgstr "voheriger Monat"
+
+#: includes/display.php:43
+msgid "next month"
+msgstr "n&auml;chster Monat"
+
+#: includes/display.php:44
+msgid "next year"
+msgstr "n&auml;chstes Jahr"
+
+#: includes/display.php:156 includes/event_form.php:163
+msgid "hours"
+msgstr "Stunden"
+
+#: includes/display.php:160 includes/event_form.php:165
+msgid "minutes"
+msgstr "Minuten"
+
+#: includes/display.php:164
+msgid "No duration"
+msgstr "Keine Dauer"
+
+#: includes/display.php:189
+msgid "Title"
+msgstr "Titel"
+
+#: includes/display.php:190 includes/event_form.php:157
+msgid "Time"
+msgstr "Zeit"
+
+#: includes/display.php:191 includes/event_form.php:160
+msgid "Duration"
+msgstr "Dauer"
+
+#: includes/display.php:192 includes/event_form.php:172 includes/search.php:63
+msgid "Description"
+msgstr "Beschreibung"
+
+#: includes/display.php:203
+msgid "Delete Selected"
+msgstr "Bitte Termin zum l&ouml;schen ausw&auml;hlen"
+
+#: includes/display.php:232 includes/display.php:284
+msgid "Modify"
+msgstr "&Auml;ndern"
+
+#: includes/display.php:254
+msgid "No events on this day."
+msgstr "Keine Termine an diesem Tag."
+
+#: includes/display.php:285
+msgid "Delete"
+msgstr "L&ouml;schen"
+
+#: includes/event_delete.php:56
+msgid "Removed item"
+msgstr "Termin gel&ouml;scht: "
+
+#: includes/event_delete.php:58
+msgid "Could not remove item"
+msgstr "Termin konnte nicht gel&ouml;scht werden: "
+
+#: includes/event_delete.php:63
+msgid "No items selected."
+msgstr "Bitte Termin zum L&ouml;schen ausw&auml;hlen"
+
+#: includes/event_form.php:30
+#, php-format
+msgid "Modifying id #%d"
+msgstr "&Auml;ndere ID #%d"
+
+#: includes/event_form.php:73
+msgid "Adding event to calendar"
+msgstr "Termin zum Kalender hinzuf&uuml;gen"
+
+#: includes/event_form.php:136
+msgid "Submit Event"
+msgstr "Best&auml;tigen"
+
+#: includes/event_form.php:140
+msgid "Date of event"
+msgstr "Datum des Termins"
+
+#: includes/event_form.php:146
+msgid "Date multiple day event ends"
+msgstr "Enddatum des Termins"
+
+#: includes/event_form.php:152
+msgid "Event type"
+msgstr "Terminart"
+
+#: includes/event_form.php:167 includes/search.php:61 includes/search.php:130
+msgid "Subject"
+msgstr "Betreff"
+
+#: includes/event_form.php:167
+#, fuzzy
+msgid "(255 chars max)"
+msgstr " (255)"
+
+#: includes/event_submit.php:54
+msgid "No day was given."
+msgstr "Kein Tag angegeben."
+
+#: includes/event_submit.php:56
+msgid "No month was given."
+msgstr "Kein Monat angegeben."
+
+#: includes/event_submit.php:58
+msgid "No year was given."
+msgstr "Kein Jahr angegeben."
+
+#: includes/event_submit.php:63
+msgid "No hour was given."
+msgstr "Keine Stunde angegeben."
+
+#: includes/event_submit.php:78
+msgid "No minute was given."
+msgstr "Keine Minute angegeben."
+
+#: includes/event_submit.php:83
+msgid "No duration minute was given."
+msgstr "Keine Minutendauer angegeben."
+
+#: includes/event_submit.php:87
+msgid "No duration hour was given."
+msgstr "Keine Stundendauer angegeben."
+
+#: includes/event_submit.php:91
+msgid "No type of event was given."
+msgstr "Keine Terminart angegeben."
+
+#: includes/event_submit.php:95
+msgid "No end day was given"
+msgstr "Kein Endtag angegeben."
+
+#: includes/event_submit.php:99
+msgid "No end month was given"
+msgstr "Kein Endmonat angegeben."
+
+#: includes/event_submit.php:103
+msgid "No end year was given"
+msgstr "Kein Endjahr angegeben."
+
+#: includes/event_submit.php:106
+msgid "Your subject was too long"
+msgstr "Betreff war zu lang"
+
+#: includes/event_submit.php:151
+msgid "Error processing event"
+msgstr ""
+
+#: includes/event_submit.php:155
+msgid "No changes made"
+msgstr "Keine &Auml;nderung durchgef&uuml;hrt"
+
+#: includes/event_submit.php:158
+msgid "Date updated"
+msgstr "Datum ge&auml;ndert"
+
+#: includes/login.php:49
+msgid "Loggin in..."
+msgstr "Einloggen..."
+
+#: includes/login.php:52
+msgid "Sorry, Invalid Login"
+msgstr "Sorry, ung&uuml;ltiger Login"
+
+#: includes/login.php:72 includes/options.php:77 includes/search.php:102
+msgid "Submit"
+msgstr "Best&auml;tigen"
+
+#: includes/login.php:75
+msgid "Username"
+msgstr "Benutzername"
+
+#: includes/login.php:78
+msgid "Password"
+msgstr "Passwort"
+
+#: includes/options.php:57
+msgid "Updated options"
+msgstr "Einstellungen ge&auml;ndert"
+
+#: includes/options.php:59
+msgid "Permission denied"
+msgstr "Keine Berechtigung"
+
+#: includes/options.php:80
+msgid "Start Monday"
+msgstr "Wochenbeginn Montag"
+
+#: includes/options.php:84
+msgid "24 hour"
+msgstr "24 Stunden"
+
+#: includes/options.php:88
+msgid "Translate"
+msgstr "&Uuml;bersetzen"
+
+#: includes/options.php:92
+msgid "Calendar Title"
+msgstr "Kalendertitel"
+
+#: includes/options.php:96
+msgid "Anonymous Permission"
+msgstr "Anonymer Benutzer"
+
+#: includes/search.php:58
+msgid "Search Results"
+msgstr "Suchergebnisse"
+
+#: includes/search.php:62
+msgid "Date Time"
+msgstr "Datum Zeit"
+
+#: includes/search.php:87
+msgid "No events."
+msgstr "Keine Termine."
+
+#: includes/search.php:104
+msgid "Phrase"
+msgstr ""
+
+#: includes/search.php:110
+msgid "From"
+msgstr "Von"
+
+#: includes/search.php:116
+msgid "To"
+msgstr "Bis"
+
+#: includes/search.php:122
+msgid "Sort By"
+msgstr "Sortieren nach"
+
+#: includes/search.php:127
+msgid "Start Date"
+msgstr "Startdatum"
+
+#: includes/search.php:132
+msgid "Order"
+msgstr "Sortierung"
+
+#: includes/search.php:137
+msgid "Ascending"
+msgstr "Aufsteigend"
+
+#: includes/search.php:139
+msgid "Decending"
+msgstr "Absteigend"
+
+#: includes/setup.php:116
+msgid "Could not read configuration"
+msgstr "Konfiguration nicht lesbar"
+
+#, fuzzy
+#~ msgid "Daily"
+#~ msgstr "Tag"
+
+#~ msgid "Add Item"
+#~ msgstr "Termin erstellen"
+
+#~ msgid "Nothing to modify."
+#~ msgstr "Nichts zum &auml;ndern ausgew&auml;hlt."
+
+#, fuzzy
+#~ msgid "Event Date"
+#~ msgstr "Terminart"
+
+#, fuzzy
+#~ msgid "nextval error"
+#~ msgstr "n&auml;chste Jahr"
+
+#~ msgid "Name"
+#~ msgstr "Name"
+
+#~ msgid "days"
+#~ msgstr "Tage"
+
+#, fuzzy
+#~ msgid "Username:"
+#~ msgstr "Benutzername"

@@ -1,0 +1,55 @@
+--Tradeoff: using ope instead of det makes query encryption slower and may increase transaction length unless encryption tables are used
+   -- using more than one index makes updates and inserts slower, and also may not make the query as fast because index is not as fast as primary keys (and there can only be one primary key)
+
+to obtain onions in ./test/trace
+train 1 ../eval/offtrace/sqlTableCreates ../eval/offtrace/querypatterns_bench 0
+
+
+warehouse=table0 SAME
+
+alter table warehouse add constraint pk_warehouse primary key (w_id);
+alter table table0 add constraint pk_warehouse primary key (field0DET);
+
+district=table1 SAME
+
+
+alter table table1 add constraint pk_district primary key (field0DET, field1DET);
+alter table district add constraint pk_district primary key (d_w_id, d_id);
+
+
+customer=table2 SAME
+
+alter table customer add constraint pk_customer primary key (c_w_id, c_d_id, c_id);
+alter table table2 add constraint pk_customer primary key (field0DET, field1DET, field2DET);
+create index ndx_customer_name on customer (c_w_id, c_d_id, c_last(16), c_first(16));
+create index ndx_customer_name on table2 (field0DET, field1DET, field5DET(16), field6OPE(16));
+
+Oorder: SAME
+
+alter table oorder add constraint pk_oorder primary key (o_w_id, o_d_id, o_id);
+alter table table4 add constraint pk_oorder primary key (field0DET, field1DET, field2DET);
+create unique index ndx_oorder_c_id on oorder (o_w_id, o_d_id, o_c_id, o_id);-->ope on last one
+create unique index ndx_oorder_c_id on table4 (field0DET, field1DET, field3DET, field2OPE);
+
+New order: -- ONE  MORE INDEX!
+
+alter table new_order add constraint pk_new_order primary key (no_w_id, no_d_id, no_o_id);
+alter table table5 add constraint pk_new_order primary key (field0DET, field1DET, field2OPE);
+create unique index ndx_new_order on table5 (field0DET, field1DET, field2DET);
+
+Order-line  -- ONE MORE INDEX!
+
+alter table order_line add constraint pk_order_line primary key (ol_w_id, ol_d_id, ol_o_id, ol_number);
+alter table table6 add constraint pk_order_line primary key (field0DET, field1DET, field2OPE, field3DET);
+create unique index ndx_order_line on table6 (field0DET, field1DET, field2DET, field3DET);
+
+Stock - SAME
+
+alter table stock add constraint pk_stock primary key (s_w_id, s_i_id);
+alter table table7 add constraint pk_stock primary key (field0DET, field1DET);
+
+Item - SAME
+
+alter table item add constraint pk_item primary key (i_id);
+alter table table8 add constraint pk_item primary key (field0DET);
+

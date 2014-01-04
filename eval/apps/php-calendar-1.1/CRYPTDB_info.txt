@@ -1,0 +1,6 @@
+PHP-Calendar uses ADOConnection to connect to the DB
+To find all SQL executing strings, I used:
+
+grep '$db->[ECSPIOGRA][xaernue][eclPtrp][chepaPoMARC][uecaramnsolE]'
+
+on both levels of the code tree.  This searches for the first five letters of all the possible query methods ADO can have, and returns things that look like '$db->Execute($query)'.  I then looked in the code to find out what the $query was, and transcribed those.

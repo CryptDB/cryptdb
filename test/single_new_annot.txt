@@ -1,0 +1,44 @@
+drop table privmsg;
+drop table msgs;
+drop table users;
+
+create table privmsg (sendid integer, recid integer, msgid integer);
+create table msgs (msgid integer, msgtext text);
+CRYPTDB msgs.msgtext ENC;
+create table users (username text, userid integer);
+
+insert into users values ('alice', 1);
+insert into users values ('bob', 2);
+insert into privmsg values (1, 2, 1);
+insert into msgs values (1, 'hello!');
+
+select * from privmsg;
+select * from users;
+select msgid, msgtext from msgs;
+
+select * from users where username = 'alice';
+select sendid from privmsg where msgid = 1;
+select * from msgs where msgid = 1;
+select * from msgs where msgid = 1 and msgtext = 'hello!';
+
+insert into privmsg values (2, 1, 2);
+insert into msgs values (2, 'hello!');
+select * from msgs;
+select * from msgs where msgid = 1 and msgtext = 'hello!';
+select * from msgs where msgtext = 'hello!' and msgid = 2;
+
+delete from msgs where msgid=1;
+select * from msgs;
+delete from msgs where msgid=2 and msgtext='hello!'
+select * from msgs;
+
+insert into msgs values (1, 'hi there');
+insert into msgs values (2, 'hi to you too');
+select * from msgs;
+
+update msgs set msgtext='hello!' where msgid = 1;
+select * from msgs;
+
+drop table privmsg;
+drop table msgs;
+drop table users;

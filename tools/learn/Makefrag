@@ -1,0 +1,19 @@
+#
+# cryptdblearn.cc Makefrag
+#
+EXECFILE = cryptdblearn
+
+TOOLS_SRCS   :=  $(EXECFILE).cc
+        
+all:	$(OBJDIR)/tools/learn/$(EXECFILE)
+
+LEARN_OBJS := $(patsubst %.cc,$(OBJDIR)/tools/learn/%.o,$(TOOLS_SRCS))
+$(OBJDIR)/tools/learn/$(EXECFILE): $(LEARN_OBJS) \
+		     $(OBJDIR)/libcryptdb.so $(OBJDIR)/libedbcrypto.so \
+		     $(OBJDIR)/libedbutil.so $(OBJDIR)/libedbparser.so
+	$(CXX) -o $@ $(LEARN_OBJS) $(LDFLAGS) $(LDRPATH) \
+	       -ledbcrypto -ledbutil -ledbparser -lcryptdb
+
+CXXFLAGS += -Itools/learn -Imain/ -Iutil/ 
+
+# vim: set noexpandtab:

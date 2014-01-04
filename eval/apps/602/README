@@ -1,0 +1,5 @@
+Some  instructions from Hari:
+
+Basically there's a grades table, a table that catalogs interactions between students and documents, and a key-value table to hold values submitted by the student (keyed by interaction id).
+And pset.cgi handles all the on-line pset interactions.
+That's different from grades.cgi which is the grades system

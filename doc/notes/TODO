@@ -1,0 +1,9 @@
+
+- use PBKDF2 for password-based key generation.
+  need to store (salt varchar(128), rounds int) for each external principal,
+  and fetch it before being able to compute the key.
+
+- fix MySQL UDFs so that invalid invocations do not crash the server,
+  e.g. "select searchSWP();"
+
+

@@ -1,0 +1,71 @@
+Proxy Setup Notes
+
+export EDBDIR=[your cryptdb/edb directory]
+export CRYPTDB_PROXY_DEBUG=true -->gives verbosity
+export CRYPTDB_MODE=single
+
+either use cryptdbtest as your database or set CRYPTDB_DB to the databse you want to use
+
+
+Single-principal demo:
+
+* in  proxy shell: 
+mysql-proxy --plugins=proxy --event-threads=4 --max-open-files=1024 --proxy-lua-script=$EDBDIR/../mysqlproxy/wrapper.lua --proxy-address=127.0.0.1:3307 --proxy-backend-addresses=localhost:3306
+* in plain shell: drop database cryptdbtest; create database cryptdbtest; use cryptdbtest;
+* in demo shell: mysql -u root -pletmein -h 127.0.0.1 -P 3307 cryptdbtest
+
+CREATE TABLE t1 (id integer, name text, salary integer);
+(plain: show tables; describe table0;)
+INSERT INTO t1 VALUES (1, 'alice', 100);
+INSERT INTO t1 VALUES (2, 'bob', 200);
+INSERT INTO t1 VALUES (0, 'chris', 0);
+INSERT INTO t1 VALUES (4, 'dan dennis', 0);
+SELECT * FROM t1;
+(plain: select * from table0;)
+SELECT * FROM t1 WHERE id = 1;
+SELECT name, salary FROM t1 WHERE salary > 0;
+SELECT sum(salary) FROM t1 WHERE salary > 0;
+(plain: SELECT field1SWP from table0;)
+SELECT name FROM t1 WHERE name ILIKE 'dennis';
+
+others:
+SELECT * FROM t1 ORDER BY name;
+SELECT count(*) FROM t1 GROUP BY salary;
+DELETE FROM t1 WHERE id = 1;
+(plain: select * from table0;)
+DROP TABLE t1;
+
+CREATE TABLE t2 (id integer);
+INSERT INTO t2 VALUES (2);
+
+SELECT * FROM t1, t2 WHERE t1.id = t2.id;
+
+
+Multi-principal demo:
+ 
+export CRYPTDB_MODE=multi -->sets either to single or multi principle
+
+-- make sure allDefaultEncrypted in EDBProxy.hh is set to false and then make
+
+CREATE TABLE msgs (msgid equals privmsg.msgid integer, msgtext encfor msgid text);
+CREATE TABLE privmsg (msgid integer, recid equals u_mess.userid speaksfor msgid integer, senderid speaksfor msgid integer);
+CREATE TABLE u_mess (userid equals privmsg.senderid integer, username givespsswd userid text);
+(log in Alice:)
+INSERT INTO pwdcryptdb__u_mess (username, psswd) VALUES ('alice', 'secretalice');
+(log in Bob:)
+INSERT INTO pwdcryptdb__u_mess (username, psswd) VALUES ('bob', 'secretbob');
+INSERT INTO u_mess VALUES (1, 'alice');
+INSERT INTO u_mess VALUES (2, 'bob');
+INSERT INTO privmsg (5, 1, 2);
+
+INSERT INTO msgs VALUES (5, 'secret message');
+(log off Bob:)
+DELETE FROM pwdcryptdb__u_mess WHERE username = 'bob';
+SELECT * FROM msgs; --> should be able to see secret message
+(log off Alice similarly to above)
+SELECT * FROM msgs; --> should not be able to see secret message any more because none of the users with access to it are logged in
+(log in Alice as above)
+SELECT * FROM msgs; --> should be able to see the secret message
+
+
+

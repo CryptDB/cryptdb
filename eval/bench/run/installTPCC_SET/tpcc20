@@ -1,0 +1,18 @@
+driver=com.mysql.jdbc.Driver
+conn=jdbc:mysql://saw.csail.mit.edu:3310/tpcc20
+user=root
+password=
+sshhost=saw.csail.mit.edu
+sshuser=robossh
+sshpass=sam15theboss
+
+initialWarmupTimeInSec=600
+coolDownBeforeThrottledMeasures=60
+intermediateWarmupTimeInSec=30
+measuringTime=60
+logfile=final/combined_20w
+
+# percentage of scaledown
+scaleDownPace=25
+maxSpeed=2000
+

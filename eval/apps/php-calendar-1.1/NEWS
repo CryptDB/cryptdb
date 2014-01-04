@@ -1,0 +1,233 @@
+NEWS
+-----
+
+1.1 (06 January 2009):
+	- Switch from XHTML 1.0 to HTML 4.01 Strict
+	- remove create_xhtml() which had become a misnomer and move the
+	  functionality to index.php where it is more accessible.
+	- Created non-admin users who can only modify/delete their own events
+	  (and all of the infrastructure to go with this)
+	- Prevent a user/admin from logging into one calendar and having the
+	  same priviledges on another calendar on the same host.
+
+1.0 (24 December 2008):
+	- Event form changed to allow dates in the range 1 - 31 regardless of
+	  the current month
+	- Added a checkbox to event form for multiday events, so single day
+	  events don't need to change their end date
+	- Added yearly recurring events
+	- Hopefully fixed get_events_by_date in PostgreSQL again
+
+0.10.9 (1 August 2007):
+	- Fixed redirects so if you don't have a config and we redirect to
+	  the installer, it goes to the proper place
+	- Fixed a couple of issues with the option to have weeks start on
+	  Monday
+
+0.10.8 (22 June 2007):
+	- 0.10.6 changed the DB schema by accident. the result of this new
+	  schema is handled properly in 0.10.7. both schemas are compatible.
+	  updated entry in 0.10.7 to properly describe the cause.
+	- fixed doctype typo and updated some meta-data
+	- make redirects HTTP compliant to fix an issue with Safari
+	- allow start_monday to work again
+
+0.10.7 (29 September 2006):
+	- fix issue with starting weeks on mondays
+	- fix issue with times caused by change in schema in 0.10.6
+
+0.10.6 (25 September 2006):
+	- fix issue with creating tables with DB's other than mysql
+	- fix issue when running php as a cgi
+	- don't strip tags when inserting into DB
+	- give instructions on how to stop stripping tags on display
+	- change doctype to xhtml 1.0
+	- added a FAQ
+	- added a Spanish translation
+	- updated the German translation
+	- add an Italian translation
+
+0.10.5 (15 September 2005):
+	- Fix wrong HTML generation bug (causing style issues with Firefox)
+          (Thanks Peter K.H. Gragert and Patrick Gormley )
+        - added Dutch translation (Thanks Peter K.H. Gragert)
+        - added Japanese translation (Thanks Tadashi Jokagi)
+        - update language support to only display in the list languages with
+          .mo files
+        - strip HTML tags from descriptions when displaying and escape
+          entities
+
+0.10.4 (4 May 2005):
+        - fixed an incompatibility with PHP 5 (Thanks to Patrick Gormley)
+        - fix a nasty login error (Thanks to Benjamin Watson)
+        - a couple other fixes with warnings and start of week
+
+0.10.3 (26 April 2005):
+        - fixed an issue creating new users (thanks to Volker Hoffman)
+        - changed Unknown time to To Be Announced (suggested by Mark Mason)
+        - added a new event option No Time (suggested by Alex Falcone)
+        - fixed an issue with older versions of MySQL where the hour
+          and minute wouldn't be read correctly causing them to be lost
+          on modification (thanks to Mark Mason)
+        - moved old array-based HTML data structure to a class-based one
+          (this was a huge change, any weird behavior you see was probably
+          caused by this)
+        - fixed the issue with options being selected incorrectly in the
+          admin page
+        - added an update script (only supports 0.8 and newer so far)
+        - fixed a bug in search that was causing an error when descending order
+          was chosen
+        - fixed possible SQL injection in search.php
+        - report years that are out of range
+        - creating new users will change the password of old ones if they exist
+        - fix login to redirect to the page we were actually just on
+        - update login code to hit the DB less often
+
+0.10.2 (04 April 2005):
+        - fix a problem where modifying an event didn't pick up the date
+          properly.
+        - try to require creating config.php less often on install
+        - add SQL_PREFIX to user sequence table. may break existing calendars
+          where more users than the defaults were added when more users are
+          created (thanks to Nathan Barham)
+        - stop anonymous users from trying to edit events when they aren't
+          allowed. and same for preferences.
+        - fix old broken hour behavior.
+        - fix duration display where we were display fractional hours by
+          mistake in addition to minutes.
+        - Require a username and password when creating a new user
+        - No longer shipping modified ADOdb. Require ADOdb 4.62 or greater.
+          (Thanks to John Lim)
+        - URL to be modified via $phpc_script in setup.php
+
+0.10.1 (10 Jan 2005):
+        - fix security vulnerability with regard to loading any any PHP file
+          (Thanks to James Bercegay of the GulfTech Security Research Team)
+        - add a modified version of adodb to the distribution (it's version
+          4.54 w/ day of week functions added for postgresql and mysql)
+        - fix a few scattered bugs
+        - make PostgreSQL work for new installations again
+        - fix bug with multiple word searches
+        - fix get_events_by_date
+        - fix logout (and improve login as well)
+
+version 0.10 (5 Nov 2004):
+        * fix bug in event_submit
+        * a number of installation fixes
+        * more strings are translatable
+        * much better code documentation
+        * display correct max subject length
+        * option to change subject length
+        * changed how adodb is included. people on windows please test that this          works.
+        * Add form to create new users to admin page
+
+Version 0.9.1 (4/14/04):
+        * add quick event add link
+        * fix bug adding an events
+        * fix some bugs regarding 12 hour time
+        * fix some issues with the installation
+
+Version 0.9 (3/30/04):
+        * move to adodb
+        * require php 4.1 or greater
+        * many bug fixes
+
+Version 0.8 (3/11/03):
+        * Change config file to use defines rather than variables.
+        * You _need_ gettext-0.11.6-pre1 or later to parse with xgettext.  I
+          have a copy of this if anyone needs it.  My language support is
+          going to lag unless someone helps.  I only speak English, so it's
+          not useful to me.
+        * Very much updated documentation (thanks Tai)
+        * greatly improved install script (thanks to motivation from Tai,
+          and ideas from postnuke)
+        * admin support, plus a variable to adjust the anonymous permissions
+          (Thanks Nate for the first part)
+        * cluster calendars. one base with a separate index file for each
+          calendar. (thanks Nate)
+        * moved to requiring php 4.0 again (thanks Nate ;-)
+        * colors are again configurable through a calendar specific config
+          file (miniconfig.php)
+        * We got a search function! (thanks Nate although I totally rewrote it)
+        * added weekly/monthly/daily events (thanks me)
+        * changed the config files a lot, so old calendars will break
+        * support for SQL servers besides MySQL (thanks phpBB)
+        * Page to change options added
+
+Version 0.7 (10/5/02):
+        * added .php to end of .inc files
+        * cleaned up the look a little,
+        * modifying posts is fixed which may or may not have been broken in
+          0.6
+        * changed from specifying table name to table prefix.  to update
+          you'll need to create the new table (ie phpc_events) then do an
+          insert select to copy over the old data
+        * not sure what is wrong with gettext.  It no longer works at all, but
+          the _() function gets defined better.  basically, things are no
+          longer giving errors, but they don't work anymore.
+
+Version 0.6 (6/18/02):
+        * LOTS of code clean-ups.
+        * moved to xhtml
+        * dropped netscape 4 support
+        * added configuration to start week on monday
+        * separated out style sheets, css clean ups
+        * UI clean-ups
+        * multiple language support
+        * option to change the calendar to 24h time
+
+Version 0.5 (3/15/02):
+        * remove some warnings
+        * fixed up indentation
+        * a number of minor style changes
+        * disallow remote access to config, header and footer files in apache
+        * added an install script
+        * removed $REMOTE_USER support, because I'll be adding my own
+          eventually, and I never used or tested the current one.
+        * added checking to mysql, reloading modify and add pages doesn't give
+          the same entry many times.  deleting a non-existant item displays a
+          failure
+        * added an update script for version 0.3 and below
+
+Version 0.4 (2/20/2002):
+        * fix am/pm issues with new time input
+        * add duration to events
+        * add event type for full day and questionable times
+        * not compatible with old databases
+
+Version 0.3 (02/15/2002):
+        * fix to make links work properly in IE
+        * minor color tweak
+        * bugfixes (thanks to richard datafordummies.com)
+        * more fixes for Netscape 4
+        * made time input more user-friendly and fixed bugs with the old
+        method.
+        * got rid of ugly old method of dealing with end dates and also found
+        and squashed a bug relating to that
+
+Version 0.2 (02/14/2002):
+        * allows color changing through variables in config.php
+        * bug that caused header/title on pages besides index fixed
+        * bug that caused modified elements to be added twice fixed
+        * now regresses well in Netscape 4 (switches to HTML 4 transitional
+        for old browsers)
+
+Version 0.1 (02/11/2002):
+        * moved to php4, if anyone finds a version of php4 that doesn't work,
+          or finds this to work in a older version, please let me know
+        * lots of style and HTML changes to try to make the calendar look more
+        professional.  I've tried to make the style sheet somewhat friendly.
+        If someone makes changes and wants a different style sheet included as
+        well, send it to me.  this is all initial work and the changes are too
+        many to include.  I decided to move to HTML 4.01/CSS2.  Only browsers
+        which fully support these will display the calendar perfectly.  I
+        tested using Mozilla, and that currently displays the calendar how I
+        intended.  IE 5.5 and 6.0 don't support the CSS element
+        border-spacing, so they look a little funny.  Netscape 4.x looks
+        awful, but is still usable.
+        * there was a bug where if you didn't include a subject, the post
+          wouldn't show.
+        * included timestamp on the table
+        * added variables to change the displayed title and the header.
+        * some code cleanups.
+`

@@ -1,0 +1,548 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-04-14 16:20-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: index.php:50
+msgid "Invalid action"
+msgstr "ongeldige actie"
+
+#: install.php:180
+msgid "error creating db"
+msgstr "databse fout: Creation error"
+
+#: install.php:190 install.php:193
+#, fuzzy
+msgid "Could not grant:"
+msgstr "kon dit niet toestaan"
+
+#: install.php:237
+msgid "Error initializing default db stuff"
+msgstr "fout bij het initialiseren van de databank"
+
+#: includes/calendar.php:46
+msgid "January"
+msgstr "januari"
+
+#: includes/calendar.php:47
+msgid "February"
+msgstr "februari"
+
+#: includes/calendar.php:48
+msgid "March"
+msgstr "maart"
+
+#: includes/calendar.php:49
+msgid "April"
+msgstr "april"
+
+#: includes/calendar.php:50 includes/calendar.php:90
+msgid "May"
+msgstr "mei"
+
+#: includes/calendar.php:51
+msgid "June"
+msgstr "juni"
+
+#: includes/calendar.php:52
+msgid "July"
+msgstr "juli"
+
+#: includes/calendar.php:53
+msgid "August"
+msgstr "augustus"
+
+#: includes/calendar.php:54
+msgid "September"
+msgstr "september"
+
+#: includes/calendar.php:55
+msgid "October"
+msgstr "oktober"
+
+#: includes/calendar.php:56
+msgid "November"
+msgstr "november"
+
+#: includes/calendar.php:57
+msgid "December"
+msgstr "december"
+
+#: includes/calendar.php:72
+msgid "Sunday"
+msgstr "zondag"
+
+#: includes/calendar.php:73
+msgid "Monday"
+msgstr "maandag"
+
+#: includes/calendar.php:74
+msgid "Tuesday"
+msgstr "dinsdag"
+
+#: includes/calendar.php:75
+msgid "Wednesday"
+msgstr "woensdag"
+
+#: includes/calendar.php:76
+msgid "Thursday"
+msgstr "donderdag"
+
+#: includes/calendar.php:77
+msgid "Friday"
+msgstr "vrijdag"
+
+#: includes/calendar.php:78
+msgid "Saturday"
+msgstr "zaterdag"
+
+#: includes/calendar.php:86
+msgid "Jan"
+msgstr "jan"
+
+#: includes/calendar.php:87
+msgid "Feb"
+msgstr "feb"
+
+#: includes/calendar.php:88
+msgid "Mar"
+msgstr "mrt"
+
+#: includes/calendar.php:89
+msgid "Apr"
+msgstr "apr"
+
+#: includes/calendar.php:91
+msgid "Jun"
+msgstr "jun"
+
+#: includes/calendar.php:92
+msgid "Jul"
+msgstr "jul"
+
+#: includes/calendar.php:93
+msgid "Aug"
+msgstr "aug"
+
+#: includes/calendar.php:94
+msgid "Sep"
+msgstr "sep"
+
+#: includes/calendar.php:95
+msgid "Oct"
+msgstr "okt"
+
+#: includes/calendar.php:96
+msgid "Nov"
+msgstr "nov"
+
+#: includes/calendar.php:97
+msgid "Dec"
+msgstr "dec"
+
+#: includes/calendar.php:155 includes/display.php:151
+msgid "FULL DAY"
+msgstr "gehele dag"
+
+#: includes/calendar.php:165
+#, fuzzy
+msgid "Normal"
+msgstr "normaal termijn"
+
+#: includes/calendar.php:167
+#, fuzzy
+msgid "Full Day"
+msgstr "gehele dag"
+
+#: includes/calendar.php:169
+#, fuzzy
+msgid "Unknown Time"
+msgstr "onbekend tijdstip"
+
+#: includes/calendar.php:174
+msgid "Weekly"
+msgstr "wekelijks"
+
+#: includes/calendar.php:176
+#, fuzzy
+msgid "Monthly"
+msgstr "maandelijk"
+
+#: includes/calendar.php:277
+msgid "Error in get_events_by_date"
+msgstr "fout in get_events_by_date"
+
+#: includes/calendar.php:304
+msgid "Error in get_event_by_id"
+msgstr "fout in get_event_by_id"
+
+#: includes/calendar.php:433
+#, fuzzy
+msgid "Add Event"
+msgstr "soort termijn"
+
+#: includes/calendar.php:438 includes/search.php:98
+#, fuzzy
+msgid "Search"
+msgstr "zoeken"
+
+#: includes/calendar.php:443
+msgid "Back to Calendar"
+msgstr "terug naar de kalender"
+
+#: includes/calendar.php:448
+msgid "View date"
+msgstr "datum laten zien"
+
+#: includes/calendar.php:453
+msgid "Log out"
+msgstr "doei zeggen"
+
+#: includes/calendar.php:456 includes/login.php:66
+msgid "Log in"
+msgstr "inloggen"
+
+#: includes/calendar.php:461 includes/options.php:72
+msgid "Options"
+msgstr "opties"
+
+#: includes/calendar.php:545
+#, fuzzy
+msgid "Event"
+msgstr "soort termijn"
+
+#: includes/calendar.php:553
+msgid "Cannot add events"
+msgstr "kan geen termijnen toevoegen"
+
+#: includes/calendar.php:554
+msgid "Can add but not modify events"
+msgstr "kan termijnen toevoegen maar niet wijzigen"
+
+#: includes/calendar.php:555
+msgid "Can add and modify events"
+msgstr "kan termijnen toevoegen en editeren"
+
+#: includes/db.php:32
+msgid "Could not connect to the database"
+msgstr "kon geen verbinding krijgen naar de databank"
+
+#: includes/display.php:36
+msgid "last year"
+msgstr "vorig jaar"
+
+#: includes/display.php:37
+msgid "last month"
+msgstr "vorige maand"
+
+#: includes/display.php:43
+msgid "next month"
+msgstr "volgende maand"
+
+#: includes/display.php:44
+msgid "next year"
+msgstr "volgend jaar"
+
+#: includes/display.php:156 includes/event_form.php:163
+msgid "hours"
+msgstr "uren"
+
+#: includes/display.php:160 includes/event_form.php:165
+msgid "minutes"
+msgstr "minuten"
+
+#: includes/display.php:164
+#, fuzzy
+msgid "No duration"
+msgstr "lengte tijd"
+
+#: includes/display.php:189
+#, fuzzy
+msgid "Title"
+msgstr "titel"
+
+#: includes/display.php:190 includes/event_form.php:157
+msgid "Time"
+msgstr "tijd"
+
+#: includes/display.php:191 includes/event_form.php:160
+msgid "Duration"
+msgstr "duur"
+
+#: includes/display.php:192 includes/event_form.php:172 includes/search.php:63
+msgid "Description"
+msgstr "omschrijving"
+
+#: includes/display.php:203
+msgid "Delete Selected"
+msgstr "gekozen termijn wissen"
+
+#: includes/display.php:232 includes/display.php:284
+msgid "Modify"
+msgstr "wijzigen"
+
+#: includes/display.php:254
+msgid "No events on this day."
+msgstr "vandaag geen termijn"
+
+#: includes/display.php:285
+#, fuzzy
+msgid "Delete"
+msgstr "verwijderen"
+
+#: includes/event_delete.php:56
+#, fuzzy
+msgid "Removed item"
+msgstr "verwijderd termijn"
+
+#: includes/event_delete.php:58
+#, fuzzy
+msgid "Could not remove item"
+msgstr "kon niet worden verwijderd: "
+
+#: includes/event_delete.php:63
+#, fuzzy
+msgid "No items selected."
+msgstr "maak een keuze"
+
+#: includes/event_form.php:30
+#, php-format
+msgid "Modifying id #%d"
+msgstr "wijzig id #%d"
+
+#: includes/event_form.php:73
+#, fuzzy
+msgid "Adding event to calendar"
+msgstr "termijn wordt toegevoegd"
+
+#: includes/event_form.php:136
+#, fuzzy
+msgid "Submit Event"
+msgstr "betref"
+
+#: includes/event_form.php:140
+#, fuzzy
+msgid "Date of event"
+msgstr "normaal termijn"
+
+#: includes/event_form.php:146
+msgid "Date multiple day event ends"
+msgstr "datum met meerdere termijnen eidigd hier"
+
+#: includes/event_form.php:152
+#, fuzzy
+msgid "Event type"
+msgstr "soort termijn"
+
+#: includes/event_form.php:167 includes/search.php:61 includes/search.php:130
+msgid "Subject"
+msgstr "betref"
+
+#: includes/event_form.php:167
+#, fuzzy
+msgid "(255 chars max)"
+msgstr " (255)"
+
+#: includes/event_submit.php:54
+msgid "No day was given."
+msgstr "geen dag gegeven"
+
+#: includes/event_submit.php:56
+msgid "No month was given."
+msgstr "geen maand gekozen"
+
+#: includes/event_submit.php:58
+msgid "No year was given"
+msgstr "geen jaar gekozen"
+
+#: includes/event_submit.php:63
+msgid "No hour was given."
+msgstr "Geen uur gegeven"
+
+#: includes/event_submit.php:78
+msgid "No minute was given."
+msgstr "geen minuten gegeven"
+
+#: includes/event_submit.php:83
+msgid "No duration minute was given."
+msgstr "geen duur (minuten) gegeven"
+
+#: includes/event_submit.php:87
+msgid "No duration hour was given."
+msgstr "geen duur (uren) gegeven"
+
+#: includes/event_submit.php:91
+msgid "No type of event was given."
+msgstr "geen soort gegeven"
+
+#: includes/event_submit.php:95
+msgid "No end day was given"
+msgstr "geen slot dag gegeven"
+
+#: includes/event_submit.php:99
+msgid "No end month was given"
+msgstr "geen laatste maand gegeven"
+
+#: includes/event_submit.php:103
+msgid "No end year was given"
+msgstr "geen laatste jaar gegeven"
+
+#: includes/event_submit.php:106
+msgid "Your subject was too long"
+msgstr "geen betreff gegeven"
+
+#: includes/event_submit.php:151
+msgid "Error processing event"
+msgstr "fout bij het verwerken"
+
+#: includes/event_submit.php:155
+msgid "No changes made"
+msgstr "niets gewijzigd"
+
+#: includes/event_submit.php:158
+msgid "Date updated"
+msgstr "datum aangepast"
+
+#: includes/login.php:49
+msgid "Loggin in..."
+msgstr "aanmelden ..."
+
+#: includes/login.php:52
+msgid "Sorry, Invalid Login"
+msgstr "sorry, foutieve aanmelding"
+
+#: includes/login.php:72 includes/options.php:77 includes/search.php:102
+#, fuzzy
+msgid "Submit"
+msgstr "betref"
+
+#: includes/login.php:75
+msgid "Username"
+msgstr "naam gebruiker"
+
+#: includes/login.php:78
+msgid "Password"
+msgstr ""
+
+#: includes/options.php:57
+msgid "Updated options"
+msgstr "update opties"
+
+#: includes/options.php:59
+msgid "Permission denied"
+msgstr "geen toestimming gekregen"
+
+#: includes/options.php:80
+#, fuzzy
+msgid "Start Monday"
+msgstr "staart op maandag"
+
+#: includes/options.php:84
+#, fuzzy
+msgid "24 hour"
+msgstr "24 uur laten zien"
+
+#: includes/options.php:88
+msgid "Translate"
+msgstr "vertaal"
+
+#: includes/options.php:92
+msgid "Calendar Title"
+msgstr "Kalender voor 55plus activiteiten"
+
+#: includes/options.php:96
+msgid "Anonymous Permission"
+msgstr ""
+
+#: includes/search.php:58
+#, fuzzy
+msgid "Search Results"
+msgstr "zoek resultaten"
+
+#: includes/search.php:62
+#, fuzzy
+msgid "Date Time"
+msgstr "datum tijd"
+
+#: includes/search.php:87
+#, fuzzy
+msgid "No events."
+msgstr "geen termijn"
+
+#: includes/search.php:104
+msgid "Phrase"
+msgstr "phrase"
+
+#: includes/search.php:110
+msgid "From"
+msgstr "van"
+
+#: includes/search.php:116
+msgid "To"
+msgstr "aan"
+
+#: includes/search.php:122
+msgid "Sort By"
+msgstr "sorteren naar"
+
+#: includes/search.php:127
+#, fuzzy
+msgid "Start Date"
+msgstr "start datum"
+
+#: includes/search.php:132
+msgid "Order"
+msgstr "volgorde"
+
+#: includes/search.php:137
+msgid "Ascending"
+msgstr "stijgend"
+
+#: includes/search.php:139
+msgid "Decending"
+msgstr "dalend"
+
+#: includes/setup.php:116
+msgid "Could not read configuration"
+msgstr "kan de configuratie niet lezen"
+
+#, fuzzy
+#~ msgid "Daily"
+#~ msgstr "dagelijks"
+
+#~ msgid "Add Item"
+#~ msgstr "voeg id toe"
+
+#~ msgid "Nothing to modify."
+#~ msgstr "niets te wijzigen."
+
+#, fuzzy
+#~ msgid "Event Date"
+#~ msgstr "datum termijn"
+
+#, fuzzy
+#~ msgid "nextval error"
+#~ msgstr "nextval fout"
+
+#~ msgid "Name"
+#~ msgstr "naam"
+
+#~ msgid "days"
+#~ msgstr "dagen"
+
+#, fuzzy
+#~ msgid "Username:"
+#~ msgstr "naam gebruiker:"
+

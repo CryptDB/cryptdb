@@ -1,0 +1,24 @@
+#!/bin/sh
+
+
+./test load 0 > w0 &
+./test load 1 > w1 &
+./test load 2 > w2 &
+./test load 3 > w3 &
+./test load 4 > w4 &
+./test load 5 > w5 &
+./test load 6 > w6 &
+./test load 7 > w7 &
+./test load 8 > w8 &
+./test load 9 > w9 &
+./test load 10 > w10 &
+./test load 11 > w11 &
+./test load 12 > w12 &
+./test load 13 > w13 &
+./test load 14 > w14 &
+./test load 15 > w15 &
+
+
+
+
+

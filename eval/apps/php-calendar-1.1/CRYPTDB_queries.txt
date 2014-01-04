@@ -1,0 +1,69 @@
+install.php:
+
+GRANT ALL ON accounts.* TO $my_username@my_hostname identified by $my_password
+
+GRANT ALL ON $my_database.* TO $my_sername identified by $my_passwd
+
+FLUSH PRIVILEGES
+
+INSERT INTO calendars (calendar, hours_24, start_monday, translate, subject_max, calendar_title VALUES ($calendar_name, $hours_24, $start_monday, $translate, 32, $calendar_title)
+
+insert into users (uid, username, password, calendar) VALUES ($db->GenID(uid, 0), anonymous, '', $calendar_name)
+
+insert into users (uid, username, password, calendar, admin) VALUES ($db->GenID(uid, 0), $_POST[admin_user], $passwd, $calendar_name)
+
+-----------------------------------------------------------------------
+update08.php
+
+SELECT * FROM calendars LIMIT 1
+SELECT * FROM events LIMIT 1
+SELECT * FROM users LIMIT 1
+
+ALTER TABLE calendar CHANGE calno calendar varchar(32)
+
+-----------------------------------------------------------------------
+update10.php
+
+ALTER TABLE users ADD admin tinyint(1) AFTER password
+
+-----------------------------------------------------------------------
+includes/calendar.php
+
+SELECT uid, admin FROM users WHERE username=$user AND password=$passwd AND calendar=$calendar_name
+
+SELECT * FROM events WHERE data >= $startdate AND $date <= $enddate AND (eventtype = 1 OR eventtype = 2 OR eventtype = 3 OR eventtype = 4 OR (eventtype = 5 AND $dow_startdate = $dow_date) OR (eventtype = 6 AND $dom_startdate = $dom_date) OR (eventtype = 7 AND $dom_startdate = $dom_date AND $moy_startdate = $moy_date) ) AND calendar = $calendar_name ORDER BY starttime
+
+SELECT $events_table.*, $db->SQLDate('Y', $events_table.startdate) AS year, $db->SQLDate('m', $events_table.startdate) AS month, $db->SQLDate('d', $events_table.startdate) AS day, $db->SQLDate('Y', $events_table.enddate) AS end_year, $db->SQLDate('m', $events_table.enddate) AS end_month, $db->SQLDate('d', $events_table.enddate) AS end_day, users.username FROM events LEFT JOIN users ON events.uid = users.uid WHERE events.id = $id AND events_table.calendar = $calendar_name
+
+-----------------------------------------------------------------------
+inlcudes/event_delete.php
+
+DELETE FROM events WHERE id = $id
+
+-----------------------------------------------------------------------
+includes/event_submit.php
+
+INSERT INTO $table (id, uid, startdate, enddate, starttime, duration, subject, description, eventtype, calendar) VALUES ($id, $_SESSION["uid$calendar_name"], $startdate, $enddate, $starttime, $duration, $subject, $description, $typeofevent, $calendar_name)
+
+-----------------------------------------------------------------------
+includes/new_user_submit.php
+
+SELECT uid FROM users WHERE username=$vars[user_name]
+
+INSERT into users (uid, username, password, calendar, admin) VALUES .$db->GenID('uid', 2), $vars[user_name], $passwd, $calendar_name, $make_admin)
+
+-----------------------------------------------------------------------
+includes/options_submit.php
+
+[for this one all the 1s could equally be 0]
+UPDATE calendars SET hours_24 = 1, start_monday = 1, translate = 1, anon_permission = $vars[anon_permisson], calendar_title = $vars[calendar_title], subject_max = $vars[subject_max] WHERE calendar=$calendar_name
+
+-----------------------------------------------------------------------
+includes/search.php
+
+SELECT * FROM events WHERE (subject LIKE '%$keyword%' OR description LIKE '%keyword%' AND subject LIKE '%different_keyword%' OR description LIKE '%different_keyword%' AND ... ) AND calendar = $calendar_name AND enddate >= $start AND startdate <= $end ORDER BY $vars[sort] $vars[order]
+
+-----------------------------------------------------------------------
+includes/setup.php
+
+SELECT * from calendars WHERE calendar=$calendar_name LIMIT 1

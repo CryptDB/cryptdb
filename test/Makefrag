@@ -1,0 +1,17 @@
+OBJDIRS	+= test
+
+#TEST_SRCS   :=  TestCrypto.cc test_utils.cc \
+#	    	test.cc TestProxy.cc \
+#		TestAccessManager.cc TestQueries.cc
+TEST_SRCS   :=  test_utils.cc test.cc TestQueries.cc
+        
+all:	$(OBJDIR)/test/test
+
+TEST_OBJS := $(patsubst %.cc,$(OBJDIR)/test/%.o,$(TEST_SRCS))
+$(OBJDIR)/test/test: $(TEST_OBJS) \
+		     $(OBJDIR)/libcryptdb.so $(OBJDIR)/libedbcrypto.so \
+		     $(OBJDIR)/libedbutil.so $(OBJDIR)/libedbparser.so
+	$(CXX) -o $@ $(TEST_OBJS) $(LDFLAGS) $(LDRPATH) \
+	       -lcryptdb -ledbcrypto -ledbutil -ledbparser
+
+# vim: set noexpandtab:

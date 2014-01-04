@@ -1,0 +1,650 @@
+# PHP-Calendar
+# Copyright (C) 2006 Sean Proctor
+# This file is distributed under the same license as the PHP-Calendar package.
+# Sean Proctor <sproctor@gmail.com>, 2006
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 0.10.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2006-09-25 18:08-0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: index.php:74
+msgid "Invalid action"
+msgstr ""
+
+#: install.php:183
+msgid "Could not connect to server."
+msgstr ""
+
+#: install.php:190
+msgid "error creating db"
+msgstr ""
+
+#: install.php:200 install.php:203
+msgid "Could not grant:"
+msgstr ""
+
+#: install.php:262 install.php:372 includes/setup.php:56
+msgid "Could not connect to the database"
+msgstr ""
+
+#: includes/admin.php:29
+msgid "You must be logged in"
+msgstr ""
+
+#: includes/admin.php:41
+msgid "Start Monday"
+msgstr ""
+
+#: includes/admin.php:42
+msgid "24 Hour Time"
+msgstr ""
+
+#: includes/admin.php:43
+msgid "Translate"
+msgstr ""
+
+#: includes/admin.php:44
+msgid "Calendar Title"
+msgstr ""
+
+#: includes/admin.php:45
+msgid "Maximum Subject Length"
+msgstr ""
+
+#: includes/admin.php:46
+msgid "Anonymous Users"
+msgstr ""
+
+#: includes/admin.php:47
+msgid "Cannot add nor modify events"
+msgstr ""
+
+#: includes/admin.php:48
+msgid "Can add but not modify events"
+msgstr ""
+
+#: includes/admin.php:49
+msgid "Can add and modify events"
+msgstr ""
+
+#: includes/admin.php:77
+msgid "Unsupported config type"
+msgstr ""
+
+#: includes/admin.php:89
+msgid "Options"
+msgstr ""
+
+#: includes/admin.php:94 includes/admin.php:111 includes/login.php:72
+#: includes/search.php:127
+msgid "Submit"
+msgstr ""
+
+#: includes/admin.php:106
+msgid "Create New User"
+msgstr ""
+
+#: includes/admin.php:114
+msgid "User Name"
+msgstr ""
+
+#: includes/admin.php:117 includes/login.php:102
+msgid "Password"
+msgstr ""
+
+#: includes/admin.php:120
+msgid "Confirm Password"
+msgstr ""
+
+#: includes/calendar.php:43
+msgid "Error"
+msgstr ""
+
+#: includes/calendar.php:44
+msgid "Software Error"
+msgstr ""
+
+#: includes/calendar.php:45
+msgid "Message:"
+msgstr ""
+
+#: includes/calendar.php:48
+msgid "Backtrace"
+msgstr ""
+
+#: includes/calendar.php:66
+msgid "SQL query"
+msgstr ""
+
+#: includes/calendar.php:177 includes/display.php:191
+msgid "FULL DAY"
+msgstr ""
+
+#: includes/calendar.php:179
+msgid "TBA"
+msgstr ""
+
+#: includes/calendar.php:324
+msgid "Error in get_events_by_date"
+msgstr ""
+
+#: includes/calendar.php:354
+msgid "Error in get_event_by_id"
+msgstr ""
+
+#: includes/calendar.php:533
+msgid "Add Event"
+msgstr ""
+
+#: includes/calendar.php:538 includes/search.php:123
+msgid "Search"
+msgstr ""
+
+#: includes/calendar.php:543
+msgid "Back to Calendar"
+msgstr ""
+
+#: includes/calendar.php:548
+msgid "View date"
+msgstr ""
+
+#: includes/calendar.php:553
+msgid "Log out"
+msgstr ""
+
+#: includes/calendar.php:559 includes/login.php:90
+msgid "Log in"
+msgstr ""
+
+#: includes/calendar.php:567
+msgid "Admin"
+msgstr ""
+
+#: includes/display.php:48
+msgid "last year"
+msgstr ""
+
+#: includes/display.php:49
+msgid "last month"
+msgstr ""
+
+#: includes/display.php:55
+msgid "next month"
+msgstr ""
+
+#: includes/display.php:56
+msgid "next year"
+msgstr ""
+
+#: includes/display.php:196 includes/event_form.php:164
+msgid "hour(s)"
+msgstr ""
+
+#: includes/display.php:200 includes/event_form.php:166
+msgid "minutes"
+msgstr ""
+
+#: includes/display.php:204
+msgid "No duration"
+msgstr ""
+
+#: includes/display.php:230
+msgid "Title"
+msgstr ""
+
+#: includes/display.php:231 includes/display.php:334 includes/display.php:343
+#: includes/event_form.php:158
+msgid "Time"
+msgstr ""
+
+#: includes/display.php:232 includes/display.php:335 includes/display.php:344
+#: includes/event_form.php:161
+msgid "Duration"
+msgstr ""
+
+#: includes/display.php:233 includes/event_form.php:173
+#: includes/search.php:107
+msgid "Description"
+msgstr ""
+
+#: includes/display.php:244
+msgid "Delete Selected"
+msgstr ""
+
+#: includes/display.php:252 includes/display.php:321
+msgid "(No subject)"
+msgstr ""
+
+#: includes/display.php:273 includes/display.php:329
+msgid "Modify"
+msgstr ""
+
+#: includes/display.php:299
+msgid "No events on this day."
+msgstr ""
+
+#: includes/display.php:330
+msgid "Delete"
+msgstr ""
+
+#: includes/display.php:333 includes/display.php:342
+msgid "Date"
+msgstr ""
+
+#: includes/event_delete.php:32
+msgid "Error while removing an event."
+msgstr ""
+
+#: includes/event_delete.php:42
+msgid "You do not have permission to delete events."
+msgstr ""
+
+#: includes/event_delete.php:58
+msgid "Removed item"
+msgstr ""
+
+#: includes/event_delete.php:60
+msgid "Could not remove item"
+msgstr ""
+
+#: includes/event_delete.php:66
+msgid "No items selected."
+msgstr ""
+
+#: includes/event_form.php:35
+#, php-format
+msgid "Editing Event #%d"
+msgstr ""
+
+#: includes/event_form.php:71
+msgid "Adding event to calendar"
+msgstr ""
+
+#: includes/event_form.php:120
+msgid "AM"
+msgstr ""
+
+#: includes/event_form.php:120
+msgid "PM"
+msgstr ""
+
+#: includes/event_form.php:137
+msgid "Submit Event"
+msgstr ""
+
+#: includes/event_form.php:141
+msgid "Date of event"
+msgstr ""
+
+#: includes/event_form.php:147
+msgid "Date multiple day event ends"
+msgstr ""
+
+#: includes/event_form.php:153
+msgid "Event type"
+msgstr ""
+
+#: includes/event_form.php:168 includes/search.php:29 includes/search.php:105
+msgid "Subject"
+msgstr ""
+
+#: includes/event_form.php:168
+msgid "chars max"
+msgstr ""
+
+#: includes/event_submit.php:51
+msgid "No day was given."
+msgstr ""
+
+#: includes/event_submit.php:53
+msgid "No month was given."
+msgstr ""
+
+#: includes/event_submit.php:55
+msgid "No year was given"
+msgstr ""
+
+#: includes/event_submit.php:60
+msgid "No hour was given."
+msgstr ""
+
+#: includes/event_submit.php:77
+msgid "No minute was given."
+msgstr ""
+
+#: includes/event_submit.php:82
+msgid "No duration minute was given."
+msgstr ""
+
+#: includes/event_submit.php:86
+msgid "No duration hour was given."
+msgstr ""
+
+#: includes/event_submit.php:90
+msgid "No type of event was given."
+msgstr ""
+
+#: includes/event_submit.php:94
+msgid "No end day was given"
+msgstr ""
+
+#: includes/event_submit.php:98
+msgid "No end month was given"
+msgstr ""
+
+#: includes/event_submit.php:102
+msgid "No end year was given"
+msgstr ""
+
+#: includes/event_submit.php:105
+msgid "Your subject was too long"
+msgstr ""
+
+#: includes/event_submit.php:106
+msgid "characters max"
+msgstr ""
+
+#: includes/event_submit.php:116
+msgid "The start of the event cannot be after the end of the event."
+msgstr ""
+
+#: includes/event_submit.php:128
+msgid "You do not have permission to modify events."
+msgstr ""
+
+#: includes/event_submit.php:141
+msgid "You do not have permission to post."
+msgstr ""
+
+#: includes/event_submit.php:155
+msgid "Error processing event"
+msgstr ""
+
+#: includes/event_submit.php:159
+msgid "No changes were made."
+msgstr ""
+
+#: includes/event_submit.php:164
+msgid "Date updated"
+msgstr ""
+
+#: includes/globals.php:29
+msgid "January"
+msgstr ""
+
+#: includes/globals.php:30
+msgid "February"
+msgstr ""
+
+#: includes/globals.php:31
+msgid "March"
+msgstr ""
+
+#: includes/globals.php:32
+msgid "April"
+msgstr ""
+
+#: includes/globals.php:33 includes/globals.php:63
+msgid "May"
+msgstr ""
+
+#: includes/globals.php:34
+msgid "June"
+msgstr ""
+
+#: includes/globals.php:35
+msgid "July"
+msgstr ""
+
+#: includes/globals.php:36
+msgid "August"
+msgstr ""
+
+#: includes/globals.php:37
+msgid "September"
+msgstr ""
+
+#: includes/globals.php:38
+msgid "October"
+msgstr ""
+
+#: includes/globals.php:39
+msgid "November"
+msgstr ""
+
+#: includes/globals.php:40
+msgid "December"
+msgstr ""
+
+#: includes/globals.php:44
+msgid "Sunday"
+msgstr ""
+
+#: includes/globals.php:45
+msgid "Monday"
+msgstr ""
+
+#: includes/globals.php:46
+msgid "Tuesday"
+msgstr ""
+
+#: includes/globals.php:47
+msgid "Wednesday"
+msgstr ""
+
+#: includes/globals.php:48
+msgid "Thursday"
+msgstr ""
+
+#: includes/globals.php:49
+msgid "Friday"
+msgstr ""
+
+#: includes/globals.php:50
+msgid "Saturday"
+msgstr ""
+
+#: includes/globals.php:59
+msgid "Jan"
+msgstr ""
+
+#: includes/globals.php:60
+msgid "Feb"
+msgstr ""
+
+#: includes/globals.php:61
+msgid "Mar"
+msgstr ""
+
+#: includes/globals.php:62
+msgid "Apr"
+msgstr ""
+
+#: includes/globals.php:64
+msgid "Jun"
+msgstr ""
+
+#: includes/globals.php:65
+msgid "Jul"
+msgstr ""
+
+#: includes/globals.php:66
+msgid "Aug"
+msgstr ""
+
+#: includes/globals.php:67
+msgid "Sep"
+msgstr ""
+
+#: includes/globals.php:68
+msgid "Oct"
+msgstr ""
+
+#: includes/globals.php:69
+msgid "Nov"
+msgstr ""
+
+#: includes/globals.php:70
+msgid "Dec"
+msgstr ""
+
+#: includes/globals.php:74
+msgid "Normal"
+msgstr ""
+
+#: includes/globals.php:75
+msgid "Full Day"
+msgstr ""
+
+#: includes/globals.php:76
+msgid "To Be Announced"
+msgstr ""
+
+#: includes/globals.php:77
+msgid "No Time"
+msgstr ""
+
+#: includes/globals.php:78
+msgid "Weekly"
+msgstr ""
+
+#: includes/globals.php:79
+msgid "Monthly"
+msgstr ""
+
+#: includes/html.php:72 includes/html.php:90 includes/html.php:120
+msgid "Invalid class"
+msgstr ""
+
+#: includes/login.php:52
+msgid "Loggin in..."
+msgstr ""
+
+#: includes/login.php:55
+msgid "Sorry, Invalid Login"
+msgstr ""
+
+#: includes/login.php:94
+msgid "You must have cookies enabled to login."
+msgstr ""
+
+#: includes/login.php:99
+msgid "Username"
+msgstr ""
+
+#: includes/logout.php:45
+msgid "Loggin out..."
+msgstr ""
+
+#: includes/new_user_submit.php:31 includes/options_submit.php:31
+msgid "Permission denied"
+msgstr ""
+
+#: includes/new_user_submit.php:35
+msgid "You must specify a user name"
+msgstr ""
+
+#: includes/new_user_submit.php:39
+msgid "You must specify a password"
+msgstr ""
+
+#: includes/new_user_submit.php:44
+msgid "Your passwords did not match"
+msgstr ""
+
+#: includes/new_user_submit.php:53
+msgid "Error selecting user"
+msgstr ""
+
+#: includes/new_user_submit.php:70
+msgid "Error creating user"
+msgstr ""
+
+#: includes/new_user_submit.php:72
+msgid "Added user"
+msgstr ""
+
+#: includes/options_submit.php:57
+msgid "Error reading options"
+msgstr ""
+
+#: includes/options_submit.php:59
+msgid "Updated options"
+msgstr ""
+
+#: includes/search.php:28
+msgid "Start Date"
+msgstr ""
+
+#: includes/search.php:32
+msgid "Ascending"
+msgstr ""
+
+#: includes/search.php:33
+msgid "Decending"
+msgstr ""
+
+#: includes/search.php:48
+msgid "Invalid sort option"
+msgstr ""
+
+#: includes/search.php:54
+msgid "Invalid order option"
+msgstr ""
+
+#: includes/search.php:74
+msgid "Encountered an error while searching."
+msgstr ""
+
+#: includes/search.php:98
+msgid "No events matched your search criteria."
+msgstr ""
+
+#: includes/search.php:102
+msgid "Search Results"
+msgstr ""
+
+#: includes/search.php:106
+msgid "Date Time"
+msgstr ""
+
+#: includes/search.php:129
+msgid "Phrase"
+msgstr ""
+
+#: includes/search.php:135
+msgid "From"
+msgstr ""
+
+#: includes/search.php:144
+msgid "To"
+msgstr ""
+
+#: includes/search.php:153
+msgid "Sort By"
+msgstr ""
+
+#: includes/search.php:158
+msgid "Order"
+msgstr ""
+
+#: includes/setup.php:85
+msgid "That year is too far in the future"
+msgstr ""
+
+#: includes/setup.php:88
+msgid "That year is too far in the past"
+msgstr ""
+
+#: includes/setup.php:122
+msgid "Could not read configuration"
+msgstr ""

@@ -1,0 +1,52 @@
+configuration: runtput 30 clients, 5 first client, 1 instance ; run_tests: 5 5 1 1 ; message delay 2, post 1
+
+HTTP requests: read post/write post uses 5, read/write mess 4
+total: 1650
+
+half encfor annotations (10):
+
+first run 72s
+second run 83s (forum populated by previous run)
+
+full encfor annotations (~20):
+
+first run 72.65s 
+second run (populated by first): 83.9s 
+
+plain phpbb:
+
+61.6s -> 62
+second run(populated) : 72.72s
+
+phpbb+our proxy and parsing:
+
+
+first run 69.95s -> 70
+second run (populated): 81.4s
+
+
+
+onions
+
+phpbb_forums.forum_image             semanticdet    semope
+phpbb_forums.forum_last_post_subject det            semope
+phpbb_forums.forum_last_poster_name  det            semope
+phpbb_forums.forum_name              semanticdet    semope
+phpbb_forums.forum_posts             det            ope
+phpbb_forums.forum_topics            det            ope
+phpbb_log.log_data                   semanticdet    semope
+phpbb_posts.post_attachment          semanticdet    semope
+phpbb_posts.post_subject             semanticdet    semope
+phpbb_posts.post_text                semanticdet    semope
+phpbb_posts.post_time                det            ope
+phpbb_privmsgs.bcc_address           semanticdet    semope
+phpbb_privmsgs.message_attachment    semanticdet    semope
+phpbb_privmsgs.message_edit_count    semanticdet    semope
+phpbb_privmsgs.message_edit_reason   semanticdet    semope
+phpbb_privmsgs.message_edit_time     semanticdet    semope
+phpbb_privmsgs.message_edit_user     semanticdet    semope
+phpbb_privmsgs.message_reported      semanticdet    semope
+phpbb_privmsgs.message_subject       semanticdet    semope
+phpbb_privmsgs.message_text          semanticdet    semope
+phpbb_privmsgs.message_time          semanticdet    ope
+phpbb_privmsgs.to_address            semanticdet    semope

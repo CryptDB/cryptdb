@@ -1,0 +1,26 @@
+Q: How do I fit the calendar into the theme of my website?
+A: Currently this is an arduous task. You need to edit index.php
+   You want to remove the "$html = ..." statement, and the following statement.
+   Make it something like:
+
+echo file_get_contents("/your/site/location/header.html"),
+	"<body><h1>${config['calendar_title']}</h1>",
+// the following should be in, but you can skip the linkbar
+	navbar(),
+	$output,
+	link_bar(),
+	"</body></html>";
+
+   I don't make any guarantees on that bit of code, but hopefully it will help
+   you get started in the right direction.
+
+Q: How do I allow HTML in the descriptions of events?
+A: Read and follow comments in the function parse_desc() in
+   includes/calendar.php
+
+Q: How do I get the links for translations to appear?
+A: You need to build the .mo files for the languages you want. To do this, go
+   into the directory for each language you want (ex. locale/de/LC_MESSAGES)
+   and run: msgfmt messages.po
+   I have no experience with this in Windows. Read the manual for gettext for
+   more information.

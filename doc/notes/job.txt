@@ -1,0 +1,24 @@
+We are looking for a software developer for CryptDB, which is a system
+we are building that performs SQL query processing over encrypted data.
+
+CryptDB is a timely project given the wide range of compromises to online
+databases that repeatedly occur.  Online applications are vulnerable
+to the theft of sensitive information because adversaries can exploit
+software bugs to gain access to private data, and because curious or
+malicious administrators may capture and leak data.  CryptDB provides
+practical and provable confidentiality in the face of these attacks by
+fully executing SQL queries over encrypted data, using a collection of
+efficient SQL-aware encryption schemes.
+
+We have various pieces of a prototype of CryptDB in place, and are now
+looking to develop more of the software with an eye toward releasing it by
+the end of the summer, and adding even more features to it post-release.
+
+The desired expertise includes: C++, prior experience in complex software
+systems with multiple different components, SQL and relational databases.
+
+The position can be either full-time or part-time, with an ideal time
+commitment being through December 2011 or even through May 2012.
+The minimum commitment is at least three months.  The position is
+available immediately.
+

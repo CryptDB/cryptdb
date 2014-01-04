@@ -1,0 +1,324 @@
+Increasing number of cores tput:
+
+
+Going to disk as well, varying no. of cores:
+
+
+no cores      	  plain				enc
+1 core:		  10193				7874         22.8%
+2 cores:	  19633				13608	     31%
+3 cores:	  26428				19386	     26.6%
+4 cores:	  32353				21614	     33.1%
+5 cores:	  34040				24954	     27%
+6 cores:	  37961				28010        26%
+7 cores:	  40438				27026	     33%
+8 cores:	  44259				30596	     31%
+
+
+Latency:
+
+operation (with enc tables / no enc table)      (-server lat:)   enc tables   no enc tables
+all 	  	0.72 	   10.8                        0.12	 0.6 	      10.7              
+eq	 	0.97       0.97			       0.11      0.86	      0.86                   
+join     	0.86       0.86 		       0.11	 0.75	      0.75
+range	 	1.0	   28.9			       0.22	 0.78	      28.7
+sum             1.45	   1.45			       0.46	 0.99	      0.99
+delete		0.36	   0.36	   		       0.08	 0.28	      0.28
+insert		0.47	   16.4			       0.10	 0.37	      16.3
+up set		0.50	   3.9			       0.14      0.36         3.8
+up inc		0.47	   25.6			       0.17	 0.3	      25.1
+
+
+Going to disk as well, 8 cores:
+
+workers 1 plain tput '12408\n' enc tput '9057.14\n'
+          plain lat '0.0805931\n'   enc lat '0.11041\n'
+workers 2 plain tput '22480.6\n' enc tput '17127.6\n'
+          plain lat '0.0889658\n'   enc lat '0.116771\n'
+workers 3 plain tput '31380.3\n' enc tput '18491.9\n'
+          plain lat '0.0956015\n'   enc lat '0.162234\n'
+workers 4 plain tput '38093.7\n' enc tput '28304.6\n'
+          plain lat '0.105004\n'   enc lat '0.14132\n'
+workers 5 plain tput '41089.3\n' enc tput '31164.7\n'
+          plain lat '0.121686\n'   enc lat '0.160438\n'
+workers 6 plain tput '42975.4\n' enc tput '33466.6\n'
+          plain lat '0.139615\n'   enc lat '0.179283\n'
+workers 7 plain tput '43583.6\n' enc tput '33936.6\n'
+          plain lat '0.160611\n'   enc lat '0.206267\n'
+workers 8 plain tput '43839.1\n' enc tput '33733.6\n'
+          plain lat '0.182485\n'   enc lat '0.237152\n'
+workers 9 plain tput '44053.6\n' enc tput '34714.9\n'
+          plain lat '0.204296\n'   enc lat '0.259254\n'
+workers 10 plain tput '44336.1\n' enc tput '27536.7\n'
+          plain lat '0.22555\n'   enc lat '0.363151\n'
+workers 11 plain tput '44829.6\n' enc tput '32500.8\n'
+          plain lat '0.245374\n'   enc lat '0.338453\n'
+workers 12 plain tput '45076.7\n' enc tput '34672.2\n'
+          plain lat '0.266213\n'   enc lat '0.346099\n'
+
+workers 1 plain tput '12161.2\n' enc tput '8797.32\n'
+          plain lat '0.0822285\n'   enc lat '0.113671\n'
+workers 2 plain tput '22436.2\n' enc tput '16864.9\n'
+          plain lat '0.0891416\n'   enc lat '0.118589\n'
+workers 3 plain tput '31325.1\n' enc tput '19151.2\n'
+          plain lat '0.0957699\n'   enc lat '0.156648\n'
+workers 4 plain tput '38240.3\n' enc tput '27113.2\n'
+          plain lat '0.104602\n'   enc lat '0.14753\n'
+workers 5 plain tput '41378.1\n' enc tput '30339.6\n'
+          plain lat '0.120837\n'   enc lat '0.164801\n'
+workers 6 plain tput '43169.3\n' enc tput '33050.9\n'
+          plain lat '0.138988\n'   enc lat '0.181538\n'
+workers 7 plain tput '43775.9\n' enc tput '33596.1\n'
+          plain lat '0.159905\n'   enc lat '0.208358\n'
+workers 8 plain tput '43847.2\n' enc tput '33272.8\n'
+          plain lat '0.182452\n'   enc lat '0.240436\n'
+workers 9 plain tput '44120.9\n' enc tput '31569.9\n'
+          plain lat '0.203985\n'   enc lat '0.285082\n'
+workers 10 plain tput '44673.2\n' enc tput '35128.1\n'
+          plain lat '0.223848\n'   enc lat '0.284673\n'
+workers 11 plain tput '44746.3\n' enc tput '35008.2\n'
+          plain lat '0.24583\n'   enc lat '0.314212\n'
+workers 12 plain tput '44664\n' enc tput '34029.9\n'
+          plain lat '0.268673\n'   enc lat '0.352631\n'
+
+
+
+
+
+All in shared memory:
+
+
+workers 1 plain tput '12536.9\n' enc tput '9439.54\n'
+          plain lat '0.0797643\n'   enc lat '0.105937\n'
+workers 2 plain tput '22741.3\n' enc tput '17400.6\n'
+          plain lat '0.0879459\n'   enc lat '0.114938\n'
+workers 4 plain tput '38727.7\n' enc tput '30227.6\n'
+          plain lat '0.103285\n'   enc lat '0.13233\n'
+workers 6 plain tput '43653.8\n' enc tput '35415.7\n'
+          plain lat '0.137445\n'   enc lat '0.169416\n'
+workers 8 plain tput '44658.7\n' enc tput '35955.7\n'
+          plain lat '0.179136\n'   enc lat '0.222496\n'
+workers 9 plain tput '45127.7\n' enc tput '36304.7\n'
+          plain lat '0.199434\n'   enc lat '0.247902\n'
+workers 10 plain tput '45534.6\n' enc tput '36175.8\n'
+          plain lat '0.219613\n'   enc lat '0.276428\n'
+workers 12 plain tput '45936.6\n' enc tput '36390.8\n'
+          plain lat '0.26123\n'   enc lat '0.329754\n'
+
+
+
+going to disk as well:
+
+One core:
+
+workers 1 plain tput '10421.7\n' enc tput '8098.72\n'
+          plain lat '0.0959533\n'   enc lat '0.123476\n'
+workers 2 plain tput '10188.6\n' enc tput '8002.98\n'
+          plain lat '0.196299\n'   enc lat '0.249907\n'
+workers 4 plain tput '10100.2\n' enc tput '7980.08\n'
+          plain lat '0.39603\n'   enc lat '0.501248\n'
+workers 6 plain tput '10137.6\n' enc tput '8027.54\n'
+          plain lat '0.591858\n'   enc lat '0.747427\n'
+workers 8 plain tput '10128.8\n' enc tput '8059.04\n'
+          plain lat '0.789826\n'   enc lat '0.992674\n'
+
+
+Two cores:
+
+workers 1 plain tput '12781.7\n' enc tput '8825.51\n'
+          plain lat '0.0782366\n'   enc lat '0.113308\n'
+workers 2 plain tput '20074.6\n' enc tput '15729\n'
+          plain lat '0.0996284\n'   enc lat '0.127154\n'
+workers 3 plain tput '19593.3\n' enc tput '13427.4\n'
+          plain lat '0.153114\n'   enc lat '0.223424\n'
+workers 4 plain tput '19574.9\n' enc tput '15169.9\n'
+          plain lat '0.204344\n'   enc lat '0.26368\n'
+
+
+
+Three cores:
+
+
+workers 3 plain tput '27010.6\n' enc tput '18203.8\n'
+          plain lat '0.111067\n'   enc lat '0.1648\n'
+workers 4 plain tput '26593.1\n' enc tput '20558.7\n'
+          plain lat '0.150415\n'   enc lat '0.194565\n'
+
+
+
+Four cores:
+
+workers 3 plain tput '28887.8\n' enc tput '21603.2\n'
+          plain lat '0.10385\n'   enc lat '0.138869\n'
+workers 4 plain tput '32868.2\n' enc tput '25515.9\n'
+          plain lat '0.121698\n'   enc lat '0.156765\n'
+workers 5 plain tput '32878.6\n' enc tput '25779.5\n'
+          plain lat '0.152074\n'   enc lat '0.193952\n'
+
+
+
+Five cores:
+
+
+workers 4 plain tput '32003.1\n' enc tput '23985.8\n'
+          plain lat '0.124988\n'   enc lat '0.166765\n'
+workers 5 plain tput '32820.5\n' enc tput '24857.8\n'
+          plain lat '0.152344\n'   enc lat '0.201144\n'
+workers 6 plain tput '34529\n' enc tput '25569.2\n'
+          plain lat '0.173767\n'   enc lat '0.234658\n'
+
+Six cores:
+
+workers 6 plain tput '36913.4\n' enc tput '29412.7\n'
+          plain lat '0.162543\n'   enc lat '0.203994\n'
+workers 7 plain tput '38280.2\n' enc tput '28998.6\n'
+          plain lat '0.182862\n'   enc lat '0.241391\n'
+workers 8 plain tput '38914.4\n' enc tput '29879.2\n'
+          plain lat '0.205579\n'   enc lat '0.267745\n'
+
+Seven cores:
+
+workers 7 plain tput '40840.3\n' enc tput '32330.8\n'
+          plain lat '0.171399\n'   enc lat '0.216512\n'
+workers 8 plain tput '41345.5\n' enc tput '32086\n'
+          plain lat '0.193491\n'   enc lat '0.24933\n'
+workers 9 plain tput '41728.7\n' enc tput '32094.6\n'
+          plain lat '0.215679\n'   enc lat '0.280421\n'
+
+
+
+Eight cores:
+
+
+One core:
+
+Select equality:
+
+python repeatexp.py ../dumps/plain_eqsel ../dumps/enc_eqsel 266512  0
+
+workers 1 plain tput '10021.1\n' enc tput '9282.57\n'
+          plain lat '0.0997899\n'   enc lat '0.107729\n'
+workers 2 plain tput '9986.75\n' enc tput '9244.83\n'
+          plain lat '0.200265\n'   enc lat '0.216337\n'
+workers 3 plain tput '9953.14\n' enc tput '9223.93\n'
+          plain lat '0.301412\n'   enc lat '0.325241\n'
+
+
+select sum:
+
+workers 1 plain tput '8958.22\n' enc tput '4533.43\n'
+          plain lat '0.111629\n'   enc lat '0.220584\n'
+workers 2 plain tput '8894.91\n' enc tput '4545.91\n'
+          plain lat '0.224848\n'   enc lat '0.439956\n'
+workers 3 plain tput '8938.56\n' enc tput '4544.79\n'
+          plain lat '0.335625\n'   enc lat '0.660097\n'
+
+
+
+select range:
+
+python repeatexp.py ../dumps/plain_range ../dumps/enc_range 922  0 20
+
+workers 1 plain tput '6419.16\n' enc tput '5636.8\n'
+          plain lat '0.155784\n'   enc lat '0.177406\n'
+workers 2 plain tput '6386.75\n' enc tput '5622.18\n'
+          plain lat '0.313148\n'   enc lat '0.355734\n'
+
+
+select join:
+
+python repeatexp.py ../dumps/plain_join ../dumps/enc_join 10246  0 5
+
+workers 1 plain tput '9638.29\n' enc tput '9025.79\n'
+          plain lat '0.103753\n'   enc lat '0.110794\n'
+workers 2 plain tput '9543.19\n' enc tput '8819.19\n'
+          plain lat '0.209574\n'   enc lat '0.226778\n'
+
+
+
+delete:
+
+python repeatexp.py ../dumps/plain_delete ../dumps/enc_delete 8982  1 20
+
+
+workers 1 plain tput '14647.5\n' enc tput '12695\n'
+          plain lat '0.0682712\n'   enc lat '0.0787711\n'
+workers 2 plain tput '13451.4\n' enc tput '12248.6\n'
+          plain lat '0.148684\n'   enc lat '0.163284\n'
+
+
+insert:
+
+python repeatexp.py ../dumps/plain_insert ../dumps/enc_insert 131529  1 1
+
+workers 1 plain tput '12660.2\n' enc tput '9891.56\n'
+          plain lat '0.0789879\n'   enc lat '0.101096\n'
+workers 2 plain tput '12488.5\n' enc tput '9921.09\n'
+          plain lat '0.160147\n'   enc lat '0.201591\n'
+
+
+update set:
+
+python repeatexp.py ../dumps/plain_upset ../dumps/enc_upset 27625  1 5
+
+workers 1 plain tput '9395.43\n' enc tput '7292.54\n'
+          plain lat '0.106435\n'   enc lat '0.137127\n'
+workers 2 plain tput '9302.42\n' enc tput '7244.77\n'
+          plain lat '0.214998\n'   enc lat '0.276061\n'
+
+
+update inc:
+
+python repeatexp.py ../dumps/plain_upinc ../dumps/enc_upinc 129918  1 1
+
+workers 1 plain tput '10476.9\n' enc tput '6052.92\n'
+          plain lat '0.0954479\n'   enc lat '0.16521\n'
+workers 2 plain tput '10323\n' enc tput '6505.08\n'
+          plain lat '0.193741\n'   enc lat '0.307452\n'
+
+
+Tput and latency for 8 cores as depending on no of workers
+
+Overall data:
+workers 1 plain tput '10009.9\n' enc tput '7641.48\n'
+          plain lat '0.0999015\n'   enc lat '0.130865\n'
+workers 2 plain tput '9745.47\n' enc tput '7754.2\n'
+          plain lat '0.205224\n'   enc lat '0.257925\n'
+workers 3 plain tput '9667.85\n' enc tput '7675.95\n'
+          plain lat '0.310307\n'   enc lat '0.390831\n'
+workers 4 plain tput '9655.81\n' enc tput '7525.63\n'
+          plain lat '0.414258\n'   enc lat '0.531517\n'
+workers 5 plain tput '9685.04\n' enc tput '7637.12\n'
+          plain lat '0.51626\n'   enc lat '0.654697\n'
+workers 6 plain tput '9656.2\n' enc tput '7586.51\n'
+          plain lat '0.621363\n'   enc lat '0.790878\n'
+workers 7 plain tput '9679.36\n' enc tput '7435.92\n'
+          plain lat '0.723188\n'   enc lat '0.941377\n'
+workers 8 plain tput '9691.05\n' enc tput '7495.18\n'
+          plain lat '0.825504\n'   enc lat '1.06735\n'
+workers 9 plain tput '9617.73\n' enc tput '7674.2\n'
+          plain lat '0.935772\n'   enc lat '1.17276\n'
+workers 10 plain tput '9596.27\n' enc tput '7494.94\n'
+          plain lat '1.04207\n'   enc lat '1.33423\n'
+workers 11 plain tput '9677.37\n' enc tput '7445.18\n'
+          plain lat '1.13667\n'   enc lat '1.47747\n'
+
+Latency results
+
+8 cores
+
+Without encryption tables: 11.16 ms per query
+
+With encryption tables: 7.48
+
+1 core
+overall
+without enc tables: 10.71 ms
+with enc tables: 7.2 ms
+
+range: 
+without enc tables: 29.1
+with enc tables: 1.4
+
+insert:
+with enc 8.6

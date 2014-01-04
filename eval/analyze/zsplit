@@ -1,0 +1,58 @@
+#!/usr/bin/perl -w
+
+use strict;
+use Getopt::Std;
+
+
+# Frst get the options
+
+my %opts;
+getopt("l",\%opts);
+if ( ! $opts{l} ) { die "Usage: zsplit -l <lines> <file> <prefix>\n" };
+
+# Then get the filename and prefix.
+my $file = shift or die "Usage: zsplit -l <lines> <file> <prefix>\n";
+my $prefix = shift or die "Usage: zsplit -l <lines> <file> <prefix>\n";
+
+# This little sub takes a number and converts it into a 2 letter chunk name
+# 0 == aa, 1 == ab, 2 == ac etc.
+sub makeChunk($)
+{
+	my $chunk = shift;
+	my $low = $chunk % 26;
+	my $high = int($chunk / 26);
+	my $c1 = chr(ord("a")+$low);
+	my $c2 = chr(ord("a")+$high);
+	return $c2.$c1;
+}
+
+# Try and open the file.
+open(IN,"<$file") or die "Cannot open $file\n";
+
+my $chunk = 0;
+my $cname = makeChunk($chunk);
+my $line = 0;
+
+# Open the out file, piped through gzip
+open(OUT,"| gzip -1 > " . $prefix . $cname . ".gz") or die "Cannot open" . $prefix . $cname . ".gz";
+
+# Read each line ...
+while(my $text = <IN>)
+{
+	$line++;
+	# If the number of lines has exceeded our limit,
+	if($line > $opts{l})
+	{
+		# Close the output file...
+		close(OUT);
+		$chunk++;
+		$line=0;
+		$cname = makeChunk($chunk);
+		# ... and open a new one.
+		open(OUT,"| gzip > " . $prefix . $cname . ".gz") or die "Cannot open" . $prefix . $cname . ".gz";
+	}
+
+	# ... and copy it to the out-file.
+	print OUT $text;
+}
+close(OUT);

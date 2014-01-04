@@ -1,0 +1,2755 @@
+addresses
+
+----------------------------------------------------------------------------
+form_dictation
+
+formFetch(form_dictation, $id)
+
+formSubmit(form_dictation, $POST, $GET['id'], $userauthorized)
+
+sqlInsert(update form_dictation set pid = $pid,groupname=$authProvider, user=$authUser, authorized=$userauthorized,activity=1, date = NOW(), dictation=$POST['dictation'], additional_notes=$POST['additional_notes' where id=$id)
+
+formFetch("form_dictation", $GET['id'])
+
+-->might be something in library/log.inc; it's rather confusing
+
+
+
+----------------------------------------------------------------------------
+form_encounter
+
+SELECT count(*) AS count FROM form_encounter WHERE pid = $pid AND encounter = $encounter
+
+UPDATE form_encounter SET last_level_billed = -1
+
+UPDATE form_encounter SET last_level_billed = $last_level_billed, last_level_closed = $last_level_closed, last_stmt_date = $last_stmt_date, stmt_count = $stmt_count WHERE pid = $pid AND encounter = $encounter
+
+SELECT * FROM form_encounter WHERE last_level_billed = -1 ORDER BY pid, encounter
+
+UPDATE form_encounter SET last_level_billed = 0 WHERE id = $ferow['id]
+
+SELECT e.date, e.facility, u.id, u.lname, u.fname, u.mname, u.upin, f.street, f.city, f.state, f.postal_code, f.pos_code, f.domain_identifier AS clia_code FROM form_encounter AS e LEFT OUTER JOIN forms ON forms.formdir = 'newpatient' AND LEFT OUTER JOIN users AS u ON u.username = forms.user LEFT OUTER JOIN facility AS f ON f.name = e.facility WHERE e.pid = $patient_id AND e.encounter = $encounter LIMIT 1
+
+UPDATE form_encounter SET last_level_billed = $payer_type WHERE pid = $patient_id AND encounter = $encounter_id
+
+SELECT distinct form_encounter.date AS enc_date, form_encounter.pid AS enc_pid, form_encounter.encounter AS enc_encounter, form_encounter.provider_id AS enc_provider_id, billing.* FROM form_encounter LEFT OUTER JOIN billing ON billing.encounter = form_encounter.encounter AND billing.pid = form_encounter.pid AND billing.code_type LIKE '$code_type' AND billing.activity = 1 LEFT OUTER JOIN patient_data on patient_data.pid = form_encounter.pid LEFT OUTER JOIN claims on claims.patient_id = form_encounter.pid and claims.encounter_id = form_encounter.encounter LEFT OUTER JOIN insurance_data on insurance_data.pid = form_encounter.pid and insurance_data.type = 'primary' WHERE 1=1 $query_part $auth $billstring ORDER BY form_encounter.encounter, form_encounter.pid, billing.code_type, billing.code ASC
+
+select distinct $cols from form_encounter, billing, patient_data, claims, insurance_data where billing.encounter = form_encounter.encounter and billing.pid = form_encounter.pid and patient_data.pid = form_encounter.pid and claims.patient_id = form_encounter.pid and claims.encounter_id = form_encounter.encounter and insurance_data.pid = form_encounter.pid and insurance_data.type = 'primary' $auth $billstring $query_part and billing.code_type like '$code_type' and billing.activity = 1 order by billing.pid, billing.date ASC
+
+SELECT * FROM form_encounter WHERE pid = $this->pid AND encounter= $this->encounter_id
+
+select date from form_encounter where encounter=$encounter order by date
+
+SELECT date, last_level_billed, last_level_closed FROM form_encounter WHERE pid = $patient_id AND encounter = $encounter_id ORDER BY id DESC LIMIT 1
+
+SELECT count(*) AS count FROM form_encounter WHERE pid = $pid AND date < $effective_date 00:00:00 AND date >= $idrow['date'] 00:00:00
+
+select last_level_closed from form_encounter where pid = $hidden_patient_code and encounter = $hidden_encounter
+
+SELECT date, last_level_closed FROM form_encounter WHERE pid = $hidden_patient_code AND enounter = $hidden_encounter
+
+SELECT date, last_level_billed FROM form_encounter WHERE pid = $patient_id AND encounter = $encounter_id
+
+SELECT pid FROM form_encounter WHERE encounter = $encounter
+
+SELECT lists.date, lists.pid, lists.type, lists.title as proc_title, lists.diagnosis, lists.outcome, lists.groupname, form_encounter.onset_date, form_encounter.encounter, lists.comments, facility.city, facility.street, facility.state, users.title, users.fname, users.lname from lists left join issue_encounter on issue_encounter.list_id = lists.id left join form_encounter on form_encounter.encounter = issue_encounter.encounter left join facility on form_encounter.facility_id = facility.id left join users on form_encounter.provider_id = users.id where lists.type = 'surgery' and lists.pid=$pid
+
+select fe.encounter, fe.reason, fe.provider_id, u.title, u.fname, u.lname, fe.facility_id, f.street, f.city, f.state, ie.list_id, l.pid, l.title as prob_title, l.diagnosis, l.outcome, l.groupname, l.begdate, l.enddate, l.type, l.comments , l.date, cd.code_text from lists as l left join issue_encounter as ie on ie.list_id = l.id left join form_encounter as fe on fe.encounter = ie.encounter left join facility as f on fe.facility_id = f.id left join users as u on fe.provider_id = u.id left join codes as cd on cd.code = SUBSTRING(l.diagnosis, LOCATE(':',l.diagnosis)+1) where l.type = 'medical_problem' and l.pid=$pid
+
+SELECT * FROM form_encounter WHERE pid = $pid ORDER BY date DESC
+
+SELECT reason FROM form_encounter WHERE pid = $pid ORDER BY date DESC LIMIT 1
+
+SELECT fe.*, f.user, u.fname, u.mname, u.lname FROM form_encounter AS fe JOIN forms AS f ON f.pid = fe.pid AND f.encounter = fe.encounter AND f.formdir = 'newpatient AND f.deleted = 0
+
+SELECT id FROM form_encounter WHERE pid = $pid AND encounter = $encounter
+
+UPDATE form_encounter SET billing_note = $fenote WHERE id = $feid
+
+SELECT billing_note FROM form_encounter WHERE id = $feid
+
+SELECT id, date, encounter FROM form_encounter WHERE pid = $patient_id AND encounter = $encounter
+
+SELECT id, date, encounter FROM form_encounter WHERE pid = $patient_id ORDER BY id DESC LIMIT 1
+
+SELECT date FROM form_encounter WHERE encounter = $encounter
+
+SELECT invoice_refno FROM form_encounter WHERE pid = $patient_id AND encounter = $encounter LIMIT 1
+
+SELECT id FROM form_encounter WHERE pid = $form_pid AND encounter = $form_encounter$tmp
+
+UPDATE form_encounter SET invoice_refno = $invoice_refno WHERE pid = $form_pid AND encounter = $form_encounter
+
+SELECT provider_id FROM form_encounter WHERE pid = $patient_id AND encounter = $inv_encounter ORDER BY DESC LIMIT 1
+
+SELECT sensitivity FROM form_encounter WHERE pid = $pid AND encounter = $encounter LIMIT 1
+
+select f.* from facility f LEFT JOIN form_encounter fe on fe.facility_id = f.id
+
+select date from form_encounter where encounter=$encounter and pid=$pid
+
+-->getEncounterDateByEncounter($form_encounter)
+
+UPDATE form_encounter SET last_level_billed = 0, last_level_closed = 0, stmt_count = 0, last_stmt_date = NULL
+
+SELECT forms.encounter, forms.form_id, forms.form_name, forms.formdir, forms.date AS fdate, form_encounter.date,form_encounter.reason FROM forms, form_encounter WHERE foms.pid = '$pid' AND form_encounter.pid = '$pid' AND form_encounter.encounter = forms.encounter AND forms.deleted=0 ORDER BY form_encounter.date DESC, fdate ASC
+
+SELECT encounter FROM form_encounter WHERE pid = '$patient_id' AND date = '$today 00:00:00' ORDER BY encounter DESC LIMIT 1
+
+INSERT INTO form_encounter SET date = '$today', onset_date = '$today', reason = 'Please indicate visit reason', facility = '$facility', facility_id = '$facility_id', pid = '$patient_id', encounter = '$encounter'
+
+SELECT facility_id FROM form_encounter WHERE encounter = '%s'", $payrow['encounter']
+
+SELECT b.encounter, b.code_type, b.code, b.modifier, b.fee, " .
+    "LEFT(fe.date, 10) AS encdate " .
+    "FROM billing AS b, form_encounter AS fe WHERE " .
+    "b.pid = '$pid' AND b.activity = 1 AND b.billed = 0 AND " .
+    "b.code_type != 'TAX' AND b.fee != 0 " .
+    "AND fe.pid = b.pid AND fe.encounter = b.encounter " .
+    "ORDER BY b.encounter
+
+SELECT s.encounter, s.drug_id, s.fee, " .
+    "LEFT(fe.date, 10) AS encdate " .
+    "FROM drug_sales AS s, form_encounter AS fe " .
+    "WHERE s.pid = '$pid' AND s.billed = 0 AND s.fee != 0 " .
+    "AND fe.pid = s.pid AND fe.encounter = s.encounter " .
+    "ORDER BY s.encounter"
+
+SELECT f.id, f.pid, f.encounter, f.date, " .
+      "f.last_level_billed, f.last_level_closed, f.stmt_count, " .
+      "p.fname, p.mname, p.lname, p.pubpid, p.genericname2, p.genericval2, " .
+      "( SELECT SUM(s.fee) FROM drug_sales AS s WHERE " .
+      "s.pid = f.pid AND s.encounter = f.encounter AND s.billed != 0 ) AS sales, " .
+      "( SELECT SUM(b.fee) FROM billing AS b WHERE " .
+      "b.pid = f.pid AND b.encounter = f.encounter AND " .
+      "b.activity = 1 AND b.code_type != 'COPAY' AND b.billed != 0 ) AS charges, " .
+      "( SELECT SUM(b.fee) FROM billing AS b WHERE " .
+      "b.pid = f.pid AND b.encounter = f.encounter AND " .
+      "b.activity = 1 AND b.code_type = 'COPAY' AND b.billed != 0 ) AS copays, " .
+      "( SELECT SUM(a.pay_amount) FROM ar_activity AS a WHERE " .
+      "a.pid = f.pid AND a.encounter = f.encounter AND " .
+      "a.payer_type = 0 ) AS ptpaid, " .
+      "( SELECT SUM(a.pay_amount) FROM ar_activity AS a WHERE " .
+      "a.pid = f.pid AND a.encounter = f.encounter AND " .
+      "a.payer_type != 0 ) AS inspaid, " .
+      "( SELECT SUM(a.adj_amount) FROM ar_activity AS a WHERE " .
+      "a.pid = f.pid AND a.encounter = f.encounter ) AS adjustments " .
+      "FROM form_encounter AS f " .
+      "JOIN patient_data AS p ON p.pid = f.pid " .
+      "WHERE f.pid = '$pid' " .
+      "ORDER BY f.pid, f.encounter";
+
+SELECT LEFT(date, 10) AS encdate FROM form_encounter " .
+        "WHERE encounter = '$enc'
+
+SELECT fe.reason, fe.date, u.fname, u.mname, u.lname, u.username " .
+    "FROM forms AS f " .
+    "JOIN form_encounter AS fe ON fe.id = f.form_id " .
+    "LEFT JOIN users AS u ON u.username = f.user " .
+    "WHERE f.pid = '$pid' AND f.encounter = '$encounter' AND f.formdir = 'newpatient' AND f.deleted = 0 " .
+    "ORDER BY f.id LIMIT 1
+
+SELECT fe.encounter,fe.date,openemr_postcalendar_categories.pc_catname FROM form_encounter AS fe left join openemr_postcalendar_categories on fe.pc_catid=openemr_postcalendar_categories.pc_catid  WHERE fe.pid = ? order by fe.date desc
+
+SELECT " .
+  "f.encounter, f.user, fe.date, fe.reason, fe.sensitivity " .
+  "FROM forms AS f " .
+  "LEFT OUTER JOIN form_encounter AS fe ON fe.pid = f.pid " .
+  "AND fe.encounter = f.encounter " .
+  "WHERE f.pid = '$pid' AND f.formdir = 'strength_conditioning' " .
+  "ORDER BY fe.date DESC, f.encounter DESC
+
+update form_encounter set last_level_closed=last_level_closed - 1 where pid ='$PId' and encounter='$Encounter'
+
+SELECT e.date, e.encounter, p.pid, p.lname, p.fname, p.mname, p.ss " .
+      "FROM form_encounter AS e, patient_data AS p, insurance_data AS i " .
+      "WHERE p.pid = e.pid AND i.pid = e.pid AND i.type = 'primary' " .
+      "AND i.provider = ''$where " .
+      "ORDER BY p.lname, p.fname, p.mname, p.pid, e.date
+
+SELECT b.fee, b.pid, b.encounter, b.code_type, b.code, b.modifier, " .
+          "fe.date, fe.id AS trans_id, u.id AS docid " .
+          "FROM billing AS b " .
+          "JOIN form_encounter AS fe ON fe.pid = b.pid AND fe.encounter = b.encounter " .
+          "JOIN forms AS f ON f.pid = b.pid AND f.encounter = b.encounter AND f.formdir = 'newpatient' " .
+          "LEFT OUTER JOIN users AS u ON u.username = f.user " .
+          "WHERE b.code_type = 'COPAY' AND b.activity = 1 AND " .
+          "fe.date >= '$form_from_date 00:00:00' AND fe.date <= '$form_to_date 23:59:59'
+
+SELECT b.fee, b.pid, b.encounter, b.code_type, b.code, b.modifier, " .
+          "fe.date, fe.id AS trans_id, fe.provider_id AS docid, fe.invoice_refno " .
+          "FROM billing AS b " .
+          "JOIN form_encounter AS fe ON fe.pid = b.pid AND fe.encounter = b.encounter " .
+          "WHERE b.code_type = 'COPAY' AND b.activity = 1 AND " .
+          "fe.date >= '$form_from_date 00:00:00' AND fe.date <= '$form_to_date 23:59:59'
+
+SELECT a.pid, a.encounter, a.post_time, a.code, a.modifier, a.pay_amount, " .
+        "fe.date, fe.id AS trans_id, u.id AS docid, s.deposit_date, s.payer_id " .
+        "FROM ar_activity AS a " .
+        "JOIN form_encounter AS fe ON fe.pid = a.pid AND fe.encounter = a.encounter " .
+        "JOIN forms AS f ON f.pid = a.pid AND f.encounter = a.encounter AND f.formdir = 'newpatient' " .
+        "LEFT OUTER JOIN users AS u ON u.username = f.user " .
+        "LEFT OUTER JOIN ar_session AS s ON s.session_id = a.session_id " .
+        "WHERE a.pay_amount != 0 AND ( " .
+        "a.post_time >= '$form_from_date 00:00:00' AND a.post_time <= '$form_to_date 23:59:59' " .
+        "OR fe.date >= '$form_from_date 00:00:00' AND fe.date <= '$form_to_date 23:59:59' " .
+        "OR s.deposit_date >= '$form_from_date' AND s.deposit_date <= '$form_to_date' )
+
+SELECT a.pid, a.encounter, a.post_time, a.code, a.modifier, a.pay_amoun\
+t, " .
+        "fe.date, fe.id AS trans_id, fe.provider_id AS docid, fe.invoice_refno, s.deposit_date, s.payer_id, " .
+        "b.provider_id " .
+        "FROM ar_activity AS a " .
+        "JOIN form_encounter AS fe ON fe.pid = a.pid AND fe.encounter = a.encounter " .
+        "LEFT OUTER JOIN ar_session AS s ON s.session_id = a.session_id " .
+        "LEFT OUTER JOIN billing AS b ON b.pid = a.pid AND b.encounter = a.encounter AND " .
+        "b.code = a.code AND b.modifier = a.modifier AND b.activity = 1 AND " .
+        "b.code_type != 'COPAY' AND b.code_type != 'TAX' " .
+        "WHERE a.pay_amount != 0 AND ( " .
+        "a.post_time >= '$form_from_date 00:00:00' AND a.post_time <= '$form_to_date 23:59:59' " .
+        "OR fe.date >= '$form_from_date 00:00:00' AND fe.date <= '$form_to_date 23:59:59' " .
+        "OR s.deposit_date >= '$form_from_date' AND s.deposit_date <= '$form_to_date' )";
+
+SELECT count(*) AS count FROM form_encounter WHERE " .
+              "pid = '$patient_id' AND encounter = '$encounter_id' AND " .
+              "facility_id = '$form_facility
+
+SELECT provider_id FROM form_encounter WHERE " .
+            "pid = '$patient_id' AND encounter = '$encounter_id' " .
+            "ORDER BY id DESC LIMIT 1
+
+SELECT fe.encounter,fe.date,openemr_postcalendar_categories.pc_catname FROM form_encounter AS fe left join openemr_postcalendar_categories on fe.pc_catid=openemr_postcalendar_categories.pc_catid  WHERE fe.pid = '".$iter['enc_pid']."' order by fe.date desc
+
+SELECT e.*, p.fname, p.mname, p.lname " .
+      "FROM form_encounter AS e, patient_data AS p WHERE " .
+      "e.id = '$trans_id' AND p.pid = e.pid
+
+UPDATE form_encounter " .
+          "SET last_level_closed = $form_done, " .
+          "stmt_count = $form_stmt_count WHERE " .
+          "pid = '$patient_id' AND encounter = '$encounter_id'
+
+SELECT date FROM form_encounter WHERE encounter = $encounter
+
+SELECT f.id, f.date, f.pid, f.encounter, f.stmt_count, f.last_stmt_date, " .
+      "p.fname, p.mname, p.lname, p.street, p.city, p.state, p.postal_code " .
+      "FROM form_encounter AS f, patient_data AS p " .
+      "WHERE ( $where ) AND " .
+      "p.pid = f.pid " .
+      "ORDER BY p.lname, p.fname, f.pid, f.date, f.encounte
+
+UPDATE form_encounter SET " .
+          "last_stmt_date = '$today', stmt_count = stmt_count + 1 " .
+          "WHERE id = " . $row['id']
+
+SELECT date FROM form_encounter WHERE encounter = $encounter
+
+SELECT f.id, f.pid, f.encounter, f.date, " .
+      "f.last_level_billed, f.last_level_closed, f.last_stmt_date, f.stmt_count, " .
+      "p.fname, p.mname, p.lname, p.pubpid, p.genericname2, p.genericval2, " .
+      "( SELECT SUM(b.fee) FROM billing AS b WHERE " .
+      "b.pid = f.pid AND b.encounter = f.encounter AND " .
+      "b.activity = 1 AND b.code_type != 'COPAY' ) AS charges, " .
+      "( SELECT SUM(b.fee) FROM billing AS b WHERE " .
+      "b.pid = f.pid AND b.encounter = f.encounter AND " .
+      "b.activity = 1 AND b.code_type = 'COPAY' ) AS copays, " .
+      "( SELECT SUM(a.pay_amount) FROM ar_activity AS a WHERE " .
+      "a.pid = f.pid AND a.encounter = f.encounter ) AS payments, " .
+      "( SELECT SUM(a.adj_amount) FROM ar_activity AS a WHERE " .
+      "a.pid = f.pid AND a.encounter = f.encounter ) AS adjustments " .
+      "FROM form_encounter AS f " .
+      "JOIN patient_data AS p ON p.pid = f.pid " .
+      "WHERE $where " .
+      "ORDER BY p.lname, p.fname, p.mname, f.pid, f.encounter";
+
+SELECT pid, encounter FROM form_encounter WHERE date >= '$form_date' AND date <= '$form_to_date'
+
+SELECT billing.id,last_level_closed,billing.encounter,form_encounter.`date`,billing.code,billing.modifier,fee FROM billing ,form_encounter
+             where billing.encounter=form_encounter.encounter and code_type!='ICD9' and code_type!='COPAY' and billing.activity!=0 and
+             form_encounter.pid ='$hidden_patient_code' and billing.pid ='$hidden_patient_code'  $StringForQuery ORDER BY form_encounter.`date`,
+             form_encounter.encounter,billing.code,billing.modifier");
+
+SELECT date, last_level_closed " .
+                      "FROM form_encounter WHERE " .
+                      "pid = '$hidden_patient_code' AND encounter = '".$RowSearch['encounter']."
+
+SELECT billing.id,last_level_closed,billing.encounter,form_encounter.`date`,billing.code,billing.modifier,fee
+                         FROM billing ,form_encounter
+                         where billing.encounter=form_encounter.encounter and billing.pid=form_encounter.pid and
+                         code_type!='ICD9' and  code_type!='COPAY' and billing.activity!=0 and
+                         form_encounter.pid ='$PId' and billing.pid ='$PId' and billing.encounter ='$EncounterMaster'
+                          and billing.code ='$CodeMaster'
+                           and billing.modifier ='$ModifierMaster'
+                         ORDER BY form_encounter.`date`,form_encounter.encounter,billing.code,billing.modifier
+
+SELECT e.*, p.fname, p.mname, p.lname " .
+          "FROM form_encounter AS e, patient_data AS p WHERE " .
+          "e.pid = '$pid' AND e.encounter = '$encounter' AND ".
+          "p.pid = e.pid
+
+UPDATE form_encounter " .
+              "SET last_level_closed = $level_done,last_level_billed=".$level_done." WHERE " .
+              "pid = '$pid' AND encounter = '$encounter'
+
+UPDATE form_encounter " .
+              "SET last_level_closed = $level_done WHERE " .
+              "pid = '$pid' AND encounter = '$encounter'
+
+select DATE_FORMAT(max(form_encounter.date),'%m/%d/%y') as mydate," .
+                  " (to_days(current_date())-to_days(max(form_encounter.date))) as day_diff," .
+                  " DATE_FORMAT(max(form_encounter.date) + interval " .
+              add_escape_custom($add_days) .
+                  " day,'%m/%d/%y') as next_appt, dayname(max(form_encounter.date) + interval " .
+                  add_escape_custom($add_days) .
+              " day) as next_appt_day from form_encounter " .
+                  "join billing on billing.encounter = form_encounter.encounter and " .
+                  "billing.pid = form_encounter.pid and billing.activity = 1 and " .
+                  "billing.code_type not like 'COPAY' where ".
+                  "form_encounter.pid = $pid";
+
+select count(date) as encounter_count ".
+                      " from form_encounter where ".
+                      " pid = $pid
+
+SELECT count(*) AS count FROM form_encounter WHERE " .
+                        "pid = '" . $_POST['form_pid'] . "' AND date = '$event_date 00:00:00
+
+INSERT INTO form_encounter SET " .
+                        "date = '$event_date', " .
+                        "onset_date = '$event_date', " .
+                        "reason = '" . formData("form_comments") . "', " .
+                        "facility = '$facility', " .
+                        "facility_id = '" . (int)$_POST['facility'] . "', " .
+                        "pid = '" . $_POST['form_pid'] . "', " .
+                        "encounter = '$encounter'
+
+SELECT fe.facility_id, fe.pid, fe.encounter, fe.date, " .
+    "f.name, f.street, f.city, f.state, f.postal_code, f.country_code, " .
+    "f.federal_ein, " .
+    "p.regdate, p.date AS last_update, p.contrastart, p.DOB, " .
+    "p.userlist2 AS education " .
+    "FROM form_encounter AS fe " .
+    "LEFT OUTER JOIN facility AS f ON f.id = fe.facility_id " .
+    "LEFT OUTER JOIN patient_data AS p ON p.pid = fe.pid WHERE " .
+    sprintf("fe.date >= '%04u-%02u-01 00:00:00' AND ", $beg_year, $beg_month) .
+    sprintf("fe.date < '%04u-%02u-01 00:00:00' ", $end_year, $end_month) .
+    "ORDER BY fe.facility_id, fe.pid, fe.encounter
+
+SELECT DISTINCT " .
+    "fe.facility_id, fe.pid, " .
+    "f.name, f.street, f.city, f.state, f.postal_code, f.country_code, " .
+    "f.federal_ein, " .
+    "p.regdate, p.date AS last_update, p.contrastart, p.DOB, " .
+    "p.userlist2 AS education " .
+    "FROM form_encounter AS fe " .
+    "LEFT OUTER JOIN facility AS f ON f.id = fe.facility_id " .
+    "LEFT OUTER JOIN patient_data AS p ON p.pid = fe.pid WHERE " .
+    sprintf("fe.date >= '%04u-%02u-01 00:00:00' AND ", $beg_year, $beg_month) .
+    sprintf("fe.date < '%04u-%02u-01 00:00:00' ", $end_year, $end_month) .
+    "ORDER BY fe.facility_id, fe.pid
+
+SELECT DISTINCT " .
+    "fe.pid, " .
+    "p.regdate, p.date AS last_update, p.contrastart, p.DOB, p.sex, " .
+    "p.city, p.state, p.occupation, p.status, p.ethnoracial, " .
+    "p.interpretter, p.monthly_income, p.referral_source, p.pricelevel, " .
+    "p.userlist1, p.userlist3, p.userlist4, p.userlist5, " .
+    "p.usertext11, p.usertext12, p.usertext13, p.usertext14, p.usertext15, " .
+    "p.usertext16, p.usertext17, p.usertext18, p.usertext19, p.usertext20, " .
+    "p.userlist2 AS education " .
+    "FROM form_encounter AS fe " .
+    "LEFT OUTER JOIN patient_data AS p ON p.pid = fe.pid WHERE " .
+    sprintf("fe.date >= '%04u-%02u-01 00:00:00' AND ", $beg_year, $beg_month) .
+    sprintf("fe.date < '%04u-%02u-01 00:00:00' ", $end_year, $end_month) .
+    "ORDER BY fe.pid
+
+SELECT encounter, date " .
+      "FROM form_encounter WHERE " .
+      "pid = '$last_pid'
+
+SELECT COUNT(*) AS count " .
+    "FROM form_encounter AS fe, billing AS b, codes AS c WHERE " .
+    "fe.pid = '$pid' AND " .
+    "fe.date <= '$encdate' AND " .
+    "DATE_ADD(fe.date, INTERVAL 14 DAY) > '$encdate' AND " .
+    "b.pid = fe.pid AND " .
+    "b.encounter = fe.encounter AND " .
+    "b.activity = 1 AND " .
+    "b.code_type = 'MA' AND " .
+    "c.code_type = '12' AND " .
+    "c.code = b.code AND c.modifier = b.modifier AND " .
+    "( c.related_code LIKE '%IPPF:252223%' OR c.related_code LIKE '%IPPF:252224%' )
+
+SELECT lo.title " .
+    "FROM forms AS f, form_encounter AS fe, lbf_data AS d, list_options AS lo " .
+    "WHERE f.pid = '$pid' AND " .
+    "f.formdir = 'LBFgcac' AND " .
+    "f.deleted = 0 AND " .
+    "fe.pid = f.pid AND fe.encounter = f.encounter AND " .
+    "fe.date <= '$encdate' AND " .
+    "DATE_ADD(fe.date, INTERVAL 14 DAY) > '$encdate' AND " .
+    "d.form_id = f.form_id AND " .
+    "d.field_id = 'client_status' AND " .
+    "lo.list_id = 'clientstatus' AND " .
+    "lo.option_id = d.field_value " .
+    "ORDER BY d.form_id DESC LIMIT 1
+
+SELECT COUNT(*) AS count " .
+        "FROM forms AS f, form_encounter AS fe, lbf_data AS d " .
+        "WHERE f.pid = '$patient_id' AND " .
+        "f.formdir = 'LBFgcac' AND " .
+        "f.deleted = 0 AND " .
+        "fe.pid = f.pid AND fe.encounter = f.encounter AND " .
+        "fe.date <= '$encdate' AND " .
+        "DATE_ADD(fe.date, INTERVAL 14 DAY) > '$encdate' AND " .
+        "d.form_id = f.form_id AND " .
+        "d.field_id = 'client_status' AND " .
+        "( d.field_value = 'maaa' OR d.field_value = 'refout' )";
+
+SELECT d.form_id, d.field_value " .
+    "FROM forms AS f, form_encounter AS fe, lbf_data AS d " .
+    "WHERE f.pid = '$pid' AND " .
+    "f.encounter = '$encounter' AND " .
+    "f.formdir = 'LBFgcac' AND " .
+    "f.deleted = 0 AND " .
+    "fe.pid = f.pid AND fe.encounter = f.encounter AND " .
+    "d.form_id = f.form_id AND " .
+    "d.field_id = '$name'
+
+SELECT " .
+        "ds.pid, ds.encounter, ds.sale_date, ds.quantity, " .
+        "d.cyp_factor, d.related_code, " .
+        "pd.regdate, pd.sex, pd.DOB, pd.lname, pd.fname, pd.mname, " .
+        "pd.contrastart, pd.referral_source$pd_fields, " .
+        "fe.date AS encdate, fe.provider_id " .
+        "FROM drug_sales AS ds " .
+        "JOIN drugs AS d ON d.drug_id = ds.drug_id " .
+        "JOIN patient_data AS pd ON pd.pid = ds.pid $sexcond" .
+        "LEFT JOIN form_encounter AS fe ON fe.pid = ds.pid AND fe.encounter = ds.encounter " .
+        "WHERE ds.sale_date >= '$from_date' AND " .
+        "ds.sale_date <= '$to_date' AND " .
+        "ds.pid > 0 AND ds.quantity != 0
+
+SELECT fe.pid, fe.encounter, fe.date AS encdate, pd.regdate, " .
+        "f.user AS provider, " .
+        "pd.sex, pd.DOB, pd.lname, pd.fname, pd.mname, " .
+        "pd.contrastart, pd.referral_source$pd_fields, " .
+        "b.code_type, b.code, c.related_code, lo.title AS lo_title " .
+        "FROM form_encounter AS fe " .
+        "JOIN forms AS f ON f.pid = fe.pid AND f.encounter = fe.encounter AND " .
+        "f.formdir = 'newpatient' AND f.form_id = fe.id AND f.deleted = 0 " .
+        "JOIN patient_data AS pd ON pd.pid = fe.pid $sexcond" .
+        "LEFT OUTER JOIN billing AS b ON " .
+        "b.pid = fe.pid AND b.encounter = fe.encounter AND b.activity = 1 " .
+        "AND b.code_type = 'MA' " .
+        "LEFT OUTER JOIN codes AS c ON b.code_type = 'MA' AND c.code_type = '12' AND " .
+        "c.code = b.code AND c.modifier = b.modifier " .
+        "LEFT OUTER JOIN list_options AS lo ON " .
+        "lo.list_id = 'superbill' AND lo.option_id = c.superbill " .
+        "WHERE fe.date >= '$from_date 00:00:00' AND " .
+        "fe.date <= '$to_date 23:59:59'
+
+SELECT b.fee, b.pid, b.encounter, b.code_type, b.code, b.units, " .
+        "b.code_text, fe.date, fe.facility_id, fe.invoice_refno, lo.title " .
+        "FROM billing AS b " .
+        "JOIN code_types AS ct ON ct.ct_key = b.code_type " .
+        "JOIN form_encounter AS fe ON fe.pid = b.pid AND fe.encounter = b.encounter " .
+        "LEFT JOIN codes AS c ON c.code_type = ct.ct_id AND c.code = b.code AND c.modifier = b.modifier " .
+        "LEFT JOIN list_options AS lo ON lo.list_id = 'superbill' AND lo.option_id = c.superbill " .
+        "WHERE b.code_type != 'COPAY' AND b.activity = 1 AND b.fee != 0 AND " .
+        "fe.date >= '$from_date 00:00:00' AND fe.date <= '$to_date 23:59:59'
+
+SELECT s.sale_date, s.fee, s.quantity, s.pid, s.encounter, " .
+        "d.name, fe.date, fe.facility_id, fe.invoice_refno " .
+        "FROM drug_sales AS s " .
+        "JOIN drugs AS d ON d.drug_id = s.drug_id " .
+        "JOIN form_encounter AS fe ON " .
+        "fe.pid = s.pid AND fe.encounter = s.encounter AND " .
+        "fe.date >= '$from_date 00:00:00' AND fe.date <= '$to_date 23:59:59' " .
+        "WHERE s.fee != 0
+
+SELECT count(*) AS count FROM form_encounter WHERE " .
+            "pid = '$patient_id' AND encounter = '$encounter_id' AND " .
+            "facility_id = '$form_facility'
+
+SELECT " .
+    "fe.pid, fe.encounter, fe.date AS encdate, fe.pc_catid, " .
+    "pd.regdate, b.code_type, b.code " .
+    "FROM form_encounter AS fe " .
+    "JOIN patient_data AS pd ON pd.pid = fe.pid " .
+    "LEFT JOIN billing AS b ON " .
+    "b.pid = fe.pid AND b.encounter = fe.encounter AND b.activity = 1 " .
+    "AND b.code_type = 'MA' " .
+    "WHERE fe.date >= '$from_date 00:00:00' AND " .
+    "fe.date <= '$from_date 23:59:59'
+
+SELECT count(*) AS count FROM form_encounter " .
+            "WHERE date >= '$thisyear-01-01 00:00:00' AND " .
+            "date < '" . $row['encdate'] . " 00:00:00'
+
+SELECT p.fname, p.mname, p.lname, fe.date " .
+        "FROM patient_data AS p, form_encounter AS fe WHERE " .
+        "p.pid = '$patient_id' AND fe.pid = p.pid AND " .
+        "fe.encounter = '$encounter_id' LIMIT 1
+
+SELECT b.fee, b.pid, b.encounter, b.code_type, " .
+        "fe.date, fe.facility_id, fe.invoice_refno " .
+        "FROM billing AS b " .
+        "JOIN form_encounter AS fe ON fe.pid = b.pid AND fe.encounter = b.encounter " .
+        "WHERE b.code_type = 'COPAY' AND b.activity = 1 AND b.fee != 0 AND " .
+        "fe.date >= '$from_date 00:00:00' AND fe.date <= '$to_date 23:59:59'" .
+        " AND fe.facility_id = '$form_facility'" .
+        " ORDER BY fe.date, b.pid, b.encounter, fe.id
+
+SELECT a.pid, a.encounter, a.post_time, a.pay_amount, " .
+      "a.adj_amount, a.memo, a.session_id, a.code, a.payer_type, fe.id, fe.date, " .
+      "fe.invoice_refno, s.deposit_date, s.payer_id, s.reference, i.name " .
+      "FROM ar_activity AS a " .
+      "JOIN form_encounter AS fe ON fe.pid = a.pid AND fe.encounter = a.encounter " .
+      "JOIN forms AS f ON f.pid = a.pid AND f.encounter = a.encounter AND f.formdir = 'newpatient' " .
+      "LEFT JOIN ar_session AS s ON s.session_id = a.session_id " .
+      "LEFT JOIN insurance_companies AS i ON i.id = s.payer_id " .
+      "WHERE ( a.pay_amount != 0 OR a.adj_amount != 0 )" .
+      "AND fe.date >= '$from_date 00:00:00' AND fe.date <= '$to_date 23:59:59'"
+
+SELECT a.pid, a.encounter, a.post_time, a.pay_amount, " .
+      "a.adj_amount, a.memo, a.session_id, a.code, a.payer_type, fe.id, fe.date, " .
+      "fe.invoice_refno, s.deposit_date, s.payer_id, s.reference, i.name " .
+      "FROM ar_activity AS a " .
+      "JOIN form_encounter AS fe ON fe.pid = a.pid AND fe.encounter = a.encounter " .
+      "JOIN forms AS f ON f.pid = a.pid AND f.encounter = a.encounter AND f.formdir = 'newpatient' " .
+      "LEFT JOIN ar_session AS s ON s.session_id = a.session_id " .
+      "LEFT JOIN insurance_companies AS i ON i.id = s.payer_id " .
+      "WHERE ( a.pay_amount != 0 OR a.adj_amount != 0 )" .
+      " AND ( ( s.deposit_date IS NOT NULL AND " .
+        "s.deposit_date >= '$from_date' AND s.deposit_date <= '$to_date' ) OR " .
+        "( s.deposit_date IS NULL AND a.post_time >= '$from_date 00:00:00' AND " .
+        "a.post_time <= '$to_date 23:59:59' ) )";
+        " AND a.code LIKE '$form_cptcode%'";
+        " AND fe.facility_id = '$form_facility'";
+        " ORDER BY s.reference, fe.date, a.pid, a.encounter, fe.id";
+        " ORDER BY s.reference, s.deposit_date, a.post_time, a.pid, a.encounter, fe.id";
+
+SELECT count(*) AS count FROM form_encounter WHERE " .
+          "pid = '$patient_id' AND encounter = '$encounter_id' AND " .
+          "facility_id = '$form_facility'
+
+SELECT " .
+  "fe.encounter, fe.date, fe.reason, " .
+  "f.formdir, f.form_name, " .
+  "p.fname, p.mname, p.lname, p.pid, p.pubpid, " .
+  "u.lname AS ulname, u.fname AS ufname, u.mname AS umname " .
+  "FROM ( form_encounter AS fe, forms AS f ) " .
+  "LEFT OUTER JOIN patient_data AS p ON p.pid = fe.pid " .
+  "LEFT JOIN users AS u ON u.id = fe.provider_id " .
+  "WHERE f.encounter = fe.encounter AND f.formdir = 'newpatient'" .
+  "AND fe.date >= '$form_from_date 00:00:00' AND fe.date <= '$form_to_date 23\
+:59:59'" .
+  "AND fe.provider_id = '$form_provider' "
+  "AND fe.facility_id = '$form_facility' "
+  "AND fe.date = (SELECT MIN(fe2.date) FROM form_encounter AS fe2 WHERE fe2.p\
+id = fe.pid) "
+  "ORDER BY $orderby
+
+SELECT " .
+   "e.pc_eventDate, e.pc_startTime, " .
+   "fe.encounter, fe.date AS encdate, " .
+   "f.authorized, " .
+   "p.fname, p.lname, p.pid, p.pubpid, " .
+   "CONCAT( u.lname, ', ', u.fname ) AS docname " .
+   "FROM openemr_postcalendar_events AS e " .
+   "LEFT OUTER JOIN form_encounter AS fe " .
+   "ON LEFT(fe.date, 10) = e.pc_eventDate AND fe.pid = e.pc_pid " .
+   "LEFT OUTER JOIN forms AS f ON f.encounter = fe.encounter AND f.formdir = 'newpatient' " .
+   "LEFT OUTER JOIN patient_data AS p ON p.pid = e.pc_pid " .
+   "LEFT OUTER JOIN users AS u ON u.id = fe.provider_id WHERE
+   "e.pc_eventDate >= '$form_from_date' AND e.pc_eventDate <= '$form_to_date' "
+   "AND e.pc_pid != '' AND e.pc_apptstatus != '?' " .
+   ") UNION ( " .
+   "SELECT " .
+   "e.pc_eventDate, e.pc_startTime, " .
+   "fe.encounter, fe.date AS encdate, " .
+   "f.authorized, " .
+   "p.fname, p.lname, p.pid, p.pubpid, " .
+   "CONCAT( u.lname, ', ', u.fname ) AS docname " .
+   "FROM form_encounter AS fe " .
+   "LEFT OUTER JOIN openemr_postcalendar_events AS e " .
+   "ON LEFT(fe.date, 10) = e.pc_eventDate AND fe.pid = e.pc_pid AND " .
+   "e.pc_pid != '' AND e.pc_apptstatus != '?' " .
+   "LEFT OUTER JOIN forms AS f ON f.encounter = fe.encounter AND f.formdir = 'newpatient' " .
+   "LEFT OUTER JOIN patient_data AS p ON p.pid = fe.pid " .
+   "LEFT OUTER JOIN users AS u ON u.id = fe.provider_id WHERE ";
+   "fe.date >= '$form_from_date 00:00:00' AND fe.date <= '$form_to_date 23:59\
+:59' "
+   "AND fe.facility_id = '$form_facility' "
+   ") ORDER BY docname, pc_eventDate, pc_startTime"
+
+SELECT s.sale_date, s.fee, s.quantity, s.pid, s.encounter, " .
+    "s.billed, s.notes, s.distributor_id, s.xfer_inventory_id, " .
+    "p.fname AS pfname, p.mname AS pmname, p.lname AS plname, " .
+    "u.fname AS dfname, u.mname AS dmname, u.lname AS dlname, u.organization, " .
+    "d.name, fe.date, fe.invoice_refno, " .
+    "i1.lot_number, i2.lot_number AS lot_number_2, " .
+    "lo1.title AS warehouse, lo2.title AS warehouse_2 " .
+    "FROM drug_sales AS s " .
+    "JOIN drugs AS d ON d.drug_id = s.drug_id " .
+    "LEFT JOIN drug_inventory AS i1 ON i1.inventory_id = s.inventory_id " .
+    "LEFT JOIN drug_inventory AS i2 ON i2.inventory_id = s.xfer_inventory_id " .
+    "LEFT JOIN patient_data AS p ON p.pid = s.pid " .
+    "LEFT JOIN users AS u ON u.id = s.distributor_id " .
+    "LEFT JOIN list_options AS lo1 ON lo1.list_id = 'warehouse' AND " .
+    "lo1.option_id = i1.warehouse_id " .
+    "LEFT JOIN list_options AS lo2 ON lo2.list_id = 'warehouse' AND " .
+    "lo2.option_id = i2.warehouse_id " .
+    "LEFT JOIN form_encounter AS fe ON fe.pid = s.pid AND fe.encounter = s.encounter " \
+.
+    "WHERE s.sale_date >= ? AND s.sale_date <= ? ";
+    "AND s.pid = 0 AND s.distributor_id = 0 AND s.xfer_inventory_id = 0 AND s.fee != 0 "
+    "AND s.xfer_inventory_id != 0 "
+    "AND s.pid = 0 AND s.distributor_id = 0 AND s.xfer_inventory_id = 0 AND s.fee = 0 "
+    "AND s.distributor_id != 0 "
+    "AND s.pid != 0 ";
+    "ORDER BY s.sale_date, s.sale_id";
+
+SELECT b.pid, b.encounter, b.code_type, b.code, b.units, " .
+    "b.code_text, c.cyp_factor, fe.date, fe.facility_id, fe.invoice_refno " .
+    "FROM billing AS b " .
+    "JOIN codes AS c ON c.code_type = '12' AND c.code = b.code AND c.modifier = b.modifier AND c.cyp_factor > 0 " .
+    "JOIN form_encounter AS fe ON fe.pid = b.pid AND fe.encounter = b.encounter " .
+    "WHERE b.code_type = 'MA' AND b.activity = 1 AND " .
+    "fe.date >= '$from_date 00:00:00' AND fe.date <= '$to_date 23:59:59'";
+    " AND fe.facility_id = '$form_facility'";
+    " ORDER BY b.code, fe.date, fe.id
+
+SELECT s.sale_date, s.quantity, s.pid, s.encounter, " .
+    "d.name, d.cyp_factor, fe.date, fe.facility_id, fe.invoice_refno " .
+    "FROM drug_sales AS s " .
+    "JOIN drugs AS d ON d.drug_id = s.drug_id AND d.cyp_factor > 0 " .
+    "JOIN form_encounter AS fe ON " .
+    "fe.pid = s.pid AND fe.encounter = s.encounter AND " .
+    "fe.date >= '$from_date 00:00:00' AND fe.date <= '$to_date 23:59:59' " .
+    "WHERE s.fee != 0";
+    " AND fe.facility_id = '$form_facility'";
+    " ORDER BY d.name, fe.date, fe.id
+
+SELECT b.pid, b.encounter, SUM(b.fee) AS charges, " .
+    "MAX(fe.date) AS date " .
+    "FROM form_encounter AS fe, billing AS b " .
+    "WHERE fe.date >= '$from_date' AND fe.date <= '$to_date' " .
+    "AND b.pid = fe.pid AND b.encounter = fe.encounter " .
+    "AND b.code_type != 'COPAY' AND b.activity > 0 AND b.fee != 0 " .
+    "GROUP BY b.pid, b.encounter ORDER BY b.pid, b.encounter
+
+-->not sure about the beginning of this one; in interface/reports/clinical_reports
+ left outer join billing as b on b.pid = pd.pid
+            left outer join form_encounter as fe on fe.encounter = b.encounter and b.code_type = 'CPT4'
+            left outer join codes as c on c.code = b.code 
+
+SELECT f.id, f.date, f.pid, f.encounter, f.last_level_billed, " .
+      "f.last_level_closed, f.last_stmt_date, f.stmt_count, f.invoice_refno, " .
+      "p.fname, p.mname, p.lname, p.street, p.city, p.state, " .
+      "p.postal_code, p.phone_home, p.ss, p.genericname2, p.genericval2, " .
+      "p.pubpid, p.DOB, CONCAT(u.lname, ', ', u.fname) AS referrer, " .
+      "( SELECT SUM(b.fee) FROM billing AS b WHERE " .
+      "b.pid = f.pid AND b.encounter = f.encounter AND " .
+      "b.activity = 1 AND b.code_type != 'COPAY' ) AS charges, " .
+      "( SELECT SUM(b.fee) FROM billing AS b WHERE " .
+      "b.pid = f.pid AND b.encounter = f.encounter AND " .
+      "b.activity = 1 AND b.code_type = 'COPAY' ) AS copays, " .
+      "( SELECT SUM(s.fee) FROM drug_sales AS s WHERE " .
+      "s.pid = f.pid AND s.encounter = f.encounter ) AS sales, " .
+      "( SELECT SUM(a.pay_amount) FROM ar_activity AS a WHERE " .
+      "a.pid = f.pid AND a.encounter = f.encounter ) AS payments, " .
+      "( SELECT SUM(a.adj_amount) FROM ar_activity AS a WHERE " .
+      "a.pid = f.pid AND a.encounter = f.encounter ) AS adjustments " .
+      "FROM form_encounter AS f " .
+      "JOIN patient_data AS p ON p.pid = f.pid " .
+      "LEFT OUTER JOIN users AS u ON u.id = p.providerID " .
+      "WHERE $where " .
+      "ORDER BY f.pid, f.encounter
+
+SELECT pid, encounter FROM form_encounter WHERE date >= '$form_date' AND date <= '$form_to_date'
+
+SELECT count(*) AS count FROM form_encounter WHERE " .
+          "pid = '$patient_id' AND encounter = '$encounter_id' AND " .
+          "facility_id = '$form_facility'
+
+"SELECT s.sale_id, s.sale_date, s.quantity, s.fee, s.pid, s.encounter, " .
+    "s.xfer_inventory_id, s.distributor_id, d.name, lo.title, " .
+    "di.drug_id, di.warehouse_id, di.inventory_id, di.destroy_date, di.on_hand, " .
+    "fe.invoice_refno " .
+    "FROM drug_inventory AS di " .
+    "JOIN drugs AS d ON d.drug_id = di.drug_id " .
+    "LEFT JOIN drug_sales AS s ON " .
+    "s.sale_date >= '$from_date' AND s.sale_date <= '$to_date' AND " .
+    "s.drug_id = di.drug_id AND " .
+    "( s.inventory_id = di.inventory_id OR s.xfer_inventory_id = di.inventory_id ) " .
+    "LEFT JOIN list_options AS lo ON lo.list_id = 'warehouse' AND " .
+    "lo.option_id = di.warehouse_id " .
+    "LEFT JOIN form_encounter AS fe ON fe.pid = s.pid AND fe.encounter = s.encounter " .
+   "WHERE ( di.destroy_date IS NULL OR di.destroy_date >= '$form_from_date' )";
+   " ORDER BY d.name, d.drug_id, lo.title, di.warehouse_id, " .
+      "di.inventory_id, s.sale_date, s.sale_id"
+
+SELECT date, reason " .
+    "FROM form_encounter WHERE " .
+    "pid = '$patient_id' " .
+    "ORDER BY date DESC LIMIT 1
+
+SELECT " .
+   "p.pid, p.fname, p.mname, p.lname, p.DOB, p.sex, p.ethnoracial, " .
+   "p.street, p.city, p.state, p.postal_code, " .
+   "count(e.date) AS ecount, max(e.date) AS edate, " .
+   "i1.date AS idate1, i2.date AS idate2, " .
+   "c1.name AS cname1, c2.name AS cname2 " .
+   "FROM patient_data AS p " .
+   "JOIN form_encounter AS e ON " .
+   "e.pid = p.pid AND " .
+   "e.date >= '$from_date 00:00:00' AND " .
+   "e.date <= '$to_date 23:59:59' " .
+   "LEFT OUTER JOIN insurance_data AS i1 ON " .
+   "i1.pid = p.pid AND i1.type = 'primary' " .
+   "LEFT OUTER JOIN insurance_companies AS c1 ON " .
+   "c1.id = i1.provider " .
+   "LEFT OUTER JOIN insurance_data AS i2 ON " .
+   "i2.pid = p.pid AND i2.type = 'secondary' " .
+   "LEFT OUTER JOIN insurance_companies AS c2 ON " .
+   "c2.id = i2.provider " .
+   "GROUP BY p.lname, p.fname, p.mname, p.pid, i1.date, i2.date " .
+   "ORDER BY p.lname, p.fname, p.mname, p.pid, i1.date DESC, i2.date DESC"
+
+SELECT " .
+   "p.fname, p.mname, p.lname, p.street, p.city, p.state, " .
+   "p.postal_code, p.phone_home, p.phone_biz, p.pid, p.pubpid, " .
+   "count(e.date) AS ecount, max(e.date) AS edate, " .
+   "i1.date AS idate1, i2.date AS idate2, " .
+   "c1.name AS cname1, c2.name AS cname2 " .
+   "FROM patient_data AS p ";
+   "JOIN form_encounter AS e ON " .
+   "e.pid = p.pid AND " .
+   "e.date >= '$from_date 00:00:00' AND " .
+   "e.date <= '$to_date 23:59:59' ";
+   "LEFT OUTER JOIN insurance_data AS i1 ON " .
+   "i1.pid = p.pid AND i1.type = 'primary' " .
+   "LEFT OUTER JOIN insurance_companies AS c1 ON " .
+   "c1.id = i1.provider " .
+   "LEFT OUTER JOIN insurance_data AS i2 ON " .
+   "i2.pid = p.pid AND i2.type = 'secondary' " .
+   "LEFT OUTER JOIN insurance_companies AS c2 ON " .
+   "c2.id = i2.provider " .
+   "GROUP BY p.lname, p.fname, p.mname, p.pid, i1.date, i2.date " .
+   "ORDER BY p.lname, p.fname, p.mname, p.pid, i1.date DESC, i2.date DESC";
+
+SELECT po.patient_id, po.encounter_id, po.date_ordered, " .
+    "pd.pubpid, " .
+    "CONCAT(pd.lname, ', ', pd.fname, ' ', pd.mname) AS patient_name, " .
+    "pto.name AS procedure_name, " .
+    "pts.related_code, " .
+    "u1.lname AS provider_lname, u1.fname AS provider_fname, u1.mname AS provider_mname\
+, " .
+    "pr.procedure_report_id, pr.date_report, pr.report_status " .
+    "FROM procedure_order AS po " .
+    "JOIN form_encounter AS fe ON fe.pid = po.patient_id AND fe.encounter = po.encounter_id " .
+    "JOIN patient_data AS pd ON pd.pid = po.patient_id " .
+    "JOIN procedure_report AS pr ON pr.procedure_order_id = po.procedure_order_id " .
+    "JOIN procedure_result AS ps ON ps.procedure_report_id = pr.procedure_report_id " .
+    "AND ps.abnormal != '' AND ps.abnormal != 'no' " .
+    "JOIN procedure_type AS pto ON pto.procedure_type_id = po.procedure_type_id " .
+    "JOIN procedure_type AS pts ON pts.procedure_type_id = ps.procedure_type_id " .
+    "AND pts.related_code != '' " .
+    "LEFT JOIN users AS u1 ON u1.id = po.provider_id " .
+    "WHERE " .
+    "po.date_ordered >= '$from_date' AND po.date_ordered <= '$to_date'";
+
+SELECT count(*) AS count " .
+        "FROM billing AS b, form_encounter AS fe WHERE " .
+        "b.pid = '$patient_id' AND " .
+        "b.code_type = '$codetype' AND " .
+        "b.code = '$code' AND " .
+        "b.activity = 1 AND " .
+        "fe.pid = b.pid AND fe.encounter = b.encounter AND " .
+        "fe.date >= '$date_ordered 00:00:00'
+
+SELECT po.patient_id, po.date_ordered, " .
+    "pd.pubpid, " .
+    "CONCAT(pd.lname, ', ', pd.fname, ' ', pd.mname) AS patient_name, " .
+    "pt1.name AS procedure_name, " .
+    "u1.lname AS provider_lname, u1.fname AS provider_fname, u1.mname AS provider_mname, " .
+    "u2.organization, " .
+    "lop.title AS priority_name, " .
+    "los.title AS status_name, " .
+    "pr.procedure_report_id, pr.date_report, pr.report_status " .
+    "FROM procedure_order AS po " .
+    "JOIN form_encounter AS fe ON fe.pid = po.patient_id AND fe.encounter = po.encounter_id " .
+    "JOIN patient_data AS pd ON pd.pid = po.patient_id " .
+    "LEFT JOIN users AS u1 ON u1.id = po.provider_id " .
+    "LEFT JOIN procedure_type AS pt1 ON pt1.procedure_type_id = po.procedure_type_id " .
+    "LEFT JOIN users AS u2 ON u2.id = pt1.lab_id " .
+    "LEFT JOIN list_options AS lop ON lop.list_id = 'ord_priority' AND lop.option_id = po.order_priority " .
+    "LEFT JOIN list_options AS los ON los.list_id = 'ord_status' AND los.option_id = po.order_status " .
+    "LEFT JOIN procedure_report AS pr ON pr.procedure_order_id = po.procedure_order_id " .
+    "WHERE " .
+    "po.date_ordered >= '$from_date' AND po.date_ordered <= '$to_date' AND " .
+    "( pr.report_status IS NULL OR pr.report_status = 'prelim' )";
+    " AND fe.facility_id = '$form_facility'"
+    " ORDER BY pd.lname, pd.fname, pd.mname, po.patient_id, " .
+    "po.date_ordered, po.procedure_order_id"
+
+SELECT " .
+      "po.patient_id, po.encounter_id, po.date_ordered, " .
+      "po.provider_id, pd.regdate, " .
+      "pd.sex, pd.DOB, pd.lname, pd.fname, pd.mname, " .
+      "pd.contrastart, pd.referral_source$pd_fields, " .
+      "ps.abnormal, ps.procedure_type_id AS result_type, " .
+      "pto.name AS order_name, ptr.name AS result_name, ptr.related_code " .
+      "FROM procedure_order AS po " .
+      "JOIN form_encounter AS fe ON fe.pid = po.patient_id AND fe.encounter = po.encounter_id " .
+      "JOIN patient_data AS pd ON pd.pid = po.patient_id $sexcond" .
+      "JOIN procedure_report AS pr ON pr.procedure_order_id = po.procedure_order_id " .
+      "AND pr.date_report IS NOT NULL " .
+      "JOIN procedure_result AS ps ON ps.procedure_report_id = pr.procedure_report_id " .
+      "AND ps.result_status = 'final' " .
+      "JOIN procedure_type AS pto ON pto.procedure_type_id = po.procedure_type_id " .
+      "JOIN procedure_type AS ptr ON ptr.procedure_type_id = ps.procedure_type_id " .
+      "AND ptr.procedure_type NOT LIKE 'rec' " .
+      "WHERE po.date_ordered IS NOT NULL AND po.date_ordered >= '$from_date' " .
+      "AND po.date_ordered <= '$to_date' ";
+      "ORDER BY fe.pid, fe.encounter, ps.procedure_type_id"
+
+SELECT date, encounter, reason FROM form_encounter " .
+  "WHERE pid = '" . $_GET['p'] . "' " .
+  "ORDER BY date DESC, encounter DESC LIMIT 10
+
+select * from form_encounter where pid='$pid' and id='$id'
+
+SELECT count(*) AS count " .
+    "FROM form_encounter AS fe, forms AS f WHERE " .
+    "fe.pid = '$pid' AND fe.date = '" . date('Y-m-d 00:00:00') . "' AND " .
+    "f.formdir = 'newpatient' AND f.form_id = fe.id AND f.deleted = 0
+
+INSERT INTO form_encounter SET " .
+      "date = '$date', " .
+      "onset_date = '$onset_date', " .
+      "reason = '$reason', " .
+      "facility = '$facility', " .
+      "pc_catid = '$pc_catid', " .
+      "facility_id = '$facility_id', " .
+      "sensitivity = '$sensitivity', " .
+      "referral_source = '$referral_source', " .
+      "pid = '$pid', " .
+      "encounter = '$encounter', " .
+      "provider_id = '$provider_id'"),
+      "newpatient", $pid, $userauthorized, $date
+
+SELECT encounter, sensitivity FROM form_encounter WHERE id = '$id'
+
+UPDATE form_encounter SET " .
+    $datepart .
+    "onset_date = '$onset_date', " .
+    "reason = '$reason', " .
+    "facility = '$facility', " .
+    "pc_catid = '$pc_catid', " .
+    "facility_id = '$facility_id', " .
+    "sensitivity = '$sensitivity', " .
+    "referral_source = '$referral_source' " .
+    "WHERE id = '$id'
+
+SELECT fe.encounter,fe.date,openemr_postcalendar_categories.pc\
+_catname FROM form_encounter AS fe ".
+    " left join openemr_postcalendar_categories on fe.pc_catid=openemr_postcalendar_catagories.pc_catid  WHERE fe.pid = '$pid' order by fe.date desc
+
+SELECT p.fname, p.mname, p.lname, fe.date FROM " .
+  "form_encounter AS fe, forms AS f, patient_data AS p WHERE " .
+  "p.pid = '$pid' AND f.pid = '$pid' AND f.encounter = '$encounter' AND " .
+  "f.formdir = 'newpatient' AND f.deleted = 0 AND " .
+  "fe.id = f.form_id LIMIT 1
+
+select date_format(date_add(date, interval $days day),'%W, %m-%d-%Y') as date from form_encounter where " . "pid = " . $_SESSION['pid'] . " and encounter = " . $_SESSION['encounter']
+
+select t1.fname, t1.mname, t1.lname, " .
+        "t1.sex as gender, " .
+        "t1.DOB, " .
+        "t2.date " .
+        "from patient_data as t1 join form_encounter as t2 on " .
+        "(t1.pid = t2.pid) " .
+        "where t2.pid = ".$pid." and t2.encounter = ".$enc
+
+select t1.form_id, t1.form_name, t1.pid, date_format(t2.date,'%m-%d-%Y') as da\
+te, " .
+        "date_format(t2.date,'%Y%m%d') as datekey, " .
+        "t3.lname, t3.fname, t3.pubpid, date_format(t3.DOB,'%m-%d-%Y') as dob, " .
+        "t2.encounter as enc, " .
+            "t2.reason from " .
+        "forms as t1 join " .
+        "form_encounter as t2 on " .
+        "(t1.pid = t2.pid and t1.encounter = t2.encounter) " .
+        "join patient_data as t3 on " .
+        "(t1.pid = t3.pid) where " .
+        $date_clause .
+        $name_clause .
+        "order by date,pid
+
+SELECT p.fname, p.mname, p.lname, fe.date FROM " .
+      "form_encounter AS fe, forms AS f, patient_data AS p WHERE " .
+      "p.pid = '$pid' AND f.pid = '$pid' AND f.encounter = '$encounter' AND " .
+      "f.formdir = 'newpatient' AND f.deleted = 0 AND " .
+      "fe.id = f.form_id LIMIT 1
+
+SELECT fe.date, opc.pc_catname " .
+  "FROM form_encounter AS fe " .
+  "LEFT JOIN openemr_postcalendar_categories AS opc ON opc.pc_catid = fe.pc_catid " .
+  "WHERE fe.pid = '$pid' AND fe.encounter = '$encounter' LIMIT 1
+
+UPDATE form_encounter SET provider_id = '$main_provid', " .
+    "supervisor_id = '$main_supid'  WHERE " .
+    "pid = '$pid' AND encounter = '$encounter'
+
+SELECT provider_id, supervisor_id FROM form_encounter " .
+  "WHERE pid = '$pid' AND encounter = '$encounter' " .
+  "ORDER BY id DESC LIMIT 1
+
+SELECT date from form_encounter where encounter =" . $GLOBALS{'encounter'}
+
+INSERT INTO form_encounter SET " .
+      "date = '$dos', " .
+      "onset_date = '$dos', " .
+      "reason = '$encounter_reason', " .
+      "facility = '$patient_facility_name', " .
+      "facility_id = '$patient_facility_id', " .
+      "sensitivity = 'normal', " .
+      "pid = '$patient_pid', " .
+      "encounter = '$encounter_id'
+
+SELECT form_encounter.onset_date AS occdate, si.* " .
+  "FROM forms, form_encounter, form_soccer_injury AS si WHERE " .
+  "forms.formdir = 'soccer_injury' AND " .
+  "forms.form_id = '$id' AND " .
+  "si.id = '$id' AND si.activity = '1' AND " .
+  "form_encounter.encounter = forms.encounter AND " .
+  "form_encounter.pid = forms.pid
+
+SELECT form_encounter.onset_date AS occdate, ci.* " .
+  "FROM forms, form_encounter, form_cricket_injury_audit AS ci WHERE " .
+  "forms.formdir = 'cricket_injury_audit' AND " .
+  "forms.form_id = '$id' AND " .
+  "ci.id = '$id' AND ci.activity = '1' AND " .
+  "form_encounter.encounter = forms.encounter AND " .
+  "form_encounter.pid = forms.pid
+
+select * from form_encounter where encounter=$encounte
+
+SELECT form_encounter.onset_date AS occdate, fi.* " .
+  "FROM forms, form_encounter, form_football_injury_audit AS fi WHERE " .
+  "forms.formdir = 'football_injury_audit' AND " .
+  "forms.form_id = '$id' AND " .
+  "fi.id = '$id' AND fi.activity = '1' AND " .
+  "form_encounter.encounter = forms.encounter AND " .
+  "form_encounter.pid = forms.pid
+
+SELECT p.fname, p.mname, p.lname, fe.date FROM " .
+  "form_encounter AS fe, forms AS f, patient_data AS p WHERE " .
+  "p.pid = '$pid' AND f.pid = '$pid' AND f.encounter = '$encounter' AND " .
+  "f.formdir = 'newpatient' AND f.deleted = 0 AND " .
+  "fe.id = f.form_id LIMIT 1"
+
+SELECT e.date, e.facility, " .
+      "u.id, u.lname, u.fname, u.mname, u.upin, " .
+      "f.street, f.city, f.state, f.postal_code, f.pos_code, " .
+      "f.domain_identifier AS clia_code " .
+      "FROM form_encounter AS e " .
+      "LEFT OUTER JOIN forms ON forms.formdir = 'newpatient' AND " .
+      "forms.form_id = e.id AND forms.pid = '$patient_id' " .
+      "LEFT OUTER JOIN users AS u ON u.username = forms.user " .
+      "LEFT OUTER JOIN facility AS f ON f.name = e.facility " .
+      "WHERE e.pid = '$patient_id' AND e.encounter = '$encounter' " .
+      "LIMIT 1
+
+ALTER TABLE form_encounter
+  ADD facility_id int(11) NOT NULL DEFAULT 0;
+
+UPDATE form_encounter, facility
+  SET form_encounter.facility_id = facility.id WHERE
+  facility.name = form_encounter.facility;
+
+SELECT date FROM form_encounter WHERE " .
+    "pid = '$pid' AND encounter = '$encounter'
+
+SELECT d.field_value " .
+    "FROM forms AS f, form_encounter AS fe, lbf_data AS d " .
+    "WHERE f.pid = '$pid' AND " .
+    "f.formdir = '$formname' AND " .
+    "f.deleted = 0 AND " .
+    "fe.pid = f.pid AND fe.encounter = f.encounter AND " .
+    "fe.date <= '$encdate' AND " .
+    "DATE_ADD(fe.date, INTERVAL 14 DAY) > '$encdate' AND " .
+    "d.form_id = f.form_id AND $more
+
+SELECT c.related_code " .
+    "FROM form_encounter AS fe, billing AS b, codes AS c " .
+    "WHERE fe.pid = '$pid' AND fe.date <= '$encdate' AND " .
+    "DATE_ADD(fe.date, INTERVAL 14 DAY) > '$encdate' AND " .
+    "b.pid = fe.pid AND b.encounter = fe.encounter AND b.activity = 1 AND " .
+    "b.code_type = 'MA' AND c.code_type = '12' AND " .
+    "c.code = b.code AND c.modifier = b.modifier " .
+    "ORDER BY fe.date DESC, b.id DESC
+
+SELECT * FROM form_encounter where encounter = '" . $_SESSION['billkey'] .
+            "' and pid = '" . $_SESSION['patient_id'] ."' order by date DESC
+
+SELECT reason FROM form_encounter where encounter = '" . $_SESSION['billkey'] ."' and pid = '" . $_SESSION['patient_id'] ."
+
+SELECT b.pid, b.payer_id, fe.date FROM " .
+      "billing AS b, form_encounter AS fe WHERE " .
+      "b.id = '$key' AND fe.pid = b.pid AND fe.encounter = b.encounter
+
+SELECT facility_id FROM form_encounter where encounter = '$eid' and pid = '$patient_id'
+
+SELECT date,encounter FROM form_encounter
+             where pid ='$patient_code' ORDER BY encounter
+
+SELECT encounter FROM form_encounter WHERE " .
+    "pid = ? AND date = ? ORDER BY encounter DESC LIMIT 1",
+    array($patient_id, "$today 00:00:00
+
+INSERT INTO form_encounter SET date = $today, onset_date = $today, "  .
+      "reason = $reason, facility = $facility, facility_id = $facility_id, pid = $patient_id, encounter = $encounter, " .
+      "provider_id = $provider_id",
+
+select distinct encounter from form_encounter where pid = $pid order by date desc
+
+select date from form_encounter where encounter='$encounter' order by date
+
+select last_level_closed from form_encounter  where
+        pid ='".trim(formData('hidden_patient_code' ))."' and encounter='".trim(formData("HiddenEncounter$CountRow" ))."'
+
+update form_encounter set last_level_closed='".trim(formData(\
+"HiddenIns$CountRow"   ))."' where
+            pid ='".trim(formData('hidden_patient_code' ))."' and encounter='".trim(formData("HiddenEncounter$CountRow" ))."'
+
+SELECT date, last_level_closed " .
+              "FROM form_encounter WHERE " .
+              "pid = '".trim(formData('hidden_patient_code' ))."' AND encounter = '".trim(formData("HiddenEncounter$CountRow" ))."'
+
+SELECT e.date AS dosdate, " .
+      "CONCAT(pd.fname,' ',pd.mname,' ',pd.lname) as patient_name " .
+      "FROM form_encounter AS e, patient_data AS pd " .
+      "WHERE " .
+      "e.encounter = '" . $this->encounter . "' AND " .
+      "e.pid = '" . $this->patient_id . "' AND " .
+      "pd.pid = e.pid
+
+----------------------------------------------------------------------------
+form_misc_billing_options
+
+formFetch("form_misc_billing_options", $id)
+
+formSubmit("form_misc_billing_options", $_POST, $_GET["id"], $userauthorized);
+
+update form_misc_billing_options set pid = {$_SESSION["pid"]},
+    groupname='".$_SESSION["authProvider"]."',
+    user='".$_SESSION["authUser"]."',
+    authorized=$userauthorized,activity=1, date = NOW(),
+    employment_related='".$_POST["employment_related"]."',
+    auto_accident='".$_POST["auto_accident"]."',
+    accident_state='".$_POST["accident_state"]."',
+    other_accident='".$_POST["other_accident"]."',
+    outside_lab='".$_POST["outside_lab"]."',
+    lab_amount='".$_POST["lab_amount"]."',
+    is_unable_to_work='".$_POST["is_unable_to_work"]."',
+    off_work_from='".$_POST["off_work_from"]."',
+    off_work_to='".$_POST["off_work_to"]."',
+    is_hospitalized='".$_POST["is_hospitalized"]."',
+    hospitalization_date_from='".$_POST["hospitalization_date_from"]."',
+    hospitalization_date_to='".$_POST["hospitalization_date_to"]."',
+    medicaid_resubmission_code='".$_POST["medicaid_resubmission_code"]."',
+    medicaid_original_reference='".$_POST["medicaid_original_reference"]."',
+    prior_auth_number='".$_POST["prior_auth_number"]."',
+  replacement_claim='".$_POST["replacement_claim"]."',
+    comments='".$_POST["comments"]."'
+    where id=$id"
+
+SELECT * FROM forms JOIN form_misc_billing_options as fpa on fpa.id = f\
+orms.form_id where forms.encounter = '" . $_SESSION['billkey'] . "' and forms.pid = '" . $_SESSION['patient_id'] . "' and forms.formdir = 'misc_billing_options' order by forms.date
+
+SELECT * FROM forms JOIN form_misc_billing_options as fpa on fpa.id = f\
+orms.form_id where forms.encounter = '" . $_SESSION['billkey'] . "' and forms.pid = '" . $_SESSION['patient_id'] . "' and forms.formdir = 'misc_billing_options' order by forms.date
+
+----------------------------------------------------------------------------
+form_reviewofs
+
+formFetch("form_reviewofs", $id)
+
+formSubmit("form_reviewofs", $_POST, $_GET["id"], $userauthorized)
+
+sqlInsert("update form_reviewofs set pid = {$_SESSION["pid"]},groupname='".$_SESSION["authProvider"]."',user='".$_SESSION["authUser"]."',authorized=$userauthorized,activity=1, date = NOW(), fever='".$_POST["fever"]."', chills='".$_POST["chills"]."', night_sweats='".$_POST["night_sweats"]."', weight_loss='".$_POST["weight_loss"]."', poor_appetite='".$_POST["poor_appetite"]."', insomnia='".$_POST["insomnia"]."', fatigued='".$_POST["fatigued"]."', depressed='".$_POST["depressed"]."', hyperactive='".$_POST["hyperactive"]."', exposure_to_foreign_countries='".$_POST["exposure_to_foreign_countries"]."', cataracts='".$_POST["cataracts"]."', cataract_surgery='".$_POST["cataract_surgery"]."', glaucoma='".$_POST["glaucoma"]."', double_vision='".$_POST["double_vision"]."', blurred_vision='".$_POST["blurred_vision"]."', poor_hearing='".$_POST["poor_hearing"]."', headaches='".$_POST["headaches"]."', ringing_in_ears='".$_POST["ringing_in_ears"]."', bloody_nose='".$_POST["bloody_nose"]."', sinusitis='".$_POST["sinusitis"]."', sinus_surgery='".$_POST["sinus_surgery"]."', dry_mouth='".$_POST["dry_mouth"]."', strep_throat='".$_POST["strep_throat"]."', tonsillectomy='".$_POST["tonsillectomy"]."', swollen_lymph_nodes='".$_POST["swollen_lymph_nodes"]."', throat_cancer='".$_POST["throat_cancer"]."', throat_cancer_surgery='".$_POST["throat_cancer_surgery"]."', heart_attack='".$_POST["heart_attack"]."', irregular_heart_beat='".$_POST["irregular_heart_beat"]."', chest_pains='".$_POST["chest_pains"]."', shortness_of_breath='".$_POST["shortness_of_breath"]."', high_blood_pressure='".$_POST["high_blood_pressure"]."', heart_failure='".$_POST["heart_failure"]."', poor_circulation='".$_POST["poor_circulation"]."', vascular_surgery='".$_POST["vascular_surgery"]."', cardiac_catheterization='".$_POST["cardiac_catheterization"]."', coronary_artery_bypass='".$_POST["coronary_artery_bypass"]."', heart_transplant='".$_POST["heart_transplant"]."', stress_test='".$_POST["stress_test"]."', emphysema='".$_POST["emphysema"]."', chronic_bronchitis='".$_POST["chronic_bronchitis"]."', interstitial_lung_disease='".$_POST["interstitial_lung_disease"]."', shortness_of_breath_2='".$_POST["shortness_of_breath_2"]."', lung_cancer='".$_POST["lung_cancer"]."', lung_cancer_surgery='".$_POST["lung_cancer_surgery"]."', pheumothorax='".$_POST["pheumothorax"]."', stomach_pains='".$_POST["stomach_pains"]."', peptic_ulcer_disease='".$_POST["peptic_ulcer_disease"]."', gastritis='".$_POST["gastritis"]."', endoscopy='".$_POST["endoscopy"]."', polyps='".$_POST["polyps"]."', colonoscopy='".$_POST["colonoscopy"]."', colon_cancer='".$_POST["colon_cancer"]."', colon_cancer_surgery='".$_POST["colon_cancer_surgery"]."', ulcerative_colitis='".$_POST["ulcerative_colitis"]."', crohns_disease='".$_POST["crohns_disease"]."', appendectomy='".$_POST["appendectomy"]."', divirticulitis='".$_POST["divirticulitis"]."', divirticulitis_surgery='".$_POST["divirticulitis_surgery"]."', gall_stones='".$_POST["gall_stones"]."', cholecystectomy='".$_POST["cholecystectomy"]."', hepatitis='".$_POST["hepatitis"]."', cirrhosis_of_the_liver='".$_POST["cirrhosis_of_the_liver"]."', splenectomy='".$_POST["splenectomy"]."', kidney_failure='".$_POST["kidney_failure"]."', kidney_stones='".$_POST["kidney_stones"]."', kidney_cancer='".$_POST["kidney_cancer"]."', kidney_infections='".$_POST["kidney_infections"]."', bladder_infections='".$_POST["bladder_infections"]."', bladder_cancer='".$_POST["bladder_cancer"]."', prostate_problems='".$_POST["prostate_problems"]."', prostate_cancer='".$_POST["prostate_cancer"]."', kidney_transplant='".$_POST["kidney_transplant"]."', sexually_transmitted_disease='".$_POST["sexually_transmitted_disease"]."', burning_with_urination='".$_POST["burning_with_urination"]."', discharge_from_urethra='".$_POST["discharge_from_urethra"]."', rashes='".$_POST["rashes"]."', infections='".$_POST["infections"]."', ulcerations='".$_POST["ulcerations"]."', pemphigus='".$_POST["pemphigus"]."', herpes='".$_POST["herpes"]."', osetoarthritis='".$_POST["osetoarthritis"]."', rheumotoid_arthritis='".$_POST["rheumotoid_arthritis"]."', lupus='".$_POST["lupus"]."', ankylosing_sondlilitis='".$_POST["ankylosing_sondlilitis"]."', swollen_joints='".$_POST["swollen_joints"]."', stiff_joints='".$_POST["stiff_joints"]."', broken_bones='".$_POST["broken_bones"]."', neck_problems='".$_POST["neck_problems"]."', back_problems='".$_POST["back_problems"]."', back_surgery='".$_POST["back_surgery"]."', scoliosis='".$_POST["scoliosis"]."', herniated_disc='".$_POST["herniated_disc"]."', shoulder_problems='".$_POST["shoulder_problems"]."', elbow_problems='".$_POST["elbow_problems"]."', wrist_problems='".$_POST["wrist_problems"]."', hand_problems='".$_POST["hand_problems"]."', hip_problems='".$_POST["hip_problems"]."', knee_problems='".$_POST["knee_problems"]."', ankle_problems='".$_POST["ankle_problems"]."', foot_problems='".$_POST["foot_problems"]."', insulin_dependent_diabetes='".$_POST["insulin_dependent_diabetes"]."', noninsulin_dependent_diabetes='".$_POST["noninsulin_dependent_diabetes"]."', hypothyroidism='".$_POST["hypothyroidism"]."', hyperthyroidism='".$_POST["hyperthyroidism"]."', cushing_syndrom='".$_POST["cushing_syndrom"]."', addison_syndrom='".$_POST["addison_syndrom"]."', additional_notes='".$_POST["additional_notes"]."' where id=$id")
+
+formFetch("form_reviewofs", $_GET["id"])
+
+sqlInsert("update form_reviewofs set pid = {$_SESSION["pid"]},groupname='".$_SESSION["authProvider"]."',user='".$_SESSION["authUser"]."',authorized=$userauthorized,activity=1, date = NOW(), fever='".$_POST["fever"]."', chills='".$_POST["chills"]."', night_sweats='".$_POST["night_sweats"]."', weight_loss='".$_POST["weight_loss"]."', poor_appetite='".$_POST["poor_appetite"]."', insomnia='".$_POST["insomnia"]."', fatigued='".$_POST["fatigued"]."', depressed='".$_POST["depressed"]."', hyperactive='".$_POST["hyperactive"]."', exposure_to_foreign_countries='".$_POST["exposure_to_foreign_countries"]."', cataracts='".$_POST["cataracts"]."', cataract_surgery='".$_POST["cataract_surgery"]."', glaucoma='".$_POST["glaucoma"]."', double_vision='".$_POST["double_vision"]."', blurred_vision='".$_POST["blurred_vision"]."', poor_hearing='".$_POST["poor_hearing"]."', headaches='".$_POST["headaches"]."', ringing_in_ears='".$_POST["ringing_in_ears"]."', bloody_nose='".$_POST["bloody_nose"]."', sinusitis='".$_POST["sinusitis"]."', sinus_surgery='".$_POST["sinus_surgery"]."', dry_mouth='".$_POST["dry_mouth"]."', strep_throat='".$_POST["strep_throat"]."', tonsillectomy='".$_POST["tonsillectomy"]."', swollen_lymph_nodes='".$_POST["swollen_lymph_nodes"]."', throat_cancer='".$_POST["throat_cancer"]."', throat_cancer_surgery='".$_POST["throat_cancer_surgery"]."', heart_attack='".$_POST["heart_attack"]."', irregular_heart_beat='".$_POST["irregular_heart_beat"]."', chest_pains='".$_POST["chest_pains"]."', shortness_of_breath='".$_POST["shortness_of_breath"]."', high_blood_pressure='".$_POST["high_blood_pressure"]."', heart_failure='".$_POST["heart_failure"]."', poor_circulation='".$_POST["poor_circulation"]."', vascular_surgery='".$_POST["vascular_surgery"]."', cardiac_catheterization='".$_POST["cardiac_catheterization"]."', coronary_artery_bypass='".$_POST["coronary_artery_bypass"]."', heart_transplant='".$_POST["heart_transplant"]."', stress_test='".$_POST["stress_test"]."', emphysema='".$_POST["emphysema"]."', chronic_bronchitis='".$_POST["chronic_bronchitis"]."', interstitial_lung_disease='".$_POST["interstitial_lung_disease"]."', shortness_of_breath_2='".$_POST["shortness_of_breath_2"]."', lung_cancer='".$_POST["lung_cancer"]."', lung_cancer_surgery='".$_POST["lung_cancer_surgery"]."', pheumothorax='".$_POST["pheumothorax"]."', stomach_pains='".$_POST["stomach_pains"]."', peptic_ulcer_disease='".$_POST["peptic_ulcer_disease"]."', gastritis='".$_POST["gastritis"]."', endoscopy='".$_POST["endoscopy"]."', polyps='".$_POST["polyps"]."', colonoscopy='".$_POST["colonoscopy"]."', colon_cancer='".$_POST["colon_cancer"]."', colon_cancer_surgery='".$_POST["colon_cancer_surgery"]."', ulcerative_colitis='".$_POST["ulcerative_colitis"]."', crohns_disease='".$_POST["crohns_disease"]."', appendectomy='".$_POST["appendectomy"]."', divirticulitis='".$_POST["divirticulitis"]."', divirticulitis_surgery='".$_POST["divirticulitis_surgery"]."', gall_stones='".$_POST["gall_stones"]."', cholecystectomy='".$_POST["cholecystectomy"]."', hepatitis='".$_POST["hepatitis"]."', cirrhosis_of_the_liver='".$_POST["cirrhosis_of_the_liver"]."', splenectomy='".$_POST["splenectomy"]."', kidney_failure='".$_POST["kidney_failure"]."', kidney_stones='".$_POST["kidney_stones"]."', kidney_cancer='".$_POST["kidney_cancer"]."', kidney_infections='".$_POST["kidney_infections"]."', bladder_infections='".$_POST["bladder_infections"]."', bladder_cancer='".$_POST["bladder_cancer"]."', prostate_problems='".$_POST["prostate_problems"]."', prostate_cancer='".$_POST["prostate_cancer"]."', kidney_transplant='".$_POST["kidney_transplant"]."', sexually_transmitted_disease='".$_POST["sexually_transmitted_disease"]."', burning_with_urination='".$_POST["burning_with_urination"]."', discharge_from_urethra='".$_POST["discharge_from_urethra"]."', rashes='".$_POST["rashes"]."', infections='".$_POST["infections"]."', ulcerations='".$_POST["ulcerations"]."', pemphigus='".$_POST["pemphigus"]."', herpes='".$_POST["herpes"]."', osetoarthritis='".$_POST["osetoarthritis"]."', rheumotoid_arthritis='".$_POST["rheumotoid_arthritis"]."', lupus='".$_POST["lupus"]."', ankylosing_sondlilitis='".$_POST["ankylosing_sondlilitis"]."', swollen_joints='".$_POST["swollen_joints"]."', stiff_joints='".$_POST["stiff_joints"]."', broken_bones='".$_POST["broken_bones"]."', neck_problems='".$_POST["neck_problems"]."', back_problems='".$_POST["back_problems"]."', back_surgery='".$_POST["back_surgery"]."', scoliosis='".$_POST["scoliosis"]."', herniated_disc='".$_POST["herniated_disc"]."', shoulder_problems='".$_POST["shoulder_problems"]."', elbow_problems='".$_POST["elbow_problems"]."', wrist_problems='".$_POST["wrist_problems"]."', hand_problems='".$_POST["hand_problems"]."', hip_problems='".$_POST["hip_problems"]."', knee_problems='".$_POST["knee_problems"]."', ankle_problems='".$_POST["ankle_problems"]."', foot_problems='".$_POST["foot_problems"]."', insulin_dependent_diabetes='".$_POST["insulin_dependent_diabetes"]."', noninsulin_dependent_diabetes='".$_POST["noninsulin_dependent_diabetes"]."', hypothyroidism='".$_POST["hypothyroidism"]."', hyperthyroidism='".$_POST["hyperthyroidism"]."', cushing_syndrom='".$_POST["cushing_syndrom"]."', addison_syndrom='".$_POST["addison_syndrom"]."', additional_notes='".$_POST["additional_notes"]."' where id=$id")
+
+various ALTER TABLES, all in sql/..._upgrade; not sure how important these are
+
+
+----------------------------------------------------------------------------
+form_ros
+
+formFetch("form_ros", $id)
+
+formSubmit("form_rosform", $_POST, $_GET["id"], $userauthorized)
+
+sqlInsert("update form_rosform set pid = {$_SESSION["pid"]},groupname='".$_SESSION["authProvider"]."',user='".$_SESSION["authUser"]."',authorized=$userauthorized,activity=1, date = NOW(), fever='".$_POST["fever"]."', chills='".$_POST["chills"]."', rash='".$_POST["rash"]."', cancer='".$_POST["cancer"]."', acne='".$_POST["acne"]."', eyes_diplopia='".$_POST["eyes_diplopia"]."', eyes_cataracts='".$_POST["eyes_cataracts"]."', eyes_glaucoma='".$_POST["eyes_glaucoma"]."', head_dizziness='".$_POST["head_dizziness"]."', head_syncope='".$_POST["head_syncope"]."', head_headache='".$_POST["head_headache"]."', ear_pain='".$_POST["ear_pain"]."', ear_loss='".$_POST["ear_loss"]."', nose_congestion='".$_POST["nose_congestion"]."', nose_epitaxis='".$_POST["nose_epitaxis"]."', throat_sore='".$_POST["throat_sore"]."', throat_dysphagia='".$_POST["throat_dysphagia"]."', throat_swollen_glands='".$_POST["throat_swollen_glands"]."', respiratory_dyspnea='".$_POST["respiratory_dyspnea"]."', respiratory_rest='".$_POST["respiratory_rest"]."', respiratory_exertion='".$_POST["respiratory_exertion"]."', respiratory_cough='".$_POST["respiratory_cough"]."', respiratory_asthma='".$_POST["respiratory_asthma"]."', cardiac_palpitation='".$_POST["cardiac_palpitation"]."', cardiac_heart_murmur='".$_POST["cardiac_heart_murmur"]."', cardiac_chest_pain='".$_POST["cardiac_chest_pain"]."', cardiac_pleuritic='".$_POST["cardiac_pleuritic"]."', cardiac_htm='".$_POST["cardiac_htm"]."', cardiac_ntg_use='".$_POST["cardiac_ntg_use"]."', hem_lymph_anemia='".$_POST["hem_lymph_anemia"]."', hem_lymph_nightsweats='".$_POST["hem_lymph_nightsweats"]."', gi_nausea='".$_POST["gi_nausea"]."', gi_vomiting='".$_POST["gi_vomiting"]."', gi_diarrhea='".$_POST["gi_diarrhea"]."', gi_constipation='".$_POST["gi_constipation"]."', gi_black_stools='".$_POST["gi_black_stools"]."', gi_blood_stools='".$_POST["gi_blood_stools"]."', gi_pain='".$_POST["gi_pain"]."', gi_abdominal_pain='".$_POST["gi_abdominal_pain"]."', gu_nocturia='".$_POST["gu_nocturia"]."', gu_stream='".$_POST["gu_stream"]."', gu_hematuria='".$_POST["gu_hematuria"]."', gu_pain='".$_POST["gu_pain"]."', gu_incontinence='".$_POST["gu_incontinence"]."', gu_frequency='".$_POST["gu_frequency"]."', gyn_lump='".$_POST["gyn_lump"]."', gyn_checkup='".$_POST["gyn_checkup"]."', gyn_mammogram='".$_POST["gyn_mammogram"]."', sexual='".$_POST["sexual"]."', ortho_pain='".$_POST["ortho_pain"]."', ortho_trauma='".$_POST["ortho_trauma"]."', ortho_neuro='".$_POST["ortho_neuro"]."', endo_diabetes='".$_POST["endo_diabetes"]."', endo_thyroid='".$_POST["endo_thyroid"]."', psych_sleep_problems='".$_POST["psych_sleep_problems"]."', psych_memory_loss='".$_POST["psych_memory_loss"]."', leg_swelling='".$_POST["leg_swelling"]."', leg_numbness='".$_POST["leg_numbness"]."', appearance_nad='".$_POST["appearance_nad"]."', appearance_mild='".$_POST["appearance_mild"]."', appearance_moderate='".$_POST["appearance_moderate"]."', appearance_severe_distress='".$_POST["appearance_severe_distress"]."', skin_moles='".$_POST["skin_moles"]."', skin_rash='".$_POST["skin_rash"]."', head_ent_nl_inspection='".$_POST["head_ent_nl_inspection"]."', head_pharynx_nl='".$_POST["head_pharynx_nl"]."', head_abn_tm='".$_POST["head_abn_tm"]."', head_scleral_icterus='".$_POST["head_scleral_icterus"]."', eyes_pupils_right='".$_POST["eyes_pupils_right"]."', eyes_pupils_left='".$_POST["eyes_pupils_left"]."', fundi_right='".$_POST["fundi_right"]."', fundi_left='".$_POST["fundi_left"]."', vision_fields_normal='".$_POST["vision_fields_normal"]."', vision_fields_abnormal='".$_POST["vision_fields_abnormal"]."', ears_right='".$_POST["ears_right"]."', ears_left='".$_POST["ears_left"]."', ears_hearing_deficit='".$_POST["ears_hearing_deficit"]."', nose_erythema='".$_POST["nose_erythema"]."', nose_discharge='".$_POST["nose_discharge"]."', throat_nl='".$_POST["throat_nl"]."', throat_thyroid_nl='".$_POST["throat_thyroid_nl"]."', throat_thyromegaly='".$_POST["throat_thyromegaly"]."', throat_erytheomatous='".$_POST["throat_erytheomatous"]."', lymph_cervical_right='".$_POST["lymph_cervical_right"]."', lymph_cervical_left='".$_POST["lymph_cervical_left"]."', lymph_axillary_right='".$_POST["lymph_axillary_right"]."', lymph_axillary_left='".$_POST["lymph_axillary_left"]."', lymph_supraclav_right='".$_POST["lymph_supraclav_right"]."', lymph_supraclav_left='".$_POST["lymph_supraclav_left"]."', lymph_inguinal_right='".$_POST["lymph_inguinal_right"]."', lymph_inguinal_left='".$_POST["lymph_inguinal_left"]."', carotid_bruits='".$_POST["carotid_bruits"]."', respiratory_no_distress='".$_POST["respiratory_no_distress"]."', chest_non_tender='".$_POST["chest_non_tender"]."', respiratory_distress='".$_POST["respiratory_distress"]."', respiratory_clear_to_ausc='".$_POST["respiratory_clear_to_ausc"]."', respiratory_splinting='".$_POST["respiratory_splinting"]."', respiratory_rales='".$_POST["respiratory_rales"]."', respiratory_rhonchi='".$_POST["respiratory_rhonchi"]."', respiratory_wheezing='".$_POST["respiratory_wheezing"]."', heart_regular_rate='".$_POST["heart_regular_rate"]."', heart_irregular_rate='".$_POST["heart_irregular_rate"]."', heart_murmur='".$_POST["heart_murmur"]."', heart_gallop='".$_POST["heart_gallop"]."', heart_rub='".$_POST["heart_rub"]."', heart_tachy_brady='".$_POST["heart_tachy_brady"]."', heart_jvd='".$_POST["heart_jvd"]."', heart_grade='".$_POST["heart_grade"]."', heart_sys_dias='".$_POST["heart_sys_dias"]."', breast_right_cystic='".$_POST["breast_right_cystic"]."', breast_left_cystic='".$_POST["breast_left_cystic"]."', abdomen_non_tender='".$_POST["abdomen_non_tender"]."', abdomen_no_organomegaly='".$_POST["abdomen_no_organomegaly"]."', abdomen_guarding='".$_POST["abdomen_guarding"]."', abdomen_rebound='".$_POST["abdomen_rebound"]."', abdomen_bowel_sounds='".$_POST["abdomen_bowel_sounds"]."', abdomen_hepatomegaly='".$_POST["abdomen_hepatomegaly"]."', rectal_prostate='".$_POST["rectal_prostate"]."', rectal_hemmocult='".$_POST["rectal_hemmocult"]."', rectal_tender='".$_POST["rectal_tender"]."', rectal_hemmorrhoids='".$_POST["rectal_hemmorrhoids"]."', genitalia_hernia='".$_POST["genitalia_hernia"]."', genitalia_ext_vagina='".$_POST["genitalia_ext_vagina"]."', genitalia_male='".$_POST["genitalia_male"]."', speculum='".$_POST["speculum"]."', palpation='".$_POST["palpation"]."', uterus='".$_POST["uterus"]."', adnexa_right='".$_POST["adnexa_right"]."', adnexa_left='".$_POST["adnexa_left"]."', neuro_exam_cns='".$_POST["neuro_exam_cns"]."', neuro_exam_oriented='".$_POST["neuro_exam_oriented"]."', neuro_exam_confused='".$_POST["neuro_exam_confused"]."', neuro_exam_mmse='".$_POST["neuro_exam_mmse"]."', muscle_strength='".$_POST["muscle_strength"]."', reflexes_rue='".$_POST["reflexes_rue"]."', reflexes_rle='".$_POST["reflexes_rle"]."', reflexes_lue='".$_POST["reflexes_lue"]."', reflexes_lle='".$_POST["reflexes_lle"]."', vibration='".$_POST["vibration"]."', sensation='".$_POST["sensation"]."', babinski='".$_POST["babinski"]."', edema='".$_POST["edema"]."', varicosities='".$_POST["varicosities"]."', nails='".$_POST["nails"]."', joints_neck='".$_POST["joints_neck"]."', joints_shoulder_right='".$_POST["joints_shoulder_right"]."', joints_sholder_left='".$_POST["joints_sholder_left"]."', joints_elbow_right='".$_POST["joints_elbow_right"]."', joints_elbow_left='".$_POST["joints_elbow_left"]."', joints_wrist_right='".$_POST["joints_wrist_right"]."', joints_wrist_left='".$_POST["joints_wrist_left"]."', joints_hand_right='".$_POST["joints_hand_right"]."', joints_hand_left='".$_POST["joints_hand_left"]."', joints_hip_right='".$_POST["joints_hip_right"]."', joints_hip_left='".$_POST["joints_hip_left"]."', joints_back_right='".$_POST["joints_back_right"]."', joints_back_left='".$_POST["joints_back_left"]."', joints_slr_right='".$_POST["joints_slr_right"]."', joints_slr_left='".$_POST["joints_slr_left"]."', joints_knee_right='".$_POST["joints_knee_right"]."', joints_knee_left='".$_POST["joints_knee_left"]."', joints_ankle_right='".$_POST["joints_ankle_right"]."', joints_ankle_left='".$_POST["joints_ankle_left"]."', joints_foot_right='".$_POST["joints_foot_right"]."', joints_foot_left='".$_POST["joints_foot_left"]."', conclusions_impression='".$_POST["conclusions_impression"]."', conclusions_discussion='".$_POST["conclusions_discussion"]."', conclusions_treatment='".$_POST["conclusions_treatment"]."', conclusions_breast_self_exam='".$_POST["conclusions_breast_self_exam"]."', conclusions_flex_sig_colonoscopy='".$_POST["conclusions_flex_sig_colonoscopy"]."', conclusions_mammography='".$_POST["conclusions_mammography"]."', conclusions_cholesterol_teaching='".$_POST["conclusions_cholesterol_teaching"]."', conclusions_advance_directive='".$_POST["conclusions_advance_directive"]."', follow_up='".$_POST["follow_up"]."' where id=$id")
+
+
+----------------------------------------------------------------------------
+form_vitals
+
+SELECT * FROM form_vitals WHERE " .
+  "pid = $patient_id AND date <= $refer_date " .
+  "ORDER BY date DESC LIMIT 1
+
+SELECT * FROM form_vitals WHERE pid=$pid
+
+SELECT date, id FROM form_vitals WHERE pid=? ORDER BY date DESC", array($pid)
+
+SELECT t1.* FROM form_vitals as t1 join forms as t2 on (t1.id = t2.form_id) WHERE t2.encounter = '$last_encounter_id' and t1.pid=".$_SESSION['pid']." and t2.form_name like 'Vitals'
+
+select * from form_vitals where id = " .
+                    $results1['form_id']
+
+SELECT * from form_vitals where id != $form_id and pid = ".$GLOBALS['pid']
+
+--->interface/forms/vitalsM/FormVitalsM.class.php $this->_table = "form_vital M"
+
+update form_vitals set `pid` = {$_SESSION["pid"]}
+
+
+----------------------------------------------------------------------------
+history_data
+
+select $given from history_data where pid=$pid order by date DESC limit 0,1
+
+row_delete("history_data"   , "pid = '$patient'")
+
+SELECT date, " .
+      "usertext16 AS genobshist, " .
+      "usertext17 AS genabohist " .
+      "FROM history_data WHERE pid = '$last_pid' " .
+      "ORDER BY date DESC LIMIT 1
+
+-->in interface/reports/clinical_reports.php
+hd.date AS history_data_date,
+            hd.tobacco AS history_data_tobacco,
+            hd.alcohol AS history_data_alcohol,
+            hd.recreational_drugs AS history_data_recreational_drugs
+. . .
+ left outer join history_data as hd on hd.pi\
+d   =  pd.pid
+
+select * from (".$sqlstmt." ".$whr_stmt." ".$odrstmt.",histor\
+y_data_date desc) a group by patient_id
+
+select * from history_data where pid=$pid
+
+insert into transaction_metadata_de_identification (table_name,col_name,include_in_de_identification) select table_name, col_name, include_in_de_identification from metadata_de_identification where table_name = "patient_data" || table_name = "history_data" || table_name = "lists" || table_name = "immunizations" || table_name = "prescriptions" || table_name = "transactions" || table_name = "insurance_data" || table_name = "billing" || table_name = "payments"
+
+insert into history_data set pid = $pid, date = NOW()
+
+insert into history_data set `date` = NOW(), $key = ?
+
+select * from history_data where pid='$pid' order by date ASC
+
+
+
+----------------------------------------------------------------------------
+lists
+
+SELECT id, type, title, begdate FROM lists WHERE pid = $patient_id ORDER BY type, begdate
+
+select $cols from lists where id=$id order by date DESC limit 0,1
+
+SELECT lists.date, lists.pid, lists.type, lists.title as proc_title, lists.diagnosis, lists.outcome, lists.groupname, form_encounter.onset_date, form_encounter.encounter, lists.comments, facility.city, facility.street, facility.state, users.title, users.fname, users.lname from lists left join issue_encounter on issue_encounter.list_id = lists.id left join form_encounter on form_encounter.encounter = issue_encounter.encounter left join facility on form_encounter.facility_id = facility.id left join users on form_encounter.provider_id = users.id where lists.type = 'surgery' and lists.pid=$pid
+
+select fe.encounter, fe.reason, fe.provider_id, u.title, u.fname, u.lname, fe.facility_id, f.street, f.city, f.state, ie.list_id, l.pid, l.title as prob_title, l.diagnosis, l.outcome, l.groupname, l.begdate, l.enddate, l.type, l.comments , l.date, cd.code_text from lists as l left join issue_encounter as ie on ie.list_id = l.id left join form_encounter as fe on fe.encounter = ie.encounter left join facility as f on fe.facility_id = f.id left join users as u on fe.provider_id = u.id left join codes as cd on cd.code = SUBSTRING(l.diagnosis, LOCATE(':',l.diagnosis)+1) where l.type = 'medical_problem' and l.pid=$pid
+
+INSERT INTO lists ( " .
+    "date, pid, type, title, activity, comments, begdate, user, groupname " .
+    ") VALUES ( " .
+    "NOW(), "                               .
+    "'$thispid', "                          .
+    "'ippf_gcac', "                         .
+    "'" . xl('Auto-generated')      . "', " .
+    "1, "                                   .
+    "'', "                                  .
+    "'" . date('Y-m-d')             . "', " .
+    "'" . $_SESSION['authUser']     . "', " .
+    "'" . $_SESSION['authProvider'] . "' "  .
+   ")
+
+SELECT * FROM lists WHERE pid = $pid " .
+  "ORDER BY type, date
+
+SELECT type, title, begdate " .
+      "FROM lists WHERE " .
+      "id = $list_id " .
+      "LIMIT 1
+
+SELECT title FROM lists WHERE id = $issue
+
+SELECT lists.type, lists.title, lists.beg\
+date " .
+                                    "FROM issue_encounter, lists WHERE " .
+                                    "issue_encounter.pid = $pid AND " .
+                                    "issue_encounter.encounter = $encounter AND " .
+                                    "lists.id = issue_encounter.list_id " .
+                                    "ORDER BY lists.type, lists.begdate", array
+
+SELECT l.id, l.title, l.begdate, ie.pid " .
+    "FROM lists AS l " .
+    "LEFT JOIN issue_encounter AS ie ON ie.pid = l.pid AND " .
+    "ie.encounter = '$inv_encounter' AND ie.list_id = l.id " .
+    "WHERE l.pid = '$pid' AND " .
+    "l.activity = 1 AND l.type = 'ippf_gcac' " .
+    "ORDER BY ie.pid DESC, l.begdate DESC LIMIT 1
+
+SELECT type, title, comments, diagnosis " .
+     "FROM lists WHERE id = '$rowid'
+
+row_delete("lists"          , "pid = '$patient'")
+
+row_delete("lists", "id = '$issue'")
+
+SELECT type, title, comments, diagnosis " .
+     "FROM lists WHERE id = '$rowid
+
+SELECT * FROM lists WHERE pid = $pid " .
+                    "ORDER BY type, begdate
+
+SELECT id, title FROM lists WHERE " .
+    "pid = $pid AND enddate IS NULL ORDER BY begdate DESC LIMIT 1
+
+UPDATE lists SET returndate = $returndate WHERE " .
+            "id = $form_issue_id
+
+SELECT * FROM lists WHERE pid = $pid AND type = $key AND ";
+     "enddate IS NULL ";
+     "ORDER BY begdate
+
+UPDATE lists SET " .
+    "type = '"        . $text_type                  . "', " .
+    "title = '"       . $_POST['form_title']        . "', " .
+    "comments = '"    . $_POST['form_comments']     . "', " .
+    "begdate = "      . QuotedOrNull($form_begin)   . ", "  .
+    "enddate = "      . QuotedOrNull($form_end)     . ", "  .
+    "returndate = "   . QuotedOrNull($form_return)  . ", "  .
+    "diagnosis = '"   . $_POST['form_diagnosis']    . "', " .
+    "occurrence = '"  . $_POST['form_occur']        . "', " .
+    "classification = '" . $_POST['form_classification'] . "', " .
+    "reinjury_id = '" . $_POST['form_reinjury_id']  . "', " .
+    "referredby = '"  . $_POST['form_referredby']   . "', " .
+    "injury_grade = '" . $_POST['form_injury_grade'] . "', " .
+    "injury_part = '" . $form_injury_part           . "', " .
+    "injury_type = '" . $form_injury_type           . "', " .
+    "outcome = '"     . $_POST['form_outcome']      . "', " .
+    "destination = '" . $_POST['form_destination']   . "', " .
+    "reaction ='"     . $_POST['form_reaction']     . "' " .
+    "WHERE id = '$issue'
+
+INSERT INTO lists ( " .
+    "date, pid, type, title, activity, comments, begdate, enddate, returndate, \
+" .
+    "diagnosis, occurrence, classification, referredby, user, groupname, " .
+    "outcome, destination, reinjury_id, injury_grade, injury_part, injury_type,\
+ " .
+    "reaction " .
+    ") VALUES ( " .
+    "NOW(), " .
+    "'$thispid', " .
+    "'" . $text_type                 . "', " .
+    "'" . $_POST['form_title']       . "', " .
+    "1, "                            .
+    "'" . $_POST['form_comments']    . "', " .
+    QuotedOrNull($form_begin)        . ", "  .
+    QuotedOrNull($form_end)          . ", "  .
+    QuotedOrNull($form_return)       . ", "  .
+    "'" . $_POST['form_diagnosis']   . "', " .
+    "'" . $_POST['form_occur']       . "', " .
+    "'" . $_POST['form_classification'] . "', " .
+    "'" . $_POST['form_referredby']  . "', " .
+    "'" . $$_SESSION['authUser']     . "', " .
+    "'" . $$_SESSION['authProvider'] . "', " .
+    "'" . $_POST['form_outcome']     . "', " .
+    "'" . $_POST['form_destination'] . "', " .
+    "'" . $_POST['form_reinjury_id'] . "', " .
+    "'" . $_POST['form_injury_grade'] . "', " .
+    "'" . $form_injury_part          . "', " .
+    "'" . $form_injury_type          . "', " .
+    "'" . $_POST['form_reaction']         . "' " .
+    ")
+
+SELECT * FROM lists WHERE id = $issue
+
+SELECT id, begdate, title " .
+   "FROM lists WHERE " .
+   "pid = '$thispid' AND " .
+   "type = 'football_injury' AND " .
+   "activity = 1 " .
+   "ORDER BY begdate DESC
+
+SELECT " .
+    "l.id, l.type, l.begdate, l.enddate, l.title, l.diagnosis, " .
+    "c.prev_method, c.new_method, c.reason_chg, c.reason_term, " .
+    "c.hor_history, c.hor_lmp, c.hor_flow, c.hor_bleeding, c.hor_contra, " .
+    "c.iud_history, c.iud_lmp, c.iud_pain, c.iud_upos, c.iud_contra, " .
+    "c.sur_screen, c.sur_anes, c.sur_type, c.sur_post_ins, c.sur_contra, " .
+    "c.nat_reason, c.nat_method, c.emg_reason, c.emg_method, " .
+    "g.client_status, g.in_ab_proc, g.ab_types, g.ab_location, g.pr_status, " .
+    "g.gest_age_by, g.sti, g.prep_procs, g.reason, g.exp_p_i, g.ab_contraind, " .
+    "g.screening, g.pre_op, g.anesthesia, g.side_eff, g.rec_compl, g.post_op, " .
+    "g.qc_ind, g.contrameth, g.fol_compl " .
+    "FROM lists AS l " .
+    "LEFT JOIN lists_ippf_con  AS c ON l.type = 'contraceptive' AND c.id = l.id " .
+    "LEFT JOIN lists_ippf_gcac AS g ON l.type = 'ippf_gcac' AND g.id = l.id " .
+    "WHERE l.pid = '$pid' " .
+    "ORDER BY l.begdate
+
+SELECT l.begdate, c.new_method " .
+      "FROM lists AS l, lists_ippf_con AS c WHERE " .
+      "l.pid = '$last_pid' AND c.id = l.id " .
+      "ORDER BY l.begdate DESC LIMIT 1
+
+SELECT $what " .
+    "FROM lists AS l " .
+    "JOIN lists_ippf_gcac AS lg ON l.type = 'ippf_gcac' AND lg.id = l.id " .
+    "LEFT JOIN issue_encounter AS ie ON ie.pid = '$patient_id' AND " .
+    "ie.encounter = '$encounter_id' AND ie.list_id = l.id " .
+    "$morejoins " .
+    "WHERE l.pid = '$patient_id' AND " .
+    "l.activity = 1 AND l.type = 'ippf_gcac' " .
+    "ORDER BY ie.pid DESC, ABS(DATEDIFF(l.begdate, '$encdate')) ASC " .
+    "LIMIT 1
+
+SELECT COUNT(*) AS count " .
+      "FROM lists AS l " .
+      "JOIN issue_encounter AS ie ON ie.pid = '$patient_id' AND " .
+      "ie.encounter = '$encounter_id' AND ie.list_id = l.id " .
+      "WHERE l.pid = '$patient_id' AND " .
+      "l.activity = 1 AND l.type = 'ippf_gcac'
+
+SELECT " .
+        "l.type, l.begdate, l.pid, " .
+        "pd.sex, pd.DOB, pd.lname, pd.fname, pd.mname, pd.userlist5, " .
+        "pd.country_code, pd.status, pd.state, pd.occupation, " .
+        "lg.client_status, lg.ab_location " .
+        "FROM lists AS l " .
+        "JOIN patient_data AS pd ON pd.pid = l.pid $sexcond" .
+        "LEFT OUTER JOIN lists_ippf_gcac AS lg ON l.type = 'ippf_gcac' AND lg.i
+d = l.id " .
+        "WHERE l.begdate >= '$from_date' AND l.begdate <= '$to_date' AND " .
+        "l.activity = 1 AND l.type = 'ippf_gcac' " .
+        "ORDER BY l.pid, l.id
+
+SELECT lc.new_method " .
+          "FROM lists AS l, lists_ippf_con AS lc WHERE " .
+          "l.pid = '$last_pid' AND l.begdate <= '$from_date' AND " .
+          "( l.enddate IS NULL OR l.enddate > '$from_date' ) AND " .
+          "l.activity = 1 AND l.type = 'contraceptive' AND lc.id = l.id " .
+          "ORDER BY l.begdate DESC LIMIT 1
+
+SELECT lists.id AS listid, lists.diagnosis, lists.pid, " .
+            "lists.extrainfo AS gmissed, lists.begdate, lists.enddate, " .
+            "lists.returndate, lists.title, lists.type, " .
+            "pd.lname, pd.fname, pd.mname, pd.fitness " .
+            "FROM lists " .
+            "JOIN patient_data AS pd ON pd.pid = lists.pid AND ( $squadmatches ) " .
+            "WHERE ( lists.enddate IS NULL OR lists.enddate >= '$from_date' ) AND " .
+            "( lists.begdate IS NULL OR lists.begdate <= '$to_date' )" .
+            "$issuetypematches " .
+            "ORDER BY pd.lname, pd.fname, pd.mname, lists.pid, lists.begdate
+
+SELECT id, type, title, begdate FROM lists WHERE " .
+  "pid = $plid AND enddate IS NULL " .
+  "ORDER BY type, begdate
+
+SELECT l.id, l.title, l.begdate, ie.pid " .
+      "FROM lists AS l " .
+      "LEFT JOIN issue_encounter AS ie ON ie.pid = l.pid AND " .
+      "ie.encounter = '$encounter' AND ie.list_id = l.id " .
+      "WHERE l.pid = '$patient_id' AND " .
+      "l.activity = 1 AND l.type = 'ippf_gcac' " .
+      "ORDER BY ie.pid DESC, l.begdate DESC LIMIT 1
+
+l.id as issueid, l.title as issuetitle ".
+  "from lists l, patient_data p, codes c ".
+  "where ".
+  "c.reportable=1 and ".
+  "l.id not in (select lists_id from syndromic_surveillance) and " .
+  "l.date >= '$from_date'
+  "l.date <= '$to_date
+  "l.pid=p.pid and ".
+  $query_codes .
+  "l.diagnosis LIKE 'ICD9:%' and ".
+  "substring(l.diagnosis,6) = c.code
+
+--->interface/reports/clinical_reports
+$sqlstmt." left outer join lists as li on li.pid  = pd.pid "
+
+SELECT lists.id AS listid, lists.diagnosis, lists.pid, " .
+            "lists.extrainfo AS gmissed, lists.begdate, lists.enddate, " .
+            "lists.returndate, lists.title, fia.*, pd.lname, pd.fname, pd.mname " .
+            "FROM lists " .
+            "JOIN patient_data AS pd ON pd.pid = lists.pid AND ( $squadmatches ) " .
+            "JOIN issue_encounter AS ie ON ie.list_id = lists.id " .
+            "JOIN forms ON forms.pid = ie.pid AND forms.encounter = ie.encounter " .
+            "AND forms.formdir = 'football_injury_audit' " .
+            "JOIN form_football_injury_audit as fia ON fia.id = forms.form_id " .
+            "WHERE ( lists.enddate IS NULL OR lists.enddate >= '$from_date' ) AND " .
+            "lists.begdate <= '$to_date' AND " .
+            "lists.type = 'medical_problem' AND lists.title NOT LIKE '%Illness%'" .
+            "ORDER BY lists.pid, lists.begdate
+
+SELECT lists.id AS listid, lists.diagnosis, lists.pid, " .
+      "lists.extrainfo AS gmissed, lists.begdate, lists.enddate, " .
+      "lists.returndate, lists.title, lfi.*, pd.lname, pd.fname, pd.mname " .
+      "FROM lists " .
+      "JOIN lists_football_injury AS lfi ON lfi.id = lists.id " .
+      "JOIN patient_data AS pd ON pd.pid = lists.pid AND ( $squadmatches ) " .
+      "WHERE ( lists.enddate IS NULL OR lists.enddate >= '$from_date' ) AND " .
+      "lists.begdate <= '$to_date' AND lists.type = 'football_injury' " .
+      "ORDER BY lists.pid, lists.begdate
+
+ELECT df.issue_id, l.diagnosis " .
+            "FROM daily_fitness AS df " .
+            "LEFT JOIN lists AS l ON l.id = df.issue_id " .
+            "WHERE df.pid = '$patient_id' AND df.date <= '$date' " .
+            "ORDER BY df.date DESC LIMIT 1
+
+SELECT df.issue_id, l.diagnosis " .
+            "FROM daily_fitness AS df " .
+            "LEFT JOIN lists AS l ON l.id = df.issue_id " .
+            "WHERE df.pid = '$patient_id' AND df.date = '$date'
+
+SELECT lists.diagnosis, lists.pid, lists.type, " .
+    "lists.extrainfo AS gmissed, " .
+    "lists.begdate, lists.enddate, lists.returndate, " .
+    "pd.lname, pd.fname, pd.mname " .
+    "FROM lists " .
+    "JOIN patient_data AS pd ON pd.pid = lists.pid " .
+    "WHERE ( lists.returndate IS NULL OR lists.returndate >= '$from_date' ) AND
+ " .
+    "( lists.begdate IS NULL OR lists.begdate <= '$to_date' )" .
+    "ORDER BY pd.lname, pd.fname, pd.mname, lists.pid, lists.begdate
+
+SELECT type, title FROM lists WHERE pid = '$plid' " .
+    "AND activity = 1 ORDER BY type, begdate
+
+SELECT id, type, title, begdate FROM lists WHERE " .
+  "pid = $pid AND enddate IS NULL " .
+  "ORDER BY type, begdate
+
+SELECT list_id " .
+    "FROM issue_encounter, lists WHERE " .
+    "issue_encounter.pid = '$pid' AND " .
+    "issue_encounter.encounter = '$encounter' AND " .
+    "lists.id = issue_encounter.list_id AND " .
+    "lists.type = 'medical_problem' AND " .
+    "lists.title NOT LIKE '%Illness%'
+
+SELECT id, type, title, begdate FROM lists WHERE \
+" .
+            "pid = $patient_id " . 
+                "ORDER BY type, begdate
+
+SELECT id FROM lists WHERE id = " . $meds['id']
+
+INSERT INTO lists SET " .
+      "date = NOW(), "     .
+      "pid  = '$pid', " .
+      "type = '$type', " .
+      "title = '" . $fields['title'] . "', " .
+      "activity = 1," .
+      "user = '"  . $$_SESSION['authUser']     . "', " .
+      "groupname = '" . $$_SESSION['authProvider'] . "', "  .
+      "outcome = '', " .
+      "destination = '', " .
+      "frequency = '" . $fields['frequency'] . "', " .
+      "dosage = '" . $fields['dosage'] . "', " .
+      "duration = '" . $fields['duration'] . "'
+
+update lists SET " .
+  "date = NOW(), "     .
+  "pid  = '$pid', " .
+  "type = '$type', " .
+  "title = '" . $fields['title'] . "', " .
+  "activity = 1," .
+  "user = '"  . $$_SESSION['authUser']     . "', " .
+  "groupname = '" . $$_SESSION['authProvider'] . "', "  .
+  "outcome = '', " .
+  "destination = '', " .
+  "frequency = '" . $fields['frequency'] . "', " .
+  "dosage = '" . $fields['dosage'] . "', " .
+  "duration = '" . $fields['duration'] . "' "  .
+  "WHERE id = " . $fields['id']
+
+UpdateTable("lists", "pid", $otherPID, $masterPID);
+
+insert into transaction_metadata_de_identification (table_name,col_name,include_in_de_identification) select table_name, col_name, include_in_de_identification from metadata_de_identification where table_name = "patient_data" || table_name = "history_data" || table_name = "lists" || table_name = "immunizations" || table_name = "prescriptions" || table_name = "transactions" || table_name = "insurance_data" || table_name = "billing" || table_name = "payments"
+
+insert into t1 (pid) select pid from listswhere diagnosis = subString and begdate >= startDate and begdate<= endDate
+
+nsert into t1 (pid) select pid from listswhere begdate >= startDate and begdate<= endDate
+
+insert into t1 (pid) select pid from listswhere type = "medication" and title = subString and begdate >= startDate and begdate <= endDate
+
+insert into t1 (pid) select pid from listswhere type = "medication" and begdate >= startDate and begdate <= endDate
+
+UPDATE lists AS l, lists_football_injury AS i SET l.extrainfo = i.fiside WHERE i.id = l.id
+
+SELECT * FROM lists WHERE " .
+  "pid = $pid AND type = $type AND activity = 1 AND enddate IS NULL " .
+  "ORDER BY begdate DESC
+
+select $cols from lists where id='$id' order by date DESC limit 0,1
+
+select $cols from lists where pid='$pid' and type='$type' and activity='$active' order by date DESC
+
+insert into lists (date, pid, type, title, activity, comments, user, groupname) values (NOW(), '$pid', '$type', '$title', '$activity', '$comments', '".$_SESSION['authUser']."', '".$_SESSION['authProvider']."')
+
+update lists set activity = '0' where id='$id'
+
+update lists set activity = '1' where id='$id'
+
+select * from lists where id='$id' order by date ASC
+
+select * from lists where pid='$pid' and type='$list_type' and activity like '$list_activity' order by date
+
+SELECT title, comments FROM lists WHERE " .
+      "pid = ? AND type = 'allergy' AND enddate IS NULL " .
+      "ORDER BY begdate
+
+select id from lists where type = 'medication' and activity = 1 and (enddate is null or cast(now() as date) < enddate) and upper(trim(title)) = upper(trim('" . add_escape_custom($this->drug) . "')) and pid = " . add_escape_custom($this->patient->id) . ' limit 1
+
+select id from lists where type = 'medication' and activity = 0 and (enddate is null or cast(now() as date) < enddate) and upper(trim(title)) = upper(trim('" . add_escape_custom($this->drug) . "')) and pid = " . add_escape_custom($this->patient->id) . ' limit 1
+
+update lists set activity = 1'
+                            . " ,user = '" . $$_SESSION['authUser']
+                            . "', groupname = '" . $$_SESSION['authProvider']
+ "' where id = " . $dataRow['id']
+
+pdate lists set activity = 0'
+                            . " ,user = '" . $$_SESSION['authUser']
+                            . "', groupname = '" . $$_SESSION['authProvider'] .
+ "' where id = " . $dataRow['id']
+
+
+----------------------------------------------------------------------------
+log
+
+SELECT $cols FROM log WHERE date >= '$date 00:00:00' AND date <= '$date 23:59:59'
+
+select distinct LEFT(date,10) as date from log order by date desc limit 30
+
+select distinct event from log order by event ASC
+
+select user, date, comments from log where event like 'login' and comments like '%".$ip."' order by date desc limit 1
+
+select distinct LEFT(date,10) as date from log order by date desc limit 30
+
+select distinct event from log order by event ASC
+
+select user, date, comments from log where event like 'login' and comments like '%".$ip."' order by date desc limit 1
+
+insert into log ( date, event, user, groupname, success, comments, \
+crt_user) " .
+            "values ( NOW(), " . $adodb->qstr($event) . "," . $adodb->qstr($user) .
+            "," . $adodb->qstr($groupname) . "," . $adodb->qstr($success) . ", .
+            $adodb->qstr($comments) ."," .
+            $adodb->qstr($crt_user)
+
+--->what is this function?
+stripos($statement, "insert into log") !== FALSE)
+
+stripos($statement, "insert into log")
+
+insert into log (date, event, user, groupname, comments, patient_id\
+, success, checksum,crt_user) " .
+         "values ( NOW(), " .
+         $adodb->qstr($event) . ", " .
+         $adodb->qstr($user) . "," .
+         $adodb->qstr($group) . "," .
+         $adodb->qstr($comments) . "," .
+         $adodb->qstr($pid) . "," .
+         $adodb->qstr($success) . "," .
+         $adodb->qstr($checksum) . "," .
+         $adodb->qstr($_SERVER['SSL_CLIENT_S_DN_CN']) .")";
+
+
+----------------------------------------------------------------------------
+patient_data
+
+SELECT pt.pharmacy_id FROM prescriptions AS rx, patient_data AS pt WHERE rx.id = $id AND pt.pid = rx.patient_id
+
+SELECT street, city, state, postal_code, phone_home, phone_cell, phone_biz, addr from patient+data where pid = $pid
+
+SELECT p.pubpid, p.ss, p.lname, p.fname, p.mname, p.DOB, p.street, p.city, p.state, p.postal_code, p.phone_home, p.phone_biz, p.status, p.sex, e.name FROM patient_data AS p LEFT OUTER JOIN employer_data AS e ON e.pid = $patient_id LIMIT 1
+
+SELECT pd.pid, pd.pubpid, pd.fname, pd.mname, pd.lname, pd.ss, pd.DOB, ct.ct_userid, ct.ct_location, ct.ct_when FROM patient_data AS pd LEFT OUTER JOIN chart_tracker AS ct ON ct.ct_pid = pd.pid WHERE pd.pubpid = $form_newid ORDER BY pd.pid ASC, ct.ct_when DESC LIMIT 1
+
+
+SELECT p.pubpid, p.fname, p.mname, p.lname, p.DOB, p.providerID,p.ss, p.street, p.city, p.state, p.postal_code, p.phone_home, p.sex, i1.policy_number AS policy1, i1.group_number AS group1, i1.provider as provider1, i1.subscriber_fname AS fname1, i1.subscriber_mname AS mname1, i1.subscriber_lname AS lname1, i1.subscriber_street AS sstreet1, i1.subscriber_city AS scity1, i1.subscriber_state AS sstate1, i1.subscriber_postal_code AS szip1, i1.subscriber_relationship AS relationship1, c1.name AS name1, c1.freeb_type AS instype1, a1.line1 AS street11, a1.line2 AS street21, a1.city AS city1, a1.state AS state1, a1.zip AS zip1, a1.plus_four AS zip41, i2.policy_number AS policy2, i2.group_number AS group2, i2.provider as provider2, i2.subscriber_fname AS fname2, i2.subscriber_mname AS mname2, i2.subscriber_lname AS lname2, i2.subscriber_relationship AS relationship2, c2.name AS name2, c2.freeb_type AS instype2, a2.line1 AS street12, a2.line2 AS street22, a2.city AS city2, a2.state AS state2, a2.zip AS zip2, a2.plus_four AS zip42 FROM patient_data AS p LEFT OUTER JOIN insurance_data AS i1 ON i1.id = '" . $insrow[0]['id'] . "' LEFT OUTER JOIN insurance_data AS i2 ON i2.id = '" . $insrow[1]['id'] . "' LEFT OUTER JOIN insurance_companies AS c1 ON c1.id = i1.provider LEFT OUTER JOIN insurance_companies AS c2 ON c2.id = i2.provider LEFT OUTER JOIN addresses AS a1 ON a1.foreign_id = c1.id LEFT OUTER JOIN addresses AS a2 ON a2.foreign_id = c2.id WHERE p.pid = '$pid' LIMIT 1
+
+
+SELECT p.pubpid, p.fname, p.mname, p.lname, p.DOB, p.providerID, p.ss, p.street, p.city, p.state, p.postal_code, p.phone_home, p.sex, p.title, p.country_code, p.occupation, p.phone_biz, p.phone_contact, p.phone_cell, p.status, p.contact_relationship, p.referrer, p.referrerID, p.email, p.language, p.ethnoracial, p.interpretter, p.migrantseasonal, p.family_size, p.monthly_income, p.homeless, p.financial_review, p.hipaa_mail, p.hipaa_voice, p.genericname1, p.genericval1, p.genericname2, p.genericval2, i1.policy_number AS policy1, i1.group_number AS group1, i1.provider as provider1, i1.subscriber_fname AS fname1, i1.subscriber_mname AS mname1, i1.subscriber_lname AS lname1, i1.subscriber_street AS sstreet1, i1.subscriber_city AS scity1, i1.subscriber_state AS sstate1, i1.subscriber_postal_code AS szip1, i1.subscriber_relationship AS relationship1, i1.subscriber_DOB AS sdob1, i1.subscriber_ss AS sss1, i1.subscriber_phone AS sphone1, i1.subscriber_sex AS ssex1, i1.subscriber_country AS scountry1, i1.subscriber_employer AS semployer1, i1.subscriber_employer_street AS semployer_street1, i1.subscriber_employer_city AS semployer_city1, i1.subscriber_employer_state AS semployer_state1, i1.subscriber_employer_postal_code AS semployer_zip1, i1.subscriber_employer_country AS semployer_country1, i1.copay AS copay1, c1.name AS name1, c1.freeb_type AS instype1, a1.line1 AS street11, a1.line2 AS street21, a1.city AS city1, a1.state AS state1, a1.zip AS zip1, a1.plus_four AS zip41, a1.country AS country1, i2.policy_number AS policy2, i2.group_number AS group2, i2.provider as provider2, i2.subscriber_fname AS fname2, i2.subscriber_mname AS mname2, i2.subscriber_lname AS lname2, i2.subscriber_postal_code AS szip2, i2.subscriber_relationship AS relationship2, i2.subscriber_DOB AS sdob2, i2.subscriber_ss AS sss2, i2.subscriber_phone AS sphone2, i2.subscriber_sex AS ssex2, i2.subscriber_country AS scountry2, i2.subscriber_employer AS semployer2, i2.subscriber_employer_street AS semployer_s, i2.subscriber_employer_city AS semployer_city2, i2.subscriber_employer_state AS semployer_state2, i2.subscriber_employer_postal_code AS semployer_zip2, i2.subscriber_employer_country AS semployer_country2, i2.copay AS copay2, c2.name AS name2, c2.freeb_type AS instype2, a2.line1 AS street12, a2.line2 AS street22, a2.city AS city2, a2.state AS state2, a2.zip AS zip2, a2.plus_four AS zip42, a2.country AS country2, i3.policy_number AS policy3, i3.group_number AS group3, i3.provider as provider3, i3.subscriber_fname AS fname3, i3.subscriber_mname AS mname3, i3.subscriber_lname AS lname3, i3.subscriber_postal_code AS szip3, i3.subscriber_relationship AS relationship3, i3.subscriber_DOB AS sdob3, i3.subscriber_ss AS sss3, i3.subscriber_phone AS sphone3, i3.subscriber_sex AS ssex3, i3.subscriber_country AS scountry3, i3.subscriber_employer AS semployer3, i3.subscriber_employer_street AS semployer_street3, i3.subscriber_employer_city AS semployer_city3, i3.subscriber_employer_state AS semployer_state3, i3.subscriber_employer_postal_code AS semployer_zip3, i3.subscriber_employer_country AS semployer_country3, i3.copay AS copay3, c3.name AS name3, c3.freeb_type AS instype3, a3.line1 AS street13, a3.line2 AS street23, a3.city AS city3, a3.state AS state3, a3.zip AS zip3, a3.plus_four AS zip43, a3.country AS country3 FROM patient_data AS p LEFT OUTER JOIN insurance_data AS i1 ON i1.id = '" . $insrow[0]['id'] . "' LEFT OUTER JOIN insurance_data AS i2 ON i2.id = '" . $insrow[1]['id'] . "' LEFT OUTER JOIN insurance_data AS i3 ON i3.id = '" . $insrow[2]['id'] . "' LEFT OUTER JOIN insurance_companies AS c1 ON c1.id = i1.provider LEFT OUTER JOIN insurance_companies AS c2 ON c2.id = i2.provider LEFT OUTER JOIN insurance_companies AS c3 ON c3.id = i3.provider LEFT OUTER JOIN addresses AS a1 ON a1.foreign_id = c1.id LEFT OUTER JOIN addresses AS a2 ON a2.foreign_id = c2.id LEFT OUTER JOIN addresses AS a3 ON a3.foreign_id = c3.id WHERE p.pid = '$pid' LIMIT 1
+
+SELECT * FROM patient_data WHERE pid = $pid LIMIT 1
+
+SELECT e.pc_eventDate, e.pc_endDate, e.pc_startTime, e.pc_endTime, e.pc_duration, e.pc_recurrtype, e.pc_recurrspec, e.pc_recurrfreq, e.pc_catid, e.pc_eid, e.pc_title, e.pc_hometext, p.fname, p.mname, p.lname, p.pid, p.pubpid, u.fname AS ufname, u.mname AS umname, u.lname AS ulname, u.id AS uprovider_id, c.pc_catname, c.pc_catid FROM openemr_postcalendar_events AS e LEFT OUTER JOIN patient_data AS p ON p.pid = e.pc_pid LEFT OUTER JOIN users AS u ON u.id = e.pc_aid LEFT OUTER JOIN openemr_postcalendar_categories AS c ON c.pc_catid = e.pc_catid WHERE $where ORDER BY $order_by
+
+SELECT distinct form_encounter.date AS enc_date, form_encounter.pid AS enc_pid, form_en\
+counter.encounter AS enc_encounter, form_encounter.provider_id AS enc_provider_id, bill\
+ing.* FROM form_encounter LEFT OUTER JOIN billing ON billing.encounter = form_encounter\
+.encounter AND billing.pid = form_encounter.pid AND billing.code_type LIKE '$code_type'\
+ AND billing.activity = 1 LEFT OUTER JOIN patient_data on patient_data.pid = form_encou\
+nter.pid LEFT OUTER JOIN claims on claims.patient_id = form_encounter.pid and claims.en\
+counter_id = form_encounter.encounter LEFT OUTER JOIN insurance_data on insurance_data.\
+pid = form_encounter.pid and insurance_data.type = 'primary' WHERE 1=1 $query_part  " .\
+ " $auth " ." $billstring ORDER BY form_encounter.encounter, form_encounter.pid, billin\
+g.code_type, billing.code ASC
+
+select distinct $cols from form_encounter, billing, patient_data, claims, insurance_dat\
+a where billing.encounter = form_encounter.encounter and billing.pid = form_encounter.p\
+id and patient_data.pid = form_encounter.pid and claims.patient_id = form_encounter.pid\
+ and claims.encounter_id = form_encounter.encounter and insurance_data.pid = form_encou\
+nter.pid and insurance_data.type = 'primary' $auth $billstring $query_part and billing.\
+code_type like '$code_type' and billing.activity = 1 order by billing.pid, billing.date\
+ ASC
+
+SELECT * FROM patient_data WHERE pid = $this->pid ORDER BY id LIMIT 1
+
+SELECT prices.pr_price FROM patient_data, prices WHERE patient_data.pid = $pid AND pric\
+es.pr_id = $newcode AND prices.pr_selector = patient_data.pricelevel LIMIT 1
+
+select $given from patient_data where pid = $pid order by date DESC limit 0,1
+
+select id, fitness, referral_source from patient_data where pid = $pid
+
+select pid from patient_data where id=$id order by data limit 0,1
+
+SELECT pid FROM patient_data WHERE id = $db_id
+
+SELECT * FROM patient_data WHERE id = $db_id
+
+SELECT patient_data.pid FROM integration_mapping, patient_data WHERE integeration_mappi\
+ng.foreign_id = $customer_id AND integration_mapping.foreign_table = 'customer' AND pat\
+ient_data.id = integration_mapping.local_id
+
+select fname, lname, DOB, sex, pid, street, city, state, postal_code, phone_contact fro\
+m patient_data where pid=$pid
+
+SELECT " .
+  "s.pid, s.quantity, s.prescription_id, " .
+  "i.manufacturer, i.lot_number, i.expiration, " .
+  "d.name, d.ndc_number, d.form, d.size, d.unit, " .
+  "r.date_modified, r.dosage, r.route, r.interval, r.substitute, r.refills, " .
+  "p.fname, p.lname, p.mname, " .
+  "u.fname AS ufname, u.mname AS umname, u.lname AS ulname " .
+  "FROM drug_sales AS s, drug_inventory AS i, drugs AS d, " .
+  "prescriptions AS r, patient_data AS p, users AS u WHERE " .
+  "s.sale_id = '$sale_id' AND " .
+  "i.inventory_id = s.inventory_id AND " .
+  "d.drug_id = i.drug_id AND " .
+  "r.id = s.prescription_id AND " .
+  "p.pid = s.pid AND " .
+  "u.id = r.provider_id
+
+SELECT " .
+  "p.fname, p.mname, p.lname, p.pubpid, p.DOB, " .
+  "p.street, p.city, p.state, p.postal_code " .
+  "FROM patient_data AS p " .
+  "WHERE p.pid = '$pid' LIMIT 1
+
+SELECT foreign_id from integration_mapping as im " .
+    "LEFT JOIN patient_data as pd on im.local_id=pd.id " .
+    "where pd.pid = '" .
+    $patient_id .
+    "' and im.local_table='patient_data' and im.foreign_table='customer'
+
+ELECT codes.*, prices.pr_price FROM codes " .
+    "LEFT OUTER JOIN patient_data ON patient_data.pid = '$pid' " .
+    "LEFT OUTER JOIN prices ON prices.pr_id = codes.id AND " .
+    "prices.pr_selector = '' AND " .
+    "prices.pr_level = patient_data.pricelevel " .
+    "WHERE (code_text LIKE '%" . $_POST["text"] . "%' OR " .
+    "code LIKE '%" . $_POST["text"] . "%') AND " .
+    "code_type = '" . $code_types[$code_type]['id'] . "' " .
+    "ORDER BY code ".
+    " LIMIT " . ($M + 1)
+
+SELECT id FROM patient_data WHERE pid = '$patient'
+
+row_delete("integration_mapping", "local_table = 'patient_data' AND " .
+    "local_id = '" . $row['id'] . "'");
+
+SELECT " .
+  "p.fname, p.mname, p.lname, p.pubpid, i.copay " .
+  "FROM patient_data AS p " .
+  "LEFT OUTER JOIN insurance_data AS i ON " .
+  "i.pid = p.pid AND i.type = 'primary' " .
+  "WHERE p.pid = '$pid' ORDER BY i.date DESC LIMIT 1
+
+SELECT f.id, f.pid, f.encounter, f.date, " .
+      "f.last_level_billed, f.last_level_closed, f.stmt_count, " .
+      "p.fname, p.mname, p.lname, p.pubpid, p.genericname2, p.genericval2, " .
+      "( SELECT SUM(s.fee) FROM drug_sales AS s WHERE " .
+      "s.pid = f.pid AND s.encounter = f.encounter AND s.billed != 0 ) AS sales\
+, " .
+      "( SELECT SUM(b.fee) FROM billing AS b WHERE " .
+      "b.pid = f.pid AND b.encounter = f.encounter AND " .
+      "b.activity = 1 AND b.code_type != 'COPAY' AND b.billed != 0 ) AS charges\
+, " .
+      "( SELECT SUM(b.fee) FROM billing AS b WHERE " .
+      "b.pid = f.pid AND b.encounter = f.encounter AND " .
+      "b.activity = 1 AND b.code_type = 'COPAY' AND b.billed != 0 ) AS copays, \
+" .
+      "( SELECT SUM(a.pay_amount) FROM ar_activity AS a WHERE " .
+      "a.pid = f.pid AND a.encounter = f.encounter AND " .
+      "a.payer_type = 0 ) AS ptpaid, " .
+      "( SELECT SUM(a.pay_amount) FROM ar_activity AS a WHERE " .
+      "a.pid = f.pid AND a.encounter = f.encounter AND " .
+      "a.payer_type != 0 ) AS inspaid, " .
+      "( SELECT SUM(a.adj_amount) FROM ar_activity AS a WHERE " .
+      "a.pid = f.pid AND a.encounter = f.encounter ) AS adjustments " .
+      "FROM form_encounter AS f " .
+      "JOIN patient_data AS p ON p.pid = f.pid " .
+      "WHERE f.pid = '$pid' " .
+      "ORDER BY f.pid, f.encounter";
+
+UPDATE patient_data SET completed_ad='".formData('form_yesno','P'\
+,true)."', ad_reviewed='".formData('form_adreviewed','P',true)."' where pid='$p\
+id'
+
+select completed_ad, ad_reviewed from patient_data where pid='$pid'
+
+UPDATE patient_data SET fitness = $form_fitness, " .
+          "userdate1 = $returndate WHERE pid = $pid
+
+select genericname2, genericval2 " .
+    "from patient_data where pid = $pid limit 1
+
+select genericname2, genericval2 " .
+    "from patient_data where pid = $pid limit 1
+
+select concat(p.lname,', ',p.fname,' ',p.mname) patient_name \
+".
+                ",date_format(p.DOB,'%c/%e/%Y') as patient_DOB ".
+                ",concat(p.street,'\n',p.city,', ',p.state,' ',p.postal_code) a\
+s patient_address".
+                " from patient_data p where p.pid = $pid
+
+select date_format(i1.administered_date,'%Y-%m-%d') as '" . xl('Dat\
+e') . "\n" . xl('Administered') . "' ".
+            ",i1.immunization_id as '" . xl('Vaccine') . "' ".
+            ",i1.manufacturer as '" . xl('Manufacturer') . "' ".
+            ",i1.lot_number as '" . xl('Lot') . "\n" . xl('Number') . "' ".
+            ",concat(u.lname,', ',u.fname) as '" . xl('Administered By') . "' "\
+.
+            ",date_format(i1.education_date,'%Y-%m-%d') as '" . xl('Patient') .\
+ "\n" . xl('Education') . "\n" . xl('Date') . "' ".
+            ",i1.note as '" . xl('Comments') . "'".
+            " from immunizations i1 ".
+            " left join users u on i1.administered_by_id = u.id ".
+            " left join patient_data p on i1.patient_id = p.pid ".
+            " where p.pid = $pid
+
+UPDATE patient_data SET " .
+      "genericname2 = '$thename', " .
+      "genericval2 = '$thevalue' " .
+      "WHERE pid = '$patient_id'
+
+select fname, lname, genericname2, genericval2 " .
+    "from patient_data where pid = '$patient_id' limit 1
+
+SELECT fname,lname,mname FROM patient_data
+                    where pid ='$PaymentFrom'
+
+SELECT fname,lname,mname FROM patient_data
+
+SELECT " .
+      "e.date, e.encounter, p.pid, p.lname, p.fname, p.mname, p.ss " .
+      "FROM form_encounter AS e, patient_data AS p, insurance_data AS i " .
+      "WHERE p.pid = e.pid AND i.pid = e.pid AND i.type = 'primary' " .
+      "AND i.provider = ''$where " .
+      "ORDER BY p.lname, p.fname, p.mname, p.pid, e.date
+
+SELECT fname,lname,mname FROM patient_data
+                where pid ='$PatientId'
+
+SELECT e.*, p.fname, p.mname, p.lname " .
+      "FROM form_encounter AS e, patient_data AS p WHERE " .
+      "e.id = '$trans_id' AND p.pid = e.pid
+
+select genericname2, genericval2 " .
+    "from patient_data where pid = '$patient_id' limit 1
+
+SELECT " .
+      "f.id, f.date, f.pid, f.encounter, f.stmt_count, f.last_stmt_date, " .
+      "p.fname, p.mname, p.lname, p.street, p.city, p.state, p.postal_code " .
+      "FROM form_encounter AS f, patient_data AS p " .
+      "WHERE ( $where ) AND " .
+      "p.pid = f.pid " .
+      "ORDER BY p.lname, p.fname, f.pid, f.date, f.encounter
+
+SELECT f.id, f.pid, f.encounter, f.date, " .
+      "f.last_level_billed, f.last_level_closed, f.last_stmt_date, f.stmt_count\
+, " .
+      "p.fname, p.mname, p.lname, p.pubpid, p.genericname2, p.genericval2, " .
+      "( SELECT SUM(b.fee) FROM billing AS b WHERE " .
+      "b.pid = f.pid AND b.encounter = f.encounter AND " .
+      "b.activity = 1 AND b.code_type != 'COPAY' ) AS charges, " .
+      "( SELECT SUM(b.fee) FROM billing AS b WHERE " .
+      "b.pid = f.pid AND b.encounter = f.encounter AND " .
+      "b.activity = 1 AND b.code_type = 'COPAY' ) AS copays, " .
+      "( SELECT SUM(a.pay_amount) FROM ar_activity AS a WHERE " .
+      "a.pid = f.pid AND a.encounter = f.encounter ) AS payments, " .
+      "( SELECT SUM(a.adj_amount) FROM ar_activity AS a WHERE " .
+      "a.pid = f.pid AND a.encounter = f.encounter ) AS adjustments " .
+      "FROM form_encounter AS f " .
+      "JOIN patient_data AS p ON p.pid = f.pid " .
+      "WHERE $where " .
+      "ORDER BY p.lname, p.fname, p.mname, f.pid, f.encounter
+
+SELECT pd.genericname2, pd.genericval2 FROM " .
+        "integration_mapping AS im, patient_data AS pd WHERE " .
+        "im.foreign_id = " . $row['custid'] . " AND " .
+        "im.foreign_table = 'customer' AND " .
+        "pd.id = im.local_id
+
+SELECT fname,lname,mname FROM patient_data
+            where pid ='".$_REQUEST['hidden_patient_code']."'
+
+SELECT fname,lname,mname FROM patient_data where pid ='$PId'
+
+SELECT e.*, p.fname, p.mname, p.lname " .
+          "FROM form_encounter AS e, patient_data AS p WHERE " .
+          "e.pid = '$pid' AND e.encounter = '$encounter' AND ".
+          "p.pid = e.pid
+
+SELECT $given FROM patient_data " .
+    "WHERE 1 = 1  AND $field_id = ?  AND $field_id LIKE ?" .
+      " AND ( SELECT COUNT(*) FROM billing AS b WHERE " .
+      "b.pid = patient_data.pid AND " .
+      "b.activity = 1 AND " .
+      "b.code_type != 'COPAY' AND " .
+      "b.code LIKE ? " .
+      ") > 0";
+      "ORDER BY $orderby LIMIT $fstart, $sqllimit"
+
+select providerID from patient_data where pid=$pid
+
+select * from patient_data where lower(fname)=lower('".\
+$_POST["fname"]."') and lower(lname)=lower('".$_POST["lname"]."')
+
+lock tables patient_data read
+
+select max(pid)+1 as pid from patient_data
+
+SELECT DISTINCT a.pc_eid,  a.pc_informant, a.pc_catid, a.pc_title, " \
+.
+    "a.pc_time, a.pc_hometext, a.pc_eventDate, a.pc_duration, a.pc_endDate, " .
+    "a.pc_startTime, a.pc_recurrtype, a.pc_recurrfreq, a.pc_recurrspec, " .
+    "a.pc_topic, a.pc_alldayevent, a.pc_location, a.pc_conttel, " .
+    "a.pc_contname, a.pc_contemail, a.pc_website, a.pc_fee, a.pc_sharing, " .
+    "a.pc_prefcatid, " .
+    "b.pc_catcolor, b.pc_catname, b.pc_catdesc, a.pc_pid, a.pc_aid, " .
+    "concat(u.fname,' ',u.lname) as provider_name, " .
+    "concat(pd.fname,' ',pd.lname) as patient_name, " .
+    "concat(u2.fname, ' ', u2.lname) as owner_name, pd.DOB as patient_dob " .
+    "FROM  ( $table AS a ) " .
+    "LEFT JOIN $cattable AS b ON b.pc_catid = a.pc_catid " .
+    "LEFT JOIN users as u ON a.pc_aid = u.id " .
+    "LEFT JOIN users as u2 ON a.pc_aid = u2.id " .
+    "LEFT JOIN patient_data as pd ON a.pc_pid=pd.pid " .
+    "WHERE a.pc_eventstatus = $eventstatus " .
+    "AND (a.pc_endDate >= '$start' OR a.pc_endDate = '0000-00-00') " .
+    "AND a.pc_eventDate <= '$end' " .
+    "AND (a.pc_aid = '" . $provider_id . "' OR a.pc_aid = '')
+
+SELECT DISTINCT a.pc_eid,  a.pc_informant, a.pc_catid, " .
+    "a.pc_title, a.pc_time, a.pc_hometext, a.pc_eventDate, a.pc_duration, " .
+    "a.pc_endDate, a.pc_startTime, a.pc_recurrtype, a.pc_recurrfreq, " .
+    "a.pc_recurrspec, a.pc_topic, a.pc_alldayevent, a.pc_location, " .
+    "a.pc_conttel, a.pc_contname, a.pc_contemail, a.pc_website, a.pc_fee, " .
+    "a.pc_sharing, a.pc_prefcatid, b.pc_catcolor, b.pc_catname, " .
+    "b.pc_catdesc, a.pc_pid, a.pc_apptstatus, a.pc_aid, " .
+    "concat(u.fname,' ',u.lname) as provider_name, " .
+    "concat(pd.lname,', ',pd.fname) as patient_name, " .
+    "concat(u2.fname, ' ', u2.lname) as owner_name, " .
+    "DOB as patient_dob, pd.pubpid " .
+    "FROM  ( $table AS a ) " .
+    "LEFT JOIN $cattable AS b ON b.pc_catid = a.pc_catid ".
+    "LEFT JOIN users as u ON a.pc_aid = u.id " .
+    "LEFT JOIN users as u2 ON a.pc_aid = u2.id " .
+    "LEFT JOIN patient_data as pd ON a.pc_pid = pd.pid " .
+    "WHERE  a.pc_eventstatus = $eventstatus " .
+    "AND ((a.pc_endDate >= '$start' AND a.pc_eventDate <= '$end') OR " .
+    "(a.pc_endDate = '0000-00-00' AND a.pc_eventDate >= '$start' AND " .
+    "a.pc_eventDate <= '$end')) 
+
+SELECT DISTINCT e.pc_eid,
+                    e.pc_informant,
+                    e.pc_catid,
+                    e.pc_title,
+                    e.pc_time,
+                    e.pc_hometext,
+                    e.pc_eventDate,
+                    e.pc_duration,
+                    e.pc_endDate,
+                    e.pc_startTime,
+                    e.pc_recurrtype,
+                    e.pc_recurrfreq,
+                    e.pc_recurrspec,
+                    e.pc_topic,
+                    e.pc_alldayevent,
+                    e.pc_location,
+                    e.pc_conttel,
+                    e.pc_contname,
+                    e.pc_contemail,
+                    e.pc_website,
+                    e.pc_fee,
+                    e.pc_sharing,
+                    c.pc_catcolor,
+                    c.pc_catname,
+                    c.pc_catdesc,
+                    e.pc_pid,
+                    e.pc_aid,
+                    pd.pubpid
+            FROM   ($table e, $cattable c)
+            LEFT JOIN patient_data as pd ON (pd.pid = e.pc_pid)
+            WHERE  (e.pc_eid = '$eid' AND c.pc_catid = e.pc_catid)";
+
+UPDATE patient_data SET DOB = '$patient_dob' WHERE " .
+                    "pid = '" . $_POST['form_pid'] . "'
+
+SELECT lname, fname, phone_home, phone_biz, DOB " .
+   "FROM patient_data WHERE pid = '" . $patientid . "'
+
+SELECT lname, fname " .
+   "FROM patient_data WHERE pid = $reply_to
+
+select pnotes.id, pnotes.user, pnotes.pid, pnotes.title, pnotes.dat\
+e, " .
+           "pnotes.message_status, users.fname, users.lname, patient_data.fname\
+, " .
+           "patient_data.lname FROM ((pnotes JOIN users ON pnotes.user = users.\
+username) " .
+           "JOIN patient_data ON pnotes.pid = patient_data.pid) where pnotes.me\
+ssage_status != 'Done' " .
+           "and pnotes.deleted != '1' and pnotes.assigned_to LIKE $usrvar
+
+select pnotes.id, pnotes.user, pnotes.pid, pnotes.title, " .
+               "pnotes.date, pnotes.message_status, users.fname " .
+               "AS users_fname, users.lname AS users_lname, patient_data.fname \
+" .
+               "AS patient_data_fname, patient_data.lname AS patient_data_lname\
+ " .
+               "FROM ((pnotes JOIN users ON pnotes.user = users.username) " .
+               "JOIN patient_data ON pnotes.pid = patient_data.pid) " .
+               "where pnotes.message_status != 'Done' and pnotes.deleted != '1'\
+ " .
+               "and pnotes.assigned_to LIKE $usrvar " .
+               "order by ".add_escape_custom($sortby)." ".add_escape_custom($so\
+rtorder).
+               " limit ".add_escape_custom($begin).", ".add_escape_custom($list\
+number)
+
+SELECT " .
+    "fe.facility_id, fe.pid, fe.encounter, fe.date, " .
+    "f.name, f.street, f.city, f.state, f.postal_code, f.country_code, " .
+    "f.federal_ein, " .
+    "p.regdate, p.date AS last_update, p.contrastart, p.DOB, " .
+    "p.userlist2 AS education " .
+    "FROM form_encounter AS fe " .
+    "LEFT OUTER JOIN facility AS f ON f.id = fe.facility_id " .
+    "LEFT OUTER JOIN patient_data AS p ON p.pid = fe.pid WHERE " .
+    sprintf("fe.date >= '%04u-%02u-01 00:00:00' AND ", $beg_year, $beg_month) .
+    sprintf("fe.date < '%04u-%02u-01 00:00:00' ", $end_year, $end_month) .
+    "ORDER BY fe.facility_id, fe.pid, fe.encounter
+
+SELECT DISTINCT " .
+    "fe.facility_id, fe.pid, " .
+    "f.name, f.street, f.city, f.state, f.postal_code, f.country_code, " .
+    "f.federal_ein, " .
+    "p.regdate, p.date AS last_update, p.contrastart, p.DOB, " .
+    "p.userlist2 AS education " .
+    "FROM form_encounter AS fe " .
+    "LEFT OUTER JOIN facility AS f ON f.id = fe.facility_id " .
+    "LEFT OUTER JOIN patient_data AS p ON p.pid = fe.pid WHERE " .
+    sprintf("fe.date >= '%04u-%02u-01 00:00:00' AND ", $beg_year, $beg_month) .
+    sprintf("fe.date < '%04u-%02u-01 00:00:00' ", $end_year, $end_month) .
+    "ORDER BY fe.facility_id, fe.pid
+
+SELECT DISTINCT " .
+    "fe.pid, " .
+    "p.regdate, p.date AS last_update, p.contrastart, p.DOB, p.sex, " .
+    "p.city, p.state, p.occupation, p.status, p.ethnoracial, " .
+    "p.interpretter, p.monthly_income, p.referral_source, p.pricelevel, " .
+    "p.userlist1, p.userlist3, p.userlist4, p.userlist5, " .
+    "p.usertext11, p.usertext12, p.usertext13, p.usertext14, p.usertext15, " .
+    "p.usertext16, p.usertext17, p.usertext18, p.usertext19, p.usertext20, " .
+    "p.userlist2 AS education " .
+    "FROM form_encounter AS fe " .
+    "LEFT OUTER JOIN patient_data AS p ON p.pid = fe.pid WHERE " .
+    sprintf("fe.date >= '%04u-%02u-01 00:00:00' AND ", $beg_year, $beg_month) .
+    sprintf("fe.date < '%04u-%02u-01 00:00:00' ", $end_year, $end_month) .
+    "ORDER BY fe.pid
+
+SELECT " .
+        "t.pid, t.refer_related_code, t.reply_related_code, " .
+        "pd.regdate, pd.referral_source, " .
+        "pd.sex, pd.DOB, pd.lname, pd.fname, pd.mname, " .
+        "pd.contrastart$pd_fields " .
+        "FROM transactions AS t " .
+        "JOIN patient_data AS pd ON pd.pid = t.pid $sexcond" .
+        "WHERE t.title = 'Referral' AND $datefld IS NOT NULL AND " .
+        "$datefld >= '$from_date' AND $datefld <= '$to_date' AND $exttest " .
+        "ORDER BY t.pid, t.id
+
+SELECT " .
+        "l.type, l.begdate, l.pid, " .
+        "pd.sex, pd.DOB, pd.lname, pd.fname, pd.mname, pd.userlist5, " .
+        "pd.country_code, pd.status, pd.state, pd.occupation, " .
+        "lg.client_status, lg.ab_location " .
+        "FROM lists AS l " .
+        "JOIN patient_data AS pd ON pd.pid = l.pid $sexcond" .
+        "LEFT OUTER JOIN lists_ippf_gcac AS lg ON l.type = 'ippf_gcac' AND lg.i\
+d = l.id " .
+        "WHERE l.begdate >= '$from_date' AND l.begdate <= '$to_date' AND " .
+        "l.activity = 1 AND l.type = 'ippf_gcac' " .
+        "ORDER BY l.pid, l.id
+
+SELECT " .
+        "d.name, d.related_code, ds.pid, ds.quantity, " .
+        "pd.regdate, pd.referral_source, " .
+        "pd.sex, pd.DOB, pd.lname, pd.fname, pd.mname, " .
+        "pd.contrastart$pd_fields " .
+        "FROM drug_sales AS ds " .
+        "JOIN drugs AS d ON d.drug_id = ds.drug_id " .
+        "JOIN patient_data AS pd ON pd.pid = ds.pid $sexcond" .
+        "WHERE ds.sale_date IS NOT NULL AND ds.pid != 0 AND " .
+        "ds.sale_date >= '$from_date' AND ds.sale_date <= '$to_date' " .
+        "ORDER BY ds.pid, ds.sale_id
+
+SELECT " .
+        "fe.pid, fe.encounter, fe.date AS encdate, pd.regdate, " .
+        "f.user AS provider, " .
+        "pd.sex, pd.DOB, pd.lname, pd.fname, pd.mname, " .
+        "pd.contrastart, pd.referral_source$pd_fields, " .
+        "b.code_type, b.code, c.related_code, lo.title AS lo_title " .
+        "FROM form_encounter AS fe " .
+        "JOIN forms AS f ON f.pid = fe.pid AND f.encounter = fe.encounter AND "\
+ .
+        "f.formdir = 'newpatient' AND f.form_id = fe.id AND f.deleted = 0 " .
+        "JOIN patient_data AS pd ON pd.pid = fe.pid $sexcond" .
+        "LEFT OUTER JOIN billing AS b ON " .
+        "b.pid = fe.pid AND b.encounter = fe.encounter AND b.activity = 1 " .
+        "AND b.code_type = 'MA' " .
+        "LEFT OUTER JOIN codes AS c ON b.code_type = 'MA' AND c.code_type = '12\
+' AND " .
+  "c.code = b.code AND c.modifier = b.modifier " .
+        "LEFT OUTER JOIN list_options AS lo ON " .
+        "lo.list_id = 'superbill' AND lo.option_id = c.superbill " .
+        "WHERE fe.date >= '$from_date 00:00:00' AND " .
+        "fe.date <= '$to_date 23:59:59'
+
+SELECT pid, squad, fitness, lname, fname FROM patient_data
+
+SELECT p.fname, p.mname, p.lname, fe.date " .
+        "FROM patient_data AS p, form_encounter AS fe WHERE " .
+        "p.pid = '$patient_id' AND fe.pid = p.pid AND " .
+        "fe.encounter = '$encounter_id' LIMIT 1
+
+SELECT lists.id AS listid, lists.diagnosis, lists.pid, " .
+            "lists.extrainfo AS gmissed, lists.begdate, lists.enddate, " .
+            "lists.returndate, lists.title, lists.type, " .
+            "pd.lname, pd.fname, pd.mname, pd.fitness " .
+            "FROM lists " .
+            "JOIN patient_data AS pd ON pd.pid = lists.pid AND ( $squadmatches \
+) " .
+            "WHERE ( lists.enddate IS NULL OR lists.enddate >= '$from_date' ) A\
+ND " .
+            "( lists.begdate IS NULL OR lists.begdate <= '$to_date' )" .
+            "$issuetypematches " .
+            "ORDER BY pd.lname, pd.fname, pd.mname, lists.pid, lists.begdate
+
+SELECT t.id, t.refer_date, t.reply_date, t.body, " .
+    "ut.organization, uf.facility_id, p.pubpid, " .
+    "CONCAT(uf.fname,' ', uf.lname) AS referer_name, " .
+    "CONCAT(p.fname,' ', p.lname) AS patient_name " .
+    "FROM transactions AS t " .
+    "LEFT OUTER JOIN patient_data AS p ON p.pid = t.pid " .
+    "LEFT OUTER JOIN users AS ut ON ut.id = t.refer_to " .
+    "LEFT OUTER JOIN users AS uf ON uf.id = t.refer_from " .
+    "WHERE t.title = 'Referral' AND " .
+    "t.refer_date >= '$from_date' AND t.refer_date <= '$to_date' " .
+    "ORDER BY ut.organization, t.refer_date, t.id
+
+SELECT " .
+  "fname, mname, lname, pubpid, squad " .
+  "FROM patient_data " .
+  "WHERE pid = '$plid' LIMIT 1
+
+SELECT r.id, r.patient_id, " .
+   "r.date_modified, r.dosage, r.route, r.interval, r.refills, r.drug, " .
+   "d.name, d.ndc_number, d.form, d.size, d.unit, d.reactions, " .
+   "s.sale_id, s.sale_date, s.quantity, " .
+   "i.manufacturer, i.lot_number, i.expiration, " .
+   "p.pubpid, ".
+   "p.fname, p.lname, p.mname, u.facility_id " .
+   "FROM prescriptions AS r " .
+   "LEFT OUTER JOIN drugs AS d ON d.drug_id = r.drug_id " .
+   "LEFT OUTER JOIN drug_sales AS s ON s.prescription_id = r.id " .
+   "LEFT OUTER JOIN drug_inventory AS i ON i.inventory_id = s.inventory_id " .
+   "LEFT OUTER JOIN patient_data AS p ON p.pid = r.patient_id " .
+   "LEFT OUTER JOIN users AS u ON u.id = r.provider_id " .
+   "WHERE $where " .
+   "ORDER BY p.lname, p.fname, p.pubpid, r.id, s.sale_id
+
+SELECT DATE_FORMAT(e.pc_eventDate, '%%Y%%m%%d') as \
+pc_eventDate,
+                                   e.pc_facility,
+                                   p.lname,
+                                   p.fname,
+                                   p.mname,
+                                   DATE_FORMAT(p.dob, '%%Y%%m%%d') as dob,
+                                   p.ss,
+                                   p.sex,
+                                   p.pid,
+                                   p.pubpid,
+                                   i.policy_number,
+                                   i.provider as payer_id,
+                                   i.subscriber_relationship,
+                                   i.subscriber_lname,
+                                   i.subscriber_fname,
+                                   i.subscriber_mname,
+                                   DATE_FORMAT(i.subscriber_dob, '%%m/%%d/%%Y')\
+ as subscriber_dob,
+                                   i.subscriber_ss,
+                                   i.subscriber_sex,
+                                   DATE_FORMAT(i.date,'%%Y%%m%%d') as date,
+                                   d.lname as provider_lname,
+                                   d.fname as provider_fname,
+                                   d.npi as provider_npi,
+                                   d.upin as provider_pin,
+                                   f.federal_ein,
+                                   f.facility_npi,
+                                   f.name as facility_name,
+                                   c.name as payer_name
+                            FROM openemr_postcalendar_events AS e
+                            LEFT JOIN users AS d on (e.pc_aid is not null and e\
+.pc_aid = d.id)
+                            LEFT JOIN facility AS f on (f.id = e.pc_facility)
+                            LEFT JOIN patient_data AS p ON p.pid = e.pc_pid
+                            LEFT JOIN insurance_data AS i ON (i.id =(
+                                                                    SELECT id
+                                                                    FROM insura\
+nce_data AS i
+                                                                    WHERE pid =\
+ p.pid AND type = 'primary'
+                                                                    ORDER BY da\
+te DESC
+                                                                    LIMIT 1
+
+
+l.pid as patientid, " .
+  "p.language, ".
+  "l.diagnosis , "
+      "DATE_FORMAT(p.DOB,'%Y%m%d') as DOB, ".
+      "concat(p.street, '^',p.postal_code,'^', p.city, '^', p.state) as address\
+, ".
+      "p.country_code, ".
+      "p.phone_home, ".
+      "p.phone_biz, ".
+      "p.status, ".
+      "p.sex, ".
+      "p.ethnoracial, ".
+      "c.code_text, ".
+      "c.code, ".
+      "c.code_type, ".
+      "DATE_FORMAT(l.date,'%Y%m%d') as issuedate, ".
+      "concat(p.fname, '^',p.mname,'^', p.lname) as patientname, ";
+  "l.id as issueid, l.title as issuetitle ".
+  "from lists l, patient_data p, codes c ".
+  "where ".
+  "c.reportable=1 and ".
+  "l.id not in (select lists_id from syndromic_surveillance) and ";
+
+--> more to this is interface/reports/clinical_reports.php
+ from patient_data as pd left outer join users as u on u\
+.id = pd.providerid
+            left outer join facility as f on f.id = u.facility_id
+
+SELECT lists.id AS listid, lists.diagnosis, lists.pid, " .
+            "lists.extrainfo AS gmissed, lists.begdate, lists.enddate, " .
+            "lists.returndate, lists.title, fia.*, pd.lname, pd.fname, pd.mname\
+ " .
+            "FROM lists " .
+            "JOIN patient_data AS pd ON pd.pid = lists.pid AND ( $squadmatches \
+) " .
+            "JOIN issue_encounter AS ie ON ie.list_id = lists.id " .
+            "JOIN forms ON forms.pid = ie.pid AND forms.encounter = ie.encounte\
+r " .
+            "AND forms.formdir = 'football_injury_audit' " .
+            "JOIN form_football_injury_audit as fia ON fia.id = forms.form_id "\
+ .
+            "WHERE ( lists.enddate IS NULL OR lists.enddate >= '$from_date' ) A\
+ND " .
+            "lists.begdate <= '$to_date' AND " .
+            "lists.type = 'medical_problem' AND lists.title NOT LIKE '%Illness%\
+'" .
+            "ORDER BY lists.pid, lists.begdate";
+
+      "lists.extrainfo AS gmissed, lists.begdate, lists.enddate, " .
+      "lists.returndate, lists.title, lfi.*, pd.lname, pd.fname, pd.mname " .
+      "FROM lists " .
+      "JOIN lists_football_injury AS lfi ON lfi.id = lists.id " .
+      "JOIN patient_data AS pd ON pd.pid = lists.pid AND ( $squadmatches ) " .
+      "WHERE ( lists.enddate IS NULL OR lists.enddate >= '$from_date' ) AND " .
+      "lists.begdate <= '$to_date' AND lists.type = 'football_injury' " .
+      "ORDER BY lists.pid, lists.begdate
+
+UPDATE patient_data SET " .
+        "genericname2 = 'Billing', " .
+        "genericval2 = CONCAT('IN COLLECTIONS " . date("Y-m-d") . "', genericva\
+l2) " .
+        "WHERE pid = '" . $ptrow['pid'] . "'
+
+SELECT pd.fname, pd.lname, pd.mname, pd.ss, " .
+        "pd.genericname2, pd.genericval2, pd.pid, pd.pubpid, pd.DOB, " .
+        "CONCAT(u.lname, ', ', u.fname) AS referrer FROM " .
+        "integration_mapping AS im, patient_data AS pd " .
+        "LEFT OUTER JOIN users AS u ON u.id = pd.providerID " .
+        "WHERE im.foreign_id = " . $row['custid'] . " AND " .
+        "im.foreign_table = 'customer' AND " .
+        "pd.id = im.local_id
+
+SELECT pd.lname, pd.fname, pd.mname, " .
+        "pd.pid, pe.minutes, pe.fitness_related " .
+        "FROM patient_data AS pd " .
+        "LEFT JOIN player_event AS pe ON pe.pid = pd.pid AND pe.date = '$date' \
+AND pe.pc_eid = '$eid' " .
+        "WHERE pd.squad = '$squad'
+
+SELECT lists.diagnosis, lists.pid, lists.type, " .
+    "lists.extrainfo AS gmissed, " .
+    "lists.begdate, lists.enddate, lists.returndate, " .
+    "pd.lname, pd.fname, pd.mname " .
+    "FROM lists " .
+    "JOIN patient_data AS pd ON pd.pid = lists.pid " .
+    "WHERE ( lists.returndate IS NULL OR lists.returndate >= '$from_date' ) AND\
+ " .
+    "( lists.begdate IS NULL OR lists.begdate <= '$to_date' )" .
+    "ORDER BY pd.lname, pd.fname, pd.mname, lists.pid, lists.begdate
+
+SELECT r.pid, r.dtime, " .
+    "SUM(r.amount1) AS amount1, " .
+    "SUM(r.amount2) AS amount2, " .
+    "MAX(r.method) AS method, " .
+    "MAX(r.source) AS source, " .
+    "MAX(r.user) AS user, " .
+    "p.fname, p.mname, p.lname, p.pubpid " .
+    "FROM payments AS r " .
+    "LEFT OUTER JOIN patient_data AS p ON " .
+    "p.pid = r.pid " .
+    "WHERE " .
+    "r.dtime >= '$from_date 00:00:00' AND " .
+    "r.dtime <= '$to_date 23:59:59' " .
+    "GROUP BY r.dtime, r.pid ORDER BY r.dtime, r.pid
+
+SELECT pid, squad, lname, fname FROM " .
+  "patient_data"
+
+SELECT ct.ct_when, " .
+  "u.username, u.fname AS ufname, u.mname AS umname, u.lname AS ulname, " .
+  "p.pubpid, p.fname, p.mname, p.lname " .
+  "FROM chart_tracker AS ct " .
+  "LEFT OUTER JOIN users AS u ON u.id = ct.ct_userid " .
+  "LEFT OUTER JOIN patient_data AS p ON p.pid = ct.ct_pid " .
+  "WHERE (ct.ct_pid, ct.ct_when) in " .
+  "(SELECT ct_pid, MAX(ct_when) FROM chart_tracker GROUP BY ct_pid) " .
+  "AND ct.ct_userid != 0 " .
+  "ORDER BY p.pubpid
+
+SELECT ct.ct_when, " .
+  "u.username, u.fname AS ufname, u.mname AS umname, u.lname AS ulname, " .
+  "p.pubpid, p.fname, p.mname, p.lname " .
+  "FROM chart_tracker AS ct " .
+  "JOIN cttemp ON cttemp.ct_pid = ct.ct_pid AND cttemp.ct_when = ct.ct_when " .
+  "LEFT OUTER JOIN users AS u ON u.id = ct.ct_userid " .
+  "LEFT OUTER JOIN patient_data AS p ON p.pid = ct.ct_pid " .
+  "WHERE ct.ct_userid != 0 " .
+  "ORDER BY p.pubpid
+
+SELECT " .
+   "p.pid, p.fname, p.mname, p.lname, p.DOB, p.sex, p.ethnoracial, " .
+   "p.street, p.city, p.state, p.postal_code, " .
+   "count(e.date) AS ecount, max(e.date) AS edate, " .
+   "i1.date AS idate1, i2.date AS idate2, " .
+   "c1.name AS cname1, c2.name AS cname2 " .
+   "FROM patient_data AS p " .
+   "JOIN form_encounter AS e ON " .
+   "e.pid = p.pid AND " .
+   "e.date >= '$from_date 00:00:00' AND " .
+   "e.date <= '$to_date 23:59:59' " .
+   "LEFT OUTER JOIN insurance_data AS i1 ON " .
+   "i1.pid = p.pid AND i1.type = 'primary' " .
+   "LEFT OUTER JOIN insurance_companies AS c1 ON " .
+   "c1.id = i1.provider " .
+   "LEFT OUTER JOIN insurance_data AS i2 ON " .
+   "i2.pid = p.pid AND i2.type = 'secondary' " .
+   "LEFT OUTER JOIN insurance_companies AS c2 ON " .
+   "c2.id = i2.provider " .
+   "GROUP BY p.lname, p.fname, p.mname, p.pid, i1.date, i2.date " .
+   "ORDER BY p.lname, p.fname, p.mname, p.pid, i1.date DESC, i2.date DESC";
+
+SELECT pid, pubpid, fname, mname, lname FROM patient_data WHERE " .
+    "pubpid = '$form_patient_id' ORDER BY pid LIMIT 1
+
+SELECT pid, pubpid, fname, mname, lname FROM patient_data WHERE " .
+    "pid = '$curr_pid
+
+SELECT " .
+   "p.fname, p.mname, p.lname, p.street, p.city, p.state, " .
+   "p.postal_code, p.phone_home, p.phone_biz, p.pid, p.pubpid, " .
+   "count(e.date) AS ecount, max(e.date) AS edate, " .
+   "i1.date AS idate1, i2.date AS idate2, " .
+   "c1.name AS cname1, c2.name AS cname2 " .
+   "FROM patient_data AS p ";
+  if (!empty($from_date)) $query .=
+   "JOIN form_encounter AS e ON " .
+   "e.pid = p.pid AND " .
+   "e.date >= '$from_date 00:00:00' AND " .
+   "e.date <= '$to_date 23:59:59' ";
+  else $query .=
+   "LEFT OUTER JOIN form_encounter AS e ON e.pid = p.pid ";
+  $query .=
+   "LEFT OUTER JOIN insurance_data AS i1 ON " .
+   "i1.pid = p.pid AND i1.type = 'primary' " .
+   "LEFT OUTER JOIN insurance_companies AS c1 ON " .
+   "c1.id = i1.provider " .
+   "LEFT OUTER JOIN insurance_data AS i2 ON " .
+   "i2.pid = p.pid AND i2.type = 'secondary' " .
+   "LEFT OUTER JOIN insurance_companies AS c2 ON " .
+   "c2.id = i2.provider " .
+   "GROUP BY p.lname, p.fname, p.mname, p.pid, i1.date, i2.date " .
+   "ORDER BY p.lname, p.fname, p.mname, p.pid, i1.date DESC, i2.date DESC";
+
+--->interface/orders/lab_exchange_tools.php
+SELECT pid from patient_data WHERE " .
+       "fname = '".add_escape_custom($firstName)."'
+
+SELECT po.patient_id, " .
+  "pd.fname, pd.mname, pd.lname, pd.pubpid, $selects " .
+  "FROM procedure_order AS po " .
+  "LEFT JOIN patient_data AS pd ON pd.pid = po.patient_id $joins " .
+  "WHERE po.procedure_type_id = '$form_proc_type' AND " .
+  "po.date_ordered >= '$form_from_date' AND po.date_ordered <= '$form_to_date' \
+" .
+  "AND $where " .
+  "ORDER BY pd.lname, pd.fname, pd.mname, po.patient_id, $orderby
+
+SELECT p.fname, p.mname, p.lname, fe.date FROM " .
+  "form_encounter AS fe, forms AS f, patient_data AS p WHERE " .
+  "p.pid = '$pid' AND f.pid = '$pid' AND f.encounter = '$encounter' AND " .
+  "f.formdir = 'newpatient' AND f.deleted = 0 AND " .
+  "fe.id = f.form_id LIMIT 1
+
+select pid from patient_data where fname like '$name1'\
+ or fname like '$name2' or " .
+    "lname like '$name1' or lname like '$name2' limit $limit
+
+select t1.pid, t1.fname, t1.mname, t1.lname, " .
+    "t1.phone_home, t1.phone_biz, t1.phone_contact, t1.phone_cell, " .
+    "date_format(t1.DOB,'%m-%d-%y') as DOB, date_format(t2.date,'%m-%d-%y') as \
+date, " .
+    "datediff(current_date(),t2.date) as days " .
+    "from patient_data as t1 join forms as t2 on (t1.pid = t2.pid) where t2.for\
+m_id=$form_id " .
+
+select fname,lname,street,city,state,postal_code,phone_h\
+ome,DATE_FORMAT(DOB,'%m/%d/%y') as DOB from patient_data where pid =" . $_SESSI\
+ON['pid']
+
+select t1.fname, t1.mname, t1.lname, " .
+        "t1.sex as gender, " .
+        "t1.DOB, " .
+        "t2.date " .
+        "from patient_data as t1 join form_encounter as t2 on " .
+        "(t1.pid = t2.pid) " .
+        "where t2.pid = ".$pid." and t2.encounter = ".$enc
+
+select t1.form_id, t1.form_name, t1.pid, date_format(t2.date,'%m-%d-%Y\
+') as date, " .
+        "date_format(t2.date,'%Y%m%d') as datekey, " .
+        "t3.lname, t3.fname, t3.pubpid, date_format(t3.DOB,'%m-%d-%Y') as dob, \
+" .
+        "t2.encounter as enc, " .
+            "t2.reason from " .
+        "forms as t1 join " .
+        "form_encounter as t2 on " .
+        "(t1.pid = t2.pid and t1.encounter = t2.encounter) " .
+        "join patient_data as t3 on " .
+        "(t1.pid = t3.pid) where " .
+        $date_clause .
+        $name_clause .
+        "order by date,pid
+
+SELECT prices.pr_price " .
+        "FROM patient_data, prices WHERE " .
+        "patient_data.pid = '$pid' AND " .
+        "prices.pr_id = '" . $result['id'] . "' AND " .
+        "prices.pr_selector = '' AND " .
+        "prices.pr_level = patient_data.pricelevel " .
+        "LIMIT 1
+
+UPDATE patient_data SET pricelevel = '" .
+    $_POST['pricelevel'] . "' WHERE pid = '$pid'
+
+UPDATE patient_data SET contrastart = '" .
+      $contrastart . "' WHERE pid = '$pid'
+
+SELECT prices.pr_price " .
+        "FROM patient_data, prices WHERE " .
+        "patient_data.pid = '$pid' AND " .
+        "prices.pr_id = '$newcode' AND " .
+        "prices.pr_selector = '$newsel' AND " .
+        "prices.pr_level = patient_data.pricelevel " .
+        "LIMIT 1
+
+SELECT pricelevel FROM patient_data WHERE " .
+    "pid = '$pid' LIMIT 1
+
+SELECT DISTINCT patient_data.* , MAX( cal_events.pc_endDate ) A\
+S last_ap, MAX( forms.date) AS last_visit, (DATEDIFF(CURDATE(),patient_data.DOB\
+)/365.25) AS pat_age
+                FROM (patient_data, forms)
+                LEFT JOIN  openemr_postcalendar_events AS cal_events ON patient\
+_data.pid=cal_events.pc_pid
+                LEFT JOIN  forms AS forms2 ON patient_data.pid=forms2.pid
+
+--> sex and hipaa_mail both can be at most DET (from interface/batchcom/batchom.php)
+
+SELECT count(*) AS count FROM patient_data WHERE " .
+    "pubpid = '$form_pubpid'
+
+lock tables patient_data read
+
+select max(pid)+1 as pid from patient_data
+
+UPDATE patient_data SET referral_source = '$refsource' " .
+      "WHERE pid = '$pid'
+
+SELECT *, ( $relevance ) AS relevance, " .
+  "DATE_FORMAT(DOB,'%m/%d/%Y') as DOB_TS " .
+  "FROM patient_data WHERE $where " .
+  "ORDER BY relevance DESC, lname, fname, mname " .
+  "LIMIT ".add_escape_custom($fstart).", ".add_escape_custom($MAXSHOW)
+
+SELECT count(*) AS count FROM patient_data WHERE " .
+    "pubpid = '$form_pubpid'
+
+SELECT pid FROM patient_data WHERE pubpid LIKE '$pubpid'
+
+SELECT max(pid)+1 AS pid FROM patient_data
+
+select id, pid, fname, lname, dob, sex, ss from patient_data ORDER BY dob, sex, ss, lname, fname LIMIT 0
+
+-->contrin/util/dubpecheck/index.php
+select id, pid, fname, lname, dob, sex, ss ".
+                    " from patient_data where 
+
+select pid from patient_data where id='".$parameters['masterid']."'
+
+select lname, pid from patient_data where id='".$otherID."'
+
+update patient_data set lname='".$newlname."' where pid='".$oth\
+erPID."'
+
+SELECT pid FROM patient_data " .
+    "WHERE pubpid = '$pubpid' LIMIT 1
+
+select * from patient_data where pid='".$pid."'
+
+update patient_data set DOB='".$_POST['pbdate']."' where  id=$pid
+
+SELECT fname,mname,lname,ss,street,city,state,postal\
+_code,phone_home,DOB FROM patient_data WHERE pid = $pid
+
+SELECT fname,mname,lname,ss,street,city,state,postal\
+_code,phone_home,DOB FROM patient_data WHERE pid = $pid
+
+insert into temp_patient_id_table (pid) select pid from patient_data;
+
+select $given from patient_data where pid=? order by date DESC limi\
+t 0,1
+
+select distinct lower(language) as language from patient_data
+
+select distinct lower(ethnoracial) as ethnoracial from patient_data\
+
+-->more to both of these library/patient.inc
+SELECT count(*) AS count FROM patient_data WHERE $where
+               if ( $_SESSION{"authUser"} != 'admin' || $GLOBALS['pt_restrict_\
+admin'] ) {
+                        $where .= "AND ( patient_data." . add_escape_custom($GL\
+OBALS['pt_restrict_field']) .
+                            " = ( SELECT facility_id FROM users WHERE username \
+= ?) OR patient_data." .
+                            add_escape_custom($GLOBALS['pt_restrict_field']) . \
+" = '' ) ";
+
+
+SELECT COUNT(*) FROM billing AS b WHERE " .
+      "b.pid = patient_data.pid AND " .
+      "b.activity = 1 AND " .
+      "b.code_type != 'COPAY' AND " .
+      "b.code LIKE ? " .
+      ") > 0
+
+replace into patient_data set
+        id='$db_id',
+        title='$title',
+        fname='$fname',
+        lname='$lname',
+        mname='$mname',
+        sex='$sex',
+        DOB='$DOB',
+        street='$street',
+        postal_code='$postal_code',
+        city='$city',
+        state='$state',
+        country_code='$country_code',
+        drivers_license='$drivers_license',
+        ss='$ss',
+        occupation='$occupation',
+        phone_home='$phone_home',
+        phone_biz='$phone_biz',
+        phone_contact='$phone_contact',
+        status='$status',
+        contact_relationship='$contact_relationship',
+        referrer='$referrer',
+        referrerID='$referrerID',
+        email='$email',
+        language='$language',
+        ethnoracial='$ethnoracial',
+        interpretter='$interpretter',
+        migrantseasonal='$migrantseasonal',
+        family_size='$family_size',
+        family_size='$family_size',
+        monthly_income='$monthly_income',
+        homeless='$homeless',
+        financial_review='$financial_review',
+        pubpid='$pubpid',
+        pid = $pid,
+        providerID = '$providerID',
+        genericname1 = '$genericname1',
+        genericval1 = '$genericval1',
+        genericname2 = '$genericname2',
+        genericval2 = '$genericval2',
+        phone_cell = '$phone_cell',
+        pharmacy_id = '$pharmacy_id',
+        hipaa_mail = '$hipaa_mail',
+        hipaa_voice = '$hipaa_voice',
+        hipaa_notice = '$hipaa_notice',
+        hipaa_message = '$hipaa_message',
+        squad = '$squad',
+        fitness='$fitness',
+        referral_source='$referral_source',
+        regdate='$regdate',
+        pricelevel='$pricelevel',
+        date=NOW()");
+
+INSERT INTO patient_data SET pid = '$pid', date = NOW()
+
+SELECT * FROM patient_data WHERE id = '$db_id'
+
+SELECT foreign_id FROM integration_mapping AS im " .
+      "LEFT JOIN patient_data AS pd ON im.local_id = pd.id WHERE " .
+      "pd.pid = '" . $pid . "' AND im.local_table = 'patient_data' AND " .
+      "im.foreign_table = 'customer'
+
+select * from patient_data where pid='$pid' order by date ASC
+
+SELECT " .
+    "e.pc_eventDate, e.pc_endDate, e.pc_startTime, e.pc_endTime, e.pc_duration,\
+ e.pc_recurrtype, e.pc_recurrspec, e.pc_recurrfreq, e.pc_catid, e.pc_eid, " .
+    "e.pc_title, e.pc_hometext, " .
+    "p.fname, p.mname, p.lname, p.pid, p.pubpid, " .
+    "u.fname AS ufname, u.mname AS umname, u.lname AS ulname, u.id AS uprovider\
+_id, " .
+    "c.pc_catname, c.pc_catid " .
+    "FROM openemr_postcalendar_events AS e " .
+    "LEFT OUTER JOIN patient_data AS p ON p.pid = e.pc_pid " .
+    "LEFT OUTER JOIN users AS u ON u.id = e.pc_aid " .
+    "LEFT OUTER JOIN openemr_postcalendar_categories AS c ON c.pc_catid = e.pc_\
+catid " .
+    "WHERE $where " .
+    "ORDER BY $order_b
+
+SELECT pid FROM patient_data WHERE " .
+        "lname LIKE '" . addslashes($out['patient_lname']) . "' AND " .
+        "fname LIKE '" . addslashes($out['patient_fname']) . "' " .
+        "ORDER BY pid DESC
+
+SELECT patient_data.pid " .
+      "FROM integration_mapping, patient_data WHERE " .
+      "integration_mapping.foreign_id = $customer_id AND " .
+      "integration_mapping.foreign_table = 'customer' AND " .
+      "patient_data.id = integration_mapping.local_id
+
+SELECT prices.pr_price " .
+        "FROM patient_data, prices WHERE " .
+        "patient_data.pid = '$pid' AND " .
+        "prices.pr_id = '$newcode' AND " .
+        "prices.pr_selector = '$newsel' AND " .
+        "prices.pr_level = patient_data.pricelevel " .
+        "LIMIT 1
+
+in library/classes/Patient.class.php should look for $this->_table
+
+SELECT e.date AS dosdate, " .
+      "CONCAT(pd.fname,' ',pd.mname,' ',pd.lname) as patient_name " .
+      "FROM form_encounter AS e, patient_data AS pd " .
+      "WHERE " .
+      "e.encounter = '" . $this->encounter . "' AND " .
+      "e.pid = '" . $this->patient_id . "' AND " .
+      "pd.pid = e.pid
+
+SELECT foreign_id from integration_mapping as im LEFT JOIN patient_\
+data as pd on im.local_id=pd.id where pd.pid = '" . $this->patient_id . "' and im.local_table='patient_data' and im.foreign_table='customer'
+
+
+----------------------------------------------------------------------------
+prescriptions
+
+SELECT pt.pharmacy_id FROM prescriptions AS rx, patient_data AS pt WHERE rx.id = $id AND pt.pid = rx.patient_id
+
+SELECT prescriptions.date_added, prescriptions.patient_id, prescriptions.start_date, prescriptions.quantity, prescriptions.interval, prescriptions.note, prescriptions.drug, prescriptions.medication, prescriptions.active, prescriptions.provider_id FROM prescriptions WHERE prescriptions.patient_id = $pid
+
+SELECT s.sale_id, s.sale_date, s.prescription_id, s.fee, " .
+  "s.quantity, s.encounter, s.drug_id, d.name, r.provider_id " .
+  "FROM drug_sales AS s " .
+  "LEFT JOIN drugs AS d ON d.drug_id = s.drug_id " .
+  "LEFT OUTER JOIN prescriptions AS r ON r.id = s.prescription_id " .
+  "WHERE s.pid = '$patient_id' AND s.billed = 0 " .
+  "ORDER BY s.encounter DESC, s.sale_id ASC
+
+UPDATE prescriptions SET '
+        . 'medication = 0 where patient_id = ' . $thispid
+        . " and upper(trim(drug)) = '" . strtoupper($_POST['form_title']) . "' "
+        . ' and medication = 1'
+
+
+SELECT r.id, r.patient_id, " .
+   "r.date_modified, r.dosage, r.route, r.interval, r.refills, r.drug, " .
+   "d.name, d.ndc_number, d.form, d.size, d.unit, d.reactions, " .
+   "s.sale_id, s.sale_date, s.quantity, " .
+   "i.manufacturer, i.lot_number, i.expiration, " .
+   "p.pubpid, ".
+   "p.fname, p.lname, p.mname, u.facility_id " .
+   "FROM prescriptions AS r " .
+   "LEFT OUTER JOIN drugs AS d ON d.drug_id = r.drug_id " .
+   "LEFT OUTER JOIN drug_sales AS s ON s.prescription_id = r.id " .
+   "LEFT OUTER JOIN drug_inventory AS i ON i.inventory_id = s.inventory_id " .
+   "LEFT OUTER JOIN patient_data AS p ON p.pid = r.patient_id " .
+   "LEFT OUTER JOIN users AS u ON u.id = r.provider_id " .
+   "WHERE $where " .
+   "ORDER BY p.lname, p.fname, p.pubpid, r.id, s.sale_id"
+
+-->clinical_reports
+$sqlstmt=$sqlstmt." left outer join prescriptions AS r on r.patient_id=pd.pid
+
+insert into t1 (pid) select patient_id fro prescriptions where drug = subString and start_date >= startDate and start_date <= endDate
+
+insert into t1 (pid) select patient_id fro prescriptions where start_date >= startDate and start_date <= endDate
+
+
+----------------------------------------------------------------------------
+users
+
+SELECT f.name, f.street, f.city, f.state, f.postal_code, f.phone, f.fax, addr FROM users JOIN facility AS f ON f.name = user.facility where users.id = $id
+
+SELECT e.date, e.facility, u.id, u.lname, u.fname, u.mname, u.upin, f.street, f.city, f.state, f.postal_code, f.pos_code, f.domain_identifier AS clia_code FROM form_encounter AS e LEFT OUTER JOIN forms ON forms.formdir = 'newpatient' AND LEFT OUTER JOIN users AS u ON u.username = forms.user LEFT OUTER JOIN facility AS f ON f.name = e.facility WHERE e.pid = $patient_id AND e.encounter = $encounter LIMIT 1
+
+SELECT fname, mname, lname FROM users WHERE id = $ct_userid
+
+SELECT id, fname, mname, lname FROM users WHERE username != '' AND active = 1 ORDER BY lname, fname, mname
+
+SELECT e.pc_eventDate, e.pc_endDate, e.pc_startTime, e.pc_endTime, e.pc_duration, e.pc_recurrtype, e.pc_recurrspec, e.pc_recurrfreq, e.pc_catid, e.pc_eid, e.pc_title, e.pc_hometext, p.fname, p.mname, p.lname, p.pid, p.pubpid, u.fname AS ufname, u.mname AS umname, u.lname AS ulname, u.id AS uprovider_id, c.pc_catname, c.pc_catid FROM openemr_postcalendar_events AS e LEFT OUTER JOIN patient_data AS p ON p.pid = e.pc_pid LEFT OUTER JOIN users AS u ON u.id = e.pc_aid LEFT OUTER JOIN openemr_postcalendar_categories AS c ON c.pc_catid = e.pc_catid WHERE $where ORDER BY $order_by
+
+SELECT * FROM users WHERE id = $provider_id
+
+SELECT * FROM users WHERE id = $referrer_id
+
+SELECT * FROM users WHERE id = $superviser_id
+
+SELECT fname, lname, specialty FROM users WHERE id = $currvalue
+
+SELECT users.id, users.username, users.facility_id FROM integeration_mapping, users WHERE integeration_mapping.foreign_id = $employee_id AND integration_mapping.foreign_table = 'salesman' AND users.id = integration_mapping.local_id
+
+SELECT lists.date, lists.pid, lists.type, lists.title as proc_title, lists.diagnosis, lists.outcome, lists.groupname, form_encounter.onset_date, form_encounter.encounter, lists.comments, facility.city, facility.street, facility.state, users.title, users.fname, users.lname from lists left join issue_encounter on issue_encounter.list_id = lists.id left join form_encounter on form_encounter.encounter = issue_encounter.encounter left join facility on form_encounter.facility_id = facility.id left join users on form_encounter.provider_id = users.id where lists.type = 'surgery' and lists.pid=$pid
+
+SELECT default_warehouse FROM users WHERE username = '$user'
+
+SELECT username, fname, lname FROM users " .
+  "WHERE active = 1 AND ( info IS NULL OR info NOT LIKE '%Inactive%' ) 
+
+SELECT * FROM users WHERE id = ?", array($trow['refer_from'])
+
+SELECT * FROM users WHERE id = '$form_from'
+
+SELECT * FROM users WHERE id = '$form_to'
+
+SELECT id, fname, lname, specialty FROM users " .
+  "WHERE active = 1 AND ( info IS NULL OR info NOT LIKE '%Inactive%' ) " .
+  "ORDER BY lname, fname
+
+SELECT DISTINCT specialty FROM users " .
+  "WHERE active = 1 AND ( info IS NULL OR info NOT LIKE '%Inactive%' ) " .
+  "ORDER BY specialty"
+
+SELECT lo.notes " .
+    "FROM users AS u, list_options AS lo " .
+    "WHERE u.username = '" . $_SESSION['authUser'] . "' AND " .
+    "lo.list_id = 'irnpool' AND lo.option_id = u.irnpool LIMIT 1
+
+//at interface/patien_file/encounter/diagnosis.php
+
+
+----------------------------------------------------------------------------
+extended_log
+
+select distinct event from  extended_log order by event ASC
+
+select event,recipient,description,date from extended_log where patient_id=? AND event in (select option_id from list_options where list_id='disclosure_type') order by date desc limit 0,$limit", array($pid)
+
+select id,event,recipient,description,date from extended_log where patient_id=? AND event in (select option_id from list_options where list_id='disclosure_type') order by date desc limit 0,$N", array($pid) 
+
+select date,recipient,description,event from extended_log where id=$editlid
+
+SELECT $columns FROM extended_log WHERE date >= '$date1 00:00:00' AND date <= '$date2 23:59:59'
+
+insert into extended_log ( date, event, user, recipient, patien\
+t_id, description) " .
+            "values (" . $adodb->qstr($dates) . "," . $adodb->qstr($event) . ",
+" . $adodb->qstr($user) .
+            "," . $adodb->qstr($recipient) . ",".
+            $adodb->qstr($pid) ."," .
+            $adodb->qstr($description) .")
+
+update extended_log set
+                event=" . $adodb->qstr($event) . ",
+                date=" .  $adodb->qstr($dates) . ",
+                recipient=" . $adodb->qstr($recipient) . ",
+                description=" . $adodb->qstr($description) . "
+                where id=" . $adodb->qstr($disclosure_id) . ""
+
+delete from extended_log where id='$deletelid'

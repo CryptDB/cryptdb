@@ -1,0 +1,18 @@
+driver=com.mysql.jdbc.Driver
+conn=jdbc:mysql://saw:3310/diskstress
+user=root
+password=
+sshhost=saw.csail.mit.edu
+sshuser=robossh
+sshpass=sam15theboss
+
+initialWarmupTimeInSec=30
+coolDownBeforeThrottledMeasures=10
+intermediateWarmupTimeInSec=20
+measuringTime=30
+logfile=final/diskstress_saw2
+
+# percentage of scaledown
+scaleDownPace=1000
+maxSpeed=100000
+

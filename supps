@@ -1,0 +1,123 @@
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   ...
+   fun:_Z24ha_initialize_handlertonP13st_plugin_int
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   ...
+   fun:_ZNSs4_Rep9_S_createEmmRKSaIcE
+   ...
+   fun:_ZL23buildTypeTextTranslatorv
+   fun:_ZL27buildTypeTextTranslatorHackv
+   fun:_Z41__static_initialization_and_destruction_0ii
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   ...
+   fun:_Z16dispatch_command19enum_server_commandP3THDPcj
+   fun:emb_advanced_command
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   ...
+   fun:_Z12mysql_selectP3THDPPP4ItemP10TABLE_LISTjR4ListIS1_ES2_jP8st_orderSB_S2_SB_yP13select_resultP18st_select_lex_unitP13st_select_lex
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   ...
+   fun:_Z21mysql_execute_commandP3THD
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   ...
+   fun:_ZN4JOIN4execEv
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   ...
+   fun:_Z12write_recordP3THDP5TABLEP12st_copy_info
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   ...
+   fun:_Z15ha_create_tableP3THDPKcS2_S2_P24st_ha_create_informationb
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   ...
+   fun:_Z10sub_selectP4JOINP13st_join_tableb
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   ...
+   fun:_ZNSs12_S_constructIPKcEEPcT_S3_RKSaIcESt20forward_iterator_tag
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   ...
+   fun:_ZNSs6appendERKSs
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   ...
+   fun:mysql_server_init
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   ...
+   fun:mysql_real_connect
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   ...
+   fun:dict_create_or_check_foreign_constraint_tables
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   ...
+   fun:_ZN12multi_delete9send_dataER4ListI4ItemE
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   ...
+   fun:_Z10init_mysqlRKSs
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   ...
+   fun:_ZN7handler12ha_write_rowEPh
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   ...
+   fun:_ZN11ha_innobase6createEPKcP5TABLEP24st_ha_create_information
+}

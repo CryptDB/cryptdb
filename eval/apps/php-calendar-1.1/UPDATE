@@ -1,0 +1,10 @@
+Only versions 0.8 and newer are supported.
+
+You should backup your database and your installation before attempting any 
+upgrades.
+
+Either copy your config file to the new directory or use the update.php to 
+specify the location. The update is a slightly manual process. If you are 
+updating from version 0.8, open update08.php in your web browser. This will 
+update you partway. If you're updating from 0.8 and you did the previous step 
+or you're updating from 0.9 through 1.0, open update10.php in your web browser.

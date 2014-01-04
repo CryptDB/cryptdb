@@ -1,0 +1,27 @@
+PHP-Calendar
+----------------
+
+This program requires a PHP enabled webserver and an SQL server installed.
+
+Read INSTALL for installation instructions and requirements.
+
+Read UPDATE for update instructions.
+
+Please read the COPYING file for information regarding distribution of this 
+program.  This script is released under the GPL, so enjoy!
+
+Any questions, contact me at the email address found in the AUTHORS files.
+
+
+Common Problems
+---------------
+
+Problem:
+I login but I get a page that looks as if I hadn't logged in.
+
+Solution:
+It is likely that your session files are not stored in a persistent location.
+Try changing the value of your session.save_path in your php.ini, or if you
+do not have access to such things add a line like this to your config.php:
+
+        ini_set('session.save_path', '/tmp/persistent/phpcalendar');

@@ -1,0 +1,68 @@
+cryptdb princtype msg;
+cryptdb princtype user;
+cryptdb princtype username external;
+
+create table privmsg (sendid integer, recid integer, msgid integer);
+CRYPTDB privmsg.sendid user SPEAKSFOR privmsg.msgid msg;
+CRYPTDB privmsg.recid user SPEAKSFOR privmsg.msgid msg;
+create table msgs (msgid integer, msgtext integer);
+CRYPTDB msgs.msgtext ENCFOR msgs.msgid msg det;
+create table users (username text, userid integer);
+CRYPTDB users.username username SPEAKSFOR users.userid user;
+
+insert into pwdcryptdb__users (username, psswd) values ('alice', 'secretalice');
+insert into pwdcryptdb__users (username, psswd) values ('bob', 'secretbob');
+
+insert into users values ('alice', 1);
+insert into users values ('bob', 2);
+insert into privmsg values (1, 2, 1);
+insert into msgs values (1, 3141592);
+
+select * from privmsg;
+select * from users;
+select msgid, msgtext from msgs;
+
+update msgs set msgtext=222222 where msgid = 1;
+select * from msgs;
+update msgs set msgtext=3141592 where msgtext = 222222 and msgid = 1;
+select * from msgs;
+
+select * from users where username = 'alice';
+select sendid from privmsg where msgid = 1;
+select * from msgs where msgid = 1;
+select * from msgs where msgid = 1 and msgtext = 3141592;
+
+insert into privmsg values (2, 1, 2);
+insert into msgs values (2, 3141592);
+select * from msgs;
+select * from msgs where msgid = 1 and msgtext = 3141592;
+select * from msgs where msgtext = 3141592 and msgid = 2;
+
+delete from pwdcryptdb__users where username = 'alice';
+delete from pwdcryptdb__users where username = 'bob';
+select * from msgs;
+
+insert into pwdcryptdb__users (username, psswd) values ('bob', 'secretbob');
+select * from msgs;
+delete from pwdcryptdb__users where username = 'bob';
+insert into pwdcryptdb__users (username, psswd) values ('alice', 'secretalice');
+select * from msgs;
+
+delete from msgs where msgid=1;
+select * from msgs;
+delete from msgs where msgid=2 and msgtext=3141592
+select * from msgs;
+
+insert into msgs values (1, 100);
+insert into msgs values (2, 200);
+select * from msgs;
+
+
+update msgs set msgtext = 7, msgid = 2 where msgid = 1;
+select * from msgs;
+
+
+
+drop table privmsg;
+drop table msgs;
+drop table users;

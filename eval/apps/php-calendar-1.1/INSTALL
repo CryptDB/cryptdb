@@ -1,0 +1,112 @@
+************
+PHP-Calenar
+************
+
+0 Preface
+1 Requirements
+2 Installation
+3 Errors
+4 Translations
+
+----------
+0 Preface
+----------
+
+The installation work arounds in this installation guide are based on the input
+I have recevied from other users on different systems.  If you encounter
+installation issues that are not mentioned here, PLEASE notify (contact info
+is in the AUTHORS file).
+
+---------------
+1 Requirements
+---------------
+
+-PHP 4.1 or higher http://www.php.net/
+-MySQL or PostgreSQL (or access to a server running one of these)
+-SSH or an FTP program which and utilize the CHMOD command
+  For SSH on Windows, try putty at
+    http://www.chiark.greenend.org.uk/~sgtatham/putty/
+  For FTP on Windows, try smartFTP http://www.smartftp.com/
+-adodb 4.62 or greater http://adodb.sourceforge.net/
+
+Recommended:
+-editor (for editing the configuration files)
+
+---------------
+2 Installation
+---------------
+
+Instruction for people that are installing on a web host or some computer other than the one that they are working on are indicated with "remote host only"
+
+0) Make sure you have fulfilled all of the requirements listed above
+Make sure php, an SQL server, and adodb are installed on your server.
+   You can find php at http://php.net/ mysql at http://mysql.com
+   postgresql at http://postgresql.org adodb at http://php.weblogs.com/adodb
+   You will need php version 4.1 or greater. If you don't have permissions to
+   install this globally, you can put it in your php-calendar directory.
+
+1) extract the files from the archive
+   (in linux: tar -zxf php-calendar-x.y.tar.gz)
+
+2) (Remote server only) Use FTP to connect the server your webpage is stored on
+   and create a new directory where you want to store the calendar (example:
+   'calendar' for www.mydomain.com/calendar).  You can call it whatever you
+   want.
+
+3) You need to have access to ADOdb from in PHP-Calendar. There are two ways
+   to accomplish this.
+     a) Add the path to ADOdb to your php include_path in your php.ini
+     b) Copy ADOdb into your PHP-Calendar directory (or make a symlink)
+
+4) Open up a browser window and navigate to the file install.php in your
+   calendar folder of your webpage (example:
+   http://www.mydomain.com/calendar/install.php)
+
+5) Follow the directions given by the installer.
+
+*** freak out if the above did not work ***
+
+More seriously, if this didn't work, see the section below.
+
+-----------
+3 ERRORS
+-----------
+
+this section assumes you are using MySQL, but it may be helpful for everyone.
+
+Message: ERROR  db:1044: Access denied for user: 'MySQLusername@localhost'
+
+Solution: Make sure you have your MySQL username and password correct in the
+config.php file.  Contact your host or administrator if you don't know what
+they should are.
+
+Message: ERROR  create db:1044: Access denied for user: 'username@localhost'
+to database 'databasename': CREATE TABLE phpc_events
+
+Solution: You do not have the abilty to create tables. You need to grant
+permission to create tables on the user that you're using for the calendar.
+
+Message: ERROR  Software error  Couldn't select database
+
+Solution: Make sure the name of you MySQL database is correct in the config.php
+file.  Contact your host or administrator if you don't know what the database
+name is. Make sure the SQL_PREFIX is set to 'phpc_', or whatever the prefix of
+your tables is, in the config.php file
+
+---------------
+4 Translations
+---------------
+
+Getting translations working is not automatic yet.
+
+1) You will need to make sure that you have the locale for the desired language
+installed. This is very much system dependent. On Debian run
+'dpkg-reconfigure locales' as root and select the desired locale.
+
+2) You will need to generate the messages.mo files for each language. In the
+LC_MESSAGES directory for each language you will need to run the command
+'msgfmt -o messages.mo messages.po'
+
+Good luck!
+Sean Proctor
+(See AUTHORS file for contact info)

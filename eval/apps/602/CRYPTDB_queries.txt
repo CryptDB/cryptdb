@@ -1,0 +1,11 @@
+pset.cgi
+
+INSERT INTO interactions (username, assignment, action, submitter, timestamp) VALUES (self.username, self.assignment, action, self.requester, current_time)
+
+select interaction_id from interactions where username=self.username and assignment=self.assignment order by timestamp desc
+
+select vname, value from interaction_items where interaction_items.interactions_id=interaction_id
+
+select username, assignment, action, submitter, timestamp, value from xgrades where username=who and assignment=assignment order by timestamp
+
+insert into xgrades (username, assignment, action, submitter, timestamp, value) values (username, assignment,action,submitter,timestamp,value)

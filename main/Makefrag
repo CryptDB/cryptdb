@@ -1,0 +1,38 @@
+OBJDIRS	+= main
+
+CRYPTDB_SRCS := schema.cc Translator.cc Connect.cc \
+		Analysis.cc CryptoHandlers.cc rewrite_util.cc \
+		rewrite_field.cc dispatcher.cc dml_handler.cc \
+		ddl_handler.cc alter_sub_handler.cc rewrite_const.cc \
+		rewrite_func.cc rewrite_sum.cc metadata_tables.cc \
+		error.cc stored_procedures.cc rewrite_main.cc
+
+CRYPTDB_PROGS:= cdb_test
+
+CRYPTDBPROGOBJS	:= $(patsubst %,$(OBJDIR)/main/%,$(CRYPTDB_PROGS))
+
+all: $(CRYPTDBPROGOBJS) $(OBJDIR)/libcryptdb.so
+
+CRYPTDB_OBJS := $(patsubst %.cc,$(OBJDIR)/main/%.o,$(CRYPTDB_SRCS))
+
+$(CRYPTDBPROGOBJS): %: %.o $(OBJDIR)/libedbparser.so \
+			   $(OBJDIR)/libedbutil.so \
+			   $(OBJDIR)/libcryptdb.so \
+			   $(OBJDIR)/libedbcrypto.so
+	$(CXX) $< -o $@ -ledbparser $(LDFLAGS) $(LDRPATH) \
+			-ledbutil -ledbcrypto -lcryptdb
+
+$(OBJDIR)/libcryptdb.so: $(CRYPTDB_OBJS) \
+			 $(OBJDIR)/libedbcrypto.so \
+			 $(OBJDIR)/libedbutil.so \
+			 $(OBJDIR)/libedbparser.so 
+	$(CXX) -shared -o $@ $(CRYPTDB_OBJS) $(LDFLAGS) $(LDRPATH) \
+	       -ledbcrypto -ledbutil -ledbparser -lntl -lcrypto
+
+install: install_main
+
+.PHONY: install_main
+install_main: $(OBJDIR)/libcryptdb.so
+	install -m 644 $(OBJDIR)/libcryptdb.so /usr/lib
+
+# vim: set noexpandtab:

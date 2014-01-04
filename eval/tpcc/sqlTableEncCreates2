@@ -1,0 +1,151 @@
+CREATE TABLE `table0` (
+  `salt` bigint(20) NOT NULL,
+  `field0DET` bigint(20) NOT NULL DEFAULT '0',
+  `field1DET` bigint(20) NOT NULL,
+  `field1AGG` varbinary(256) NOT NULL,
+  `field2DET` bigint(20) NOT NULL,
+  `field3DET` varbinary(10) NOT NULL,
+  `field4DET` varbinary(20) NOT NULL,
+  `field5DET` varbinary(20) NOT NULL,
+  `field6DET` varbinary(20) NOT NULL,
+  `field7DET` varbinary(2) NOT NULL,
+  `field8DET` varbinary(9) NOT NULL
+);
+
+
+CREATE TABLE `table1` (
+  `salt` bigint(20) DEFAULT NULL,
+  `field0DET` bigint(20) NOT NULL DEFAULT '0',
+  `field1DET` bigint(20) NOT NULL DEFAULT '0',
+  `field2DET` bigint(20) DEFAULT NULL,
+  `field2AGG` varbinary(256) DEFAULT NULL,
+  `field3DET` bigint(20) DEFAULT NULL,
+  `field4DET` bigint(20) DEFAULT NULL,
+  `field4AGG` varbinary(256) DEFAULT NULL,
+  `field5DET` varbinary(10) DEFAULT NULL,
+  `field6DET` varbinary(20),
+  `field7DET` varbinary(20),
+  `field8DET` varbinary(20),
+  `field9DET` varbinary(2),
+  `field10DET` varbinary(9)
+);
+
+
+CREATE TABLE `table2` (
+  `salt` bigint(20) DEFAULT NULL,
+  `field0DET` bigint(20) NOT NULL DEFAULT '0',
+  `field1DET` bigint(20) NOT NULL DEFAULT '0',
+  `field2DET` bigint(20) NOT NULL DEFAULT '0',
+  `field3DET` bigint(20) DEFAULT NULL,
+  `field4DET` varbinary(2),
+  `field5DET` varbinary(16),
+  `field6DET` varbinary(16),
+  `field6OPE` bigint(20) DEFAULT NULL,
+  `field7DET` bigint(20) DEFAULT NULL,
+  `field8DET` bigint(20) DEFAULT NULL,
+  `field8AGG` varbinary(256) DEFAULT NULL,
+  `field9DET` bigint(20) DEFAULT NULL,
+  `field10DET` bigint(20) DEFAULT NULL,
+  `field11DET` bigint(20) DEFAULT NULL,
+  `field11AGG` varbinary(256) DEFAULT NULL,
+  `field12DET` varbinary(20),
+  `field13DET` varbinary(20),
+  `field14DET` varbinary(20),
+  `field15DET` varbinary(2),
+  `field16DET` varbinary(9),
+  `field17DET` varbinary(16),
+  `field18DET` varbinary(24),
+  `field19DET` varbinary(2),
+  `field20DET` varbinary(500)
+);
+
+
+
+CREATE TABLE `table3` (
+  `salt` bigint(20) DEFAULT NULL,
+  `field0DET` bigint(20) DEFAULT NULL,
+  `field1DET` bigint(20) DEFAULT NULL,
+  `field2DET` bigint(20) DEFAULT NULL,
+  `field3DET` bigint(20) DEFAULT NULL,
+  `field4DET` bigint(20) DEFAULT NULL,
+  `field5DET` varbinary(24),
+  `field6DET` bigint(20) DEFAULT NULL,
+  `field7DET` varbinary(24)
+);
+
+
+CREATE TABLE `table4` (
+  `salt` bigint(20) DEFAULT NULL,
+  `field0DET` bigint(20) NOT NULL DEFAULT '0',
+  `field1DET` bigint(20) NOT NULL DEFAULT '0',
+  `field2DET` bigint(20) NOT NULL DEFAULT '0',
+  `field2OPE` bigint(20) DEFAULT NULL,
+  `field3DET` bigint(20) DEFAULT NULL,
+  `field4DET` bigint(20) DEFAULT NULL,
+  `field5DET` bigint(20) DEFAULT NULL,
+  `field6DET` bigint(20) DEFAULT NULL,
+  `field7DET` varbinary(24)
+);
+
+
+CREATE TABLE `table5` (
+  `salt` bigint(20) DEFAULT NULL,
+  `field0DET` bigint(20) NOT NULL DEFAULT '0',
+  `field1DET` bigint(20) NOT NULL DEFAULT '0',
+  `field2DET` bigint(20) DEFAULT NULL,
+  `field2OPE` bigint(20) NOT NULL DEFAULT '0'
+);
+
+
+
+
+CREATE TABLE `table6` (
+  `salt` bigint(20) DEFAULT NULL,
+  `field0DET` bigint(20) NOT NULL DEFAULT '0',
+  `field1DET` bigint(20) NOT NULL DEFAULT '0',
+  `field2DET` bigint(20) DEFAULT NULL,
+  `field2OPE` bigint(20) NOT NULL DEFAULT '0',
+  `field3DET` bigint(20) NOT NULL DEFAULT '0',
+  `field4DET` bigint(20) DEFAULT NULL,
+  `field5DET` varbinary(24),
+  `field6DET` bigint(20) DEFAULT NULL,
+  `field6AGG` varbinary(256) DEFAULT NULL,
+  `field7DET` bigint(20) DEFAULT NULL,
+  `field8DET` bigint(20) DEFAULT NULL,
+  `field9DET` varbinary(24)
+);
+
+
+CREATE TABLE `table7` (
+  `salt` bigint(20) DEFAULT NULL,
+  `field0DET` bigint(20) NOT NULL DEFAULT '0',
+  `field1DET` bigint(20) NOT NULL DEFAULT '0',
+  `field2DET` bigint(20) DEFAULT NULL,
+  `field2OPE` bigint(20) DEFAULT NULL,
+  `field3DET` bigint(20) DEFAULT NULL,
+  `field3AGG` varbinary(256) DEFAULT NULL,
+  `field4DET` bigint(20) DEFAULT NULL,
+  `field5DET` bigint(20) DEFAULT NULL,
+  `field5AGG` varbinary(256) DEFAULT NULL,
+  `field6DET` varbinary(50),
+  `field7DET` varbinary(24),
+  `field8DET` varbinary(24),
+  `field9DET` varbinary(24),
+  `field10DET` varbinary(24),
+  `field11DET` varbinary(24),
+  `field12DET` varbinary(24),
+  `field13DET` varbinary(24),
+  `field14DET` varbinary(24),
+  `field15DET` varbinary(24),
+  `field16DET` varbinary(24)
+);
+
+CREATE TABLE `table8` (
+  `salt` bigint(20) DEFAULT NULL,
+  `field0DET` bigint(20) NOT NULL DEFAULT '0',
+  `field1DET` varbinary(24),
+  `field2DET` bigint(20) DEFAULT NULL,
+  `field3DET` varbinary(50),
+  `field4DET` bigint(20) DEFAULT NULL
+);
+

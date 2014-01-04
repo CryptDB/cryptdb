@@ -1,0 +1,2 @@
+CREATE TABLE test_train (id integer, age integer, salary integer, address text, name text);
+CREATE TABLE test_train2 (id integer, books integer, name text);

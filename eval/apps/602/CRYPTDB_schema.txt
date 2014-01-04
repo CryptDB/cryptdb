@@ -1,0 +1,34 @@
+6.02
+Schema
+
+interactions
+  interaction_id integer auto_increment primary key,
+enc  username varchar(32) not null, DET
+enc  assignment char(4) not null, DET
+enc  action char(16) not null, RND
+enc  submitter varchar(32), RND
+enc  timestamp char(14), OPE (only order by and no limit)
+  index username_assignment_index (username,assignment)
+
+interaction_items
+  interaction_id integer references interactions,
+enc  vname text,  RND
+enc  value text, RND
+  index interaction_id_index (interaction_id)
+
+xgrades
+enc  username varchar(32) not null, DET
+enc  assignment char(4) not null, DET
+enc  action char(16) not null, RND
+enc  submitter varchar(32), RND
+enc  timestamp char(14), OPE (only order by and no limit)
+enc  value varchar(256), RND
+  index grades_index (username)
+
+Overall: 13 fields
+7 at RND
+4 at DET --> DET's are not unique
+2 at OPE --> would be at RND otherwise
+very sensitive value only -- at RND
+
+

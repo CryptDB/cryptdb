@@ -1,0 +1,21 @@
+use phpbb; 
+INSERT INTO activeusers VALUES ('admin', 'letmein'); 
+INSERT INTO activeusers VALUES ('anonymous', 'letmein');
+DROP FUNCTION IF EXISTS groupaccess; 
+CREATE FUNCTION groupaccess (auth_option_id mediumint(8), auth_role_id mediumint(8)) RETURNS bool RETURN ((auth_option_id = 14) OR (auth_role_id IN (1, 2, 4, 6, 10, 11, 12, 13, 14, 15, 17, 22, 23, 24))); 
+# create accounts 
+INSERT INTO phpbb_users (user_id, username, username_clean, user_password) VALUES (5, 'user5', 'user5', '$H$9Y2okYC6esucbYl91NyweDbXP5ys2x.');
+INSERT INTO phpbb_users (user_id, username, username_clean, user_password) VALUES (6, 'user5', 'user5', '$H$9Y2okYC6esucbYl91NyweDbXP5ys2x.');
+INSERT INTO phpbb_users (user_id, username, username_clean, user_password) VALUES (7, 'user5', 'user5', '$H$9Y2okYC6esucbYl91NyweDbXP5ys2x.');
+INSERT INTO phpbb_users (user_id, username, username_clean, user_password) VALUES (8, 'user5', 'user5', '$H$9Y2okYC6esucbYl91NyweDbXP5ys2x.');
+INSERT INTO phpbb_users (user_id, username, username_clean, user_password) VALUES (9, 'user5', 'user5', '$H$9Y2okYC6esucbYl91NyweDbXP5ys2x.');
+INSERT INTO phpbb_users (user_id, username, username_clean, user_password) VALUES (5, 'user5', 'user5', '$H$9Y2okYC6esucbYl91NyweDbXP5ys2x.');
+INSERT INTO phpbb_users (user_id, username, username_clean, user_password) VALUES (5, 'user5', 'user5', '$H$9Y2okYC6esucbYl91NyweDbXP5ys2x.');
+INSERT INTO phpbb_users (user_id, username, username_clean, user_password) VALUES (5, 'user5', 'user5', '$H$9Y2okYC6esucbYl91NyweDbXP5ys2x.');
+INSERT INTO phpbb_users (user_id, username, username_clean, user_password) VALUES (5, 'user5', 'user5', '$H$9Y2okYC6esucbYl91NyweDbXP5ys2x.');
+INSERT INTO phpbb_users (user_id, username, username_clean, user_password) VALUES (5, 'user5', 'user5', '$H$9Y2okYC6esucbYl91NyweDbXP5ys2x.');
+
+INSERT INTO phpbb_user_group VALUES (2, userid, 0, 0);
+INSERT INTO phpbb_user_group VALUES (7, userid, 0, 0);
+
+

@@ -1,0 +1,11 @@
+
+note: to debug the embedded server,
+% cmake -DWITH_EMBEDDED_SERVER=ON -DCMAKE_BUILD_TYPE=Debug -DWITH_DEBUG=1 ..
+
+note: when changing the mysql grammar, it's necessary to re-run cmake,
+which runs the equivalent of lex and yacc on sql_yacc.yy.  It's easiest
+to just "rm -r build; mkdir build; cd build; cmake ... etc".
+
+Some notes about Item processing:
+    Item::transform, Item::compile, and Item::traverse_cond could be useful
+

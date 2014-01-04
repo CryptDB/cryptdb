@@ -1,0 +1,19 @@
+#
+# cryptdbimport.cc Makefrag
+#
+EXECFILE = cryptdbimport
+
+TOOLS_SRCS   :=  $(EXECFILE).cc
+        
+all:	$(OBJDIR)/tools/import/$(EXECFILE)
+
+IMPORT_OBJS := $(patsubst %.cc,$(OBJDIR)/tools/import/%.o,$(TOOLS_SRCS))
+$(OBJDIR)/tools/import/$(EXECFILE): $(IMPORT_OBJS) \
+		     $(OBJDIR)/libcryptdb.so $(OBJDIR)/libedbcrypto.so \
+		     $(OBJDIR)/libedbutil.so $(OBJDIR)/libedbparser.so
+	$(CXX) -o $@ $(IMPORT_OBJS) $(LDFLAGS) $(LDRPATH) \
+	       -ledbcrypto -ledbutil -ledbparser -lcryptdb  
+
+CXXFLAGS += -Itools/import -Imain/ 
+
+# vim: set noexpandtab:

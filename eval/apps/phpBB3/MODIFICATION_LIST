@@ -1,0 +1,8 @@
+For the purposes of setting up CryptDB:
+install/install_install.php L1198 ~added COMMIT ANNOTATIONS
+schemas/mysql_41_schema.sql ~annotated tables; details in annotations.docx
+
+For the purposes of robot posting:
+includes/ucp/ucp_pm_compose.php L82 ~changed 2 to 0
+posting.php L49 ~changed 2 to 0
+includes/functions.php L2740 ~added this line

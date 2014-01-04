@@ -1,0 +1,58 @@
+Number of Terminals	1
+
+Terminal	Home Warehouse
+Term-01	1
+
+Transaction	Weight
+% New-Order	45
+% Payment	43
+% Order-Status	4
+% Delivery	4
+% Stock-Level	4
+
+
+Transaction Number	Terminal	Type	Execution Time (ms)		Comment
+1	Term-01	Payment	344		None
+2	Term-01	New-Order	906		None
+3	Term-01	Order-Status	94		None
+4	Term-01	Payment	47		None
+5	Term-01	Payment	31		None
+6	Term-01	New-Order	719		None
+7	Term-01	New-Order	1250		None
+8	Term-01	New-Order	875		None
+9	Term-01	Payment	31		None
+10	Term-01	New-Order	891		None
+11	Term-01	New-Order	719		None
+12	Term-01	Payment	46		None
+13	Term-01	Payment	32		None
+14	Term-01	Payment	31		None
+15	Term-01	Delivery	1156		None
+16	Term-01	New-Order	922		None
+17	Term-01	Stock-Level	78		None
+18	Term-01	New-Order	1110		None
+19	Term-01	Payment	31		None
+20	Term-01	Payment	31		None
+21	Term-01	Payment	31		None
+22	Term-01	Payment	78		None
+23	Term-01	Payment	469		None
+24	Term-01	Payment	63		None
+25	Term-01	New-Order	718		None
+26	Term-01	Stock-Level	79		None
+27	Term-01	New-Order	1218		None
+28	Term-01	New-Order	828		None
+29	Term-01	New-Order	516		None
+30	Term-01	Payment	63		None
+31	Term-01	Payment	31		None
+32	Term-01	Payment	31		None
+33	Term-01	Payment	47		None
+34	Term-01	New-Order	2094		None
+35	Term-01	New-Order	937		None
+36	Term-01	New-Order	656		None
+37	Term-01	New-Order	1297		None
+
+
+Measured tpmC	=60000*16/18578
+
+Session Start	2006-01-04 22:02:11
+Session End	2006-01-04 22:02:30
+Transaction Count	37

@@ -1,0 +1,67 @@
+-= [ CSAIL@MIT CryptDB-Web Onions Tool ] =-
+
+[Install Instructions]
+            
+    [System Requirements]
+        Ubuntu Linux 12+
+        Apache2
+        php5
+
+    [Apache2 Install]
+
+       -= All at once:
+       $ sudo apt-get install apache2 apache2-utils apache2.2-bin apache2.2-common libapache2-mod-php5 
+
+       -= Description:
+
+       apache2: Apache2 main package
+       apache2-utils: Apache2 configuration scripts
+       apache2.2-bin: Apache2 modules, i.e, mod-ssl, mod-iden, etc.
+       apache2.2-common: Man pages, documentation, etc.
+       libapache2-mod-php5: php5 module/library for Apache2
+            
+    [PHP5 Install]
+        
+       -= All at once:
+       $ sudo apt-get install php5-cli php5-common php5-mysql 
+
+       -= Description:
+
+       php5-cli: PHP5 binaries
+       php5-common: Documentation, initialization scripts, etc.
+       php5-mysql: MYSQL modules for PHP5, i.e., mysql.so, mysqli.so, etc.
+
+    [ CryptDB-Web Onions Tool install instructions]
+
+        -= All at once (see Notes first!)
+        $sudo ./install.sh (deploy)
+        $sudo ./install.sh devel (for development, i.e., symbolic links instead of hard copy.)
+            
+        -= Notes:
+        
+            install.sh script first backup the contents of Apache2's DocumentRoot saving .tar.bz2 
+        file in the current directory and then overwrite _only_ the same files being copied.
+        This approach is for security reasons to avoid data loss if the use chooses to not
+        make the backup copy (optional). It is recommended instead to backup DocumentRoot
+        contents and then execute install.sh
+
+            Using devel option will use symbolic links pointing to current .php files directory
+        instead of create hard copies in DocumentRoot directory. Only .php files are considered.
+        
+        -= Description:
+        
+        index.php: Main php file 
+        common.php: Common operations
+        select.php: Database operations
+        menu_assets/styles.cc: CSS definitions
+        install.sh: Installation script
+
+    [ Running ]
+
+        Restart Apache: 
+        $ sudo service apache2 restart
+
+        Simply open your browser and point to http://localhost
+
+EOF
+        

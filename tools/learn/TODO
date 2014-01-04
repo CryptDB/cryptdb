@@ -1,0 +1,12 @@
+-= CryptDB learn tool
+
+TODO:
+
+- Implement Learn::trainFromScratch
+- Check how to integrate cryptdblearn with CryptDB web tool (@see tools/php/*.php). 
+- Fix Learn::trainFromScratch to use executeQuery instead.
+- Use "DIRECTIVE UPDATE" new CryptDB's internal SQL statement handler 
+    to deal with onion levels. 
+
+
+ 

@@ -1,0 +1,13 @@
+--LOAD messages will be placed in files, 1 per LOAD,  in <db2_instance_home>/sqllib/tmp
+--fully qualified path to the load files required; change paths below  as needed
+
+
+CALL SYSPROC.ADMIN_CMD('LOAD FROM /home/db2inst1/BenchmarkSQL-2.3.2/run/csv/warehouse.csv OF DEL MESSAGES ON SERVER  REPLACE INTO WAREHOUSE COPY NO'); 
+CALL SYSPROC.ADMIN_CMD('LOAD FROM /home/db2inst1/BenchmarkSQL-2.3.2/run/csv/item.csv OF DEL MESSAGES ON SERVER  REPLACE INTO ITEM COPY NO'); 
+CALL SYSPROC.ADMIN_CMD('LOAD FROM /home/db2inst1/BenchmarkSQL-2.3.2/run/csv/stock.csv OF DEL MESSAGES ON SERVER  REPLACE INTO STOCK COPY NO'); 
+CALL SYSPROC.ADMIN_CMD('LOAD FROM /home/db2inst1/BenchmarkSQL-2.3.2/run/csv/district.csv OF DEL MESSAGES ON SERVER  REPLACE INTO DISTRICT COPY NO'); 
+CALL SYSPROC.ADMIN_CMD('LOAD FROM /home/db2inst1/BenchmarkSQL-2.3.2/run/csv/customer.csv OF DEL MESSAGES ON SERVER  REPLACE INTO CUSTOMER COPY NO'); 
+CALL SYSPROC.ADMIN_CMD('LOAD FROM /home/db2inst1/BenchmarkSQL-2.3.2/run/csv/cust-hist.csv OF DEL MESSAGES ON SERVER  REPLACE INTO HISTORY COPY NO'); 
+CALL SYSPROC.ADMIN_CMD('LOAD FROM /home/db2inst1/BenchmarkSQL-2.3.2/run/csv/order.csv OF DEL MESSAGES ON SERVER  REPLACE INTO OORDER COPY NO'); 
+CALL SYSPROC.ADMIN_CMD('LOAD FROM /home/db2inst1/BenchmarkSQL-2.3.2/run/csv/order-line.csv OF DEL MESSAGES ON SERVER  REPLACE INTO ORDER_LINE COPY NO'); 
+CALL SYSPROC.ADMIN_CMD('LOAD FROM /home/db2inst1/BenchmarkSQL-2.3.2/run/csv/new-order.csv OF DEL MESSAGES ON SERVER  REPLACE INTO NEW_ORDER COPY NO'); 

@@ -1,0 +1,48 @@
+PHP-Calendar
+Schema 
+
+events:
+        "id I NOTNULL PRIMARY,\n" .
+        "uid I,\n" .
+enc        "startdate D,\n" .  OPE
+-->not supported in current form: calls SQLDate function requesting the year, month and day part --but could be implemented if these were separate, a new onion
+enc        "enddate D,\n" .   OPE
+enc        "starttime T,\n" . OPE (only ORDER, no LIMIT)
+enc        "duration I,\n" .  RND
+enc        "eventtype I,\n" .  DET
+enc        "subject C(255),\n" . SEARCH
+enc        "description B,\n" . SEARCH
+          "calendar C(32)\n"; 
+
+users:
+       "calendar C(32) NOTNULL DEFAULT '0',\n" .
+        "uid I NOTNULL PRIMARY,\n" .
+enc        "username C(32) NOTNULL,\n" . DET
+enc        "password C(32) NOTNULL default '',\n" . DET
+        "admin I1 NOTNULL DEFAULT 0\n";
+
+calendars:
+       "calendar C(32) NOTNULL PRIMARY,\n" . 
+        "hours_24 I1 NOTNULL DEFAULT 0,\n" .
+        "start_monday I1 NOTNULL DEFAULT 0,\n" .
+        "translate I1 NOTNULL DEFAULT 0,\n" .
+        "anon_permission I1 NOTNULL DEFAULT 0,\n" .
+        "subject_max I2 NOTNULL DEFAULT 32,\n" .
+enc        "contact_name C(255) NOTNULL DEFAULT '',\n" . RND
+enc        "contact_email C(255) NOTNULL DEFAULT '',\n" . RND
+enc        "calendar_title C(255) NOTNULL DEFAULT '',\n" . DET
+        "url C(200) NOTNULL DEFAULT ''\n";
+
+
+Rationale for choosing sensitive fields:
+-- there is one calendar per user so its identifier "calendar" is not encrypted
+
+Overall: 12 encrypted fields
+ 2 not supported
+ RND: 3
+ DET: 4 (3 unique)
+ OPE: 1 (only ORDER, no LIMIT)
+ SEARCH: 2 
+
+very sensitive: subject, description, uname, password, 
+SEARCH on subject not considered in HIGH as it is a small text
