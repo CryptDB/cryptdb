@@ -15,7 +15,7 @@ Convention : When this document uses syntax like
 #########################################
 #########################################
     * Requirements:
-      > Ubuntu 12.04, 13.04; Not tested on a different OS.
+      > Ubuntu 12.04, 13.04, 14.04; Not tested on a different OS.
       > ruby
     * Build CryptDB using the installation script.
       > note, this script will stop and start your mysql instance.
